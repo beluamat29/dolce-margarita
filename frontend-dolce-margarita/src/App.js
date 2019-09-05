@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import LoginAdmin from "./componentes/loginAdmin/LoginAdmin";
+import Home from "./componentes/home/Home";
 
 
 function App() {
@@ -10,14 +11,10 @@ function App() {
       <Router>
         <div>
           <Route path="/" exact component={Home} />
-            <Route path="/admin" exact component={LoginAdmin} />
+            <Route path="/adminlogin" exact component={LoginAdmin} />
         </div>
       </Router>
   );
-}
-
-function Home() {
-  return <h2>Dolce Margarita</h2>;
 }
 
 export default App;
