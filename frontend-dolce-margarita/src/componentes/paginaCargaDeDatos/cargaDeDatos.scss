@@ -1,8 +1,6 @@
 $input-border-color: black;
-
-@import "../../../node_modules/bulma/bulma.sass";
-@import "../../../node_modules/bulma/sass/elements/title";
-@import "../../../node_modules/bulma/sass/form/input-textarea";
+$danger: #ffa5cd;
+@import "~bulma/bulma.sass";
 
 .home-carga-de-datos {
   background-color: #ffd8dd;
@@ -28,8 +26,16 @@ $input-border-color: black;
        margin-bottom: 10px;
     }
 
+    .textarea {
+      align-items: first;
+    }
+
     .input {
       border-color: black;
+    }
+
+    .control {
+      width: 100%;
     }
   }
 
