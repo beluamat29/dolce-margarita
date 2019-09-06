@@ -1,5 +1,7 @@
 $input-border-color: black;
-$danger: #ffa5cd;
+$primary: #ffa5cd;
+$dropdown-content-arrow: black;
+$info: black;
 @import "~bulma/bulma.sass";
 
 .home-carga-de-datos {
@@ -27,7 +29,7 @@ $danger: #ffa5cd;
     }
 
     .textarea {
-      align-items: first;
+      border-color: black;
     }
 
     .input {
@@ -37,11 +39,10 @@ $danger: #ffa5cd;
     .control {
       width: 100%;
     }
-  }
 
-  .selector-chocolate-carga-producto {
-    width: inherit;
-    margin-bottom: 15px;
+    .formato-chocolate-selector {
+      background-color: white;
+      border-color: black;
+    }
   }
-
 }
