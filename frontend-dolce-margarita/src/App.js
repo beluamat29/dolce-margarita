@@ -9,7 +9,6 @@ import Home from "./componentes/home/Home";
 function App() {
   return (
       <BrowserRouter>
-          <div>
               <Switch>
                   <Route
                       path="/home"
@@ -19,7 +18,6 @@ function App() {
                       path="/adminlogin"
                       component={LoginAdmin} />
               </Switch>
-          </div>
       </BrowserRouter>
   );
 }
