@@ -1,6 +1,7 @@
 import React from 'react';
 import './cargaDeDatos.scss';
 import Select from 'react-select';
+import {RellenoDeParedesDeHuevoCheckbox} from "./RellenoDeParedesDeHuevoCheckbox";
 
 //EXTRAER A UN ARCHIVO DE CONSTANTES
 const tiposDeFormato = [
@@ -9,21 +10,17 @@ const tiposDeFormato = [
     { value: 'bomboneria', label: 'Bomboneria' },
 ];
 
+const chocolateNulo = {
+    value: 'chocolatenulo', label: 'Selecciona tu chocolate'
+}
 
 export default class CargaDeDatos extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            formatoSeleccionado: null
+            formatoSeleccionado: chocolateNulo
         }
-
-    }
-
-    probando(formato){
-        debugger
-        this.setState({formatoSeleccionado: formato})
-        console.log(this.state.formatoSeleccionado)
     }
 
     render() {
@@ -38,7 +35,7 @@ export default class CargaDeDatos extends React.Component {
                 <div className="field">
                     <p className="subtitle is-4 is-spaced">formato del producto</p>
                     <div className="control">
-                        <Select
+                        <Select className="formato-chocolate-selector"
                             value={this.state.formatoSeleccionado}
                             onChange={(formato) => this.setState({formatoSeleccionado: formato})}
                             options={tiposDeFormato}
@@ -66,6 +63,9 @@ export default class CargaDeDatos extends React.Component {
                         <input className="textarea is-primary" type="text"/>
                     </div>
                 </div>
+
+                <RellenoDeParedesDeHuevoCheckbox admiteRelleno={this.state.formatoSeleccionado.value === 'huevo'}/>
+
             </div>
         )
     }
