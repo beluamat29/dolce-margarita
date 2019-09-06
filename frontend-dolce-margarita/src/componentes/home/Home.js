@@ -1,11 +1,12 @@
 import React from 'react';
+
 import './homepage.scss';
 
-export default class Home extends React.Component {
+export default class LoginAdmin extends React.Component {
     render() {
         return (
-            <div className="home-page">
-                <h1 className="home-title">Bienvenido User</h1>
+            <div>
+               <h1>hola user</h1>
             </div>
         )
     }
