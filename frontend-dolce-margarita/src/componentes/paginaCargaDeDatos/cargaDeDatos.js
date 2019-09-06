@@ -1,20 +1,29 @@
 import React from 'react';
-import Select from "react-dropdown-select";
 import './cargaDeDatos.scss';
+import Select from 'react-select';
+
+//EXTRAER A UN ARCHIVO DE CONSTANTES
+const tiposDeFormato = [
+    { value: 'figura', label: 'Figura' },
+    { value: 'huevo', label: 'Huevo' },
+    { value: 'bomboneria', label: 'Bomboneria' },
+];
+
 
 export default class CargaDeDatos extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            tiposDeFormato: [
-                {nombreFormato:'Huevo', valorFormato: 'Huevo'},
-                {nombreFormato:'Figura', valorFormato: 'Figura'},
-                {nombreFormato:'Bomboneria', valorFormato: 'Bomboneria'}
-                ],
-            formatoSeleccionado: undefined
+            formatoSeleccionado: null
         }
 
+    }
+
+    probando(formato){
+        debugger
+        this.setState({formatoSeleccionado: formato})
+        console.log(this.state.formatoSeleccionado)
     }
 
     render() {
@@ -29,10 +38,10 @@ export default class CargaDeDatos extends React.Component {
                 <div className="field">
                     <p className="subtitle is-4 is-spaced">formato del producto</p>
                     <div className="control">
-                        <Select className="formato-chocolate-selector is-fullwidth" labelField="nombreFormato" valueField="valorFormato"
-                                options={this.state.tiposDeFormato}
-                                placeholder={''}
-                                onChange={(formato) => this.setState({formatoSeleccionado: formato})}
+                        <Select
+                            value={this.state.formatoSeleccionado}
+                            onChange={(formato) => this.setState({formatoSeleccionado: formato})}
+                            options={tiposDeFormato}
                         />
                     </div>
                 </div>
