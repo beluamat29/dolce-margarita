@@ -1,5 +1,9 @@
+$input-border-color: black;
+
 @import "../../../node_modules/bulma/bulma.sass";
 @import "../../../node_modules/bulma/sass/elements/title";
+@import "../../../node_modules/bulma/sass/form/input-textarea";
+
 .home-carga-de-datos {
   background-color: #ffd8dd;
   position: fixed;
@@ -18,10 +22,20 @@
     align-items: center;
     flex-direction: column;
     width: 300px;
+    margin-bottom: 25px;
+
+    .subtitle {
+       margin-bottom: 10px;
+    }
+
+    .input {
+      border-color: black;
+    }
   }
 
   .selector-chocolate-carga-producto {
     width: inherit;
+    margin-bottom: 15px;
   }
 
 }

@@ -14,7 +14,7 @@ export default class CargaDeDatos extends React.Component {
 
                 <div className="field">
 
-                    <p className="subtitle is-3 is-spaced">Producto</p>
+                    <p className="subtitle is-4 is-spaced">formato del producto</p>
                     <div className="control">
                         <div className="select">
                             <select>
@@ -24,6 +24,20 @@ export default class CargaDeDatos extends React.Component {
                             </select>
                         </div>
                     </div>
+                </div>
+
+                <div className="field">
+                    <p className="subtitle is-4 is-spaced">nombre</p>
+                        <div className="control">
+                            <input className="input is-primary" type="text"/>
+                        </div>
+                </div>
+
+                <div className="field">
+                    <p className="subtitle is-4 is-spaced">precio</p>
+                        <div className="control">
+                            <input className="input is-primary" type="text"/>
+                        </div>
                 </div>
             </div>
         )
