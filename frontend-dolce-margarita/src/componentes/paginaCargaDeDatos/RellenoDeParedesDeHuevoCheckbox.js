@@ -8,6 +8,5 @@ export function  RellenoDeParedesDeHuevoCheckbox(props) {
                     Paredes con Dulce de leche
                 </div>
     }
-
     return <div></div>
 }

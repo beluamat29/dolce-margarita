@@ -11,6 +11,7 @@ const tiposDeFormato = [
 ];
 
 const chocolateNulo = {
+    //Se usa como valor default para cuando arranca el dropdown
     value: 'chocolatenulo', label: 'Selecciona tu chocolate'
 }
 
@@ -26,14 +27,12 @@ export default class CargaDeDatos extends React.Component {
     render() {
         return (
             <div class="home-carga-de-datos ">
-
                 <div>
                     <p class="title is-1 is-spaced">Carga de datos</p>
                 </div>
 
-
                 <div className="field">
-                    <p className="subtitle is-4 is-spaced">formato del producto</p>
+                    <p className="subtitle is-4 is-spaced">Formato del producto</p>
                     <div className="control">
                         <Select className="formato-chocolate-selector"
                             value={this.state.formatoSeleccionado}
@@ -44,21 +43,21 @@ export default class CargaDeDatos extends React.Component {
                 </div>
 
                 <div className="field">
-                    <p className="subtitle is-4 is-spaced">nombre</p>
+                    <p className="subtitle is-4 is-spaced">Nombre</p>
                         <div className="control">
                             <input className="input is-primary" type="text"/>
                         </div>
                 </div>
 
                 <div className="field">
-                    <p className="subtitle is-4 is-spaced">precio</p>
+                    <p className="subtitle is-4 is-spaced">Precio</p>
                         <div className="control">
                             <input className="input is-primary" type="text"/>
                         </div>
                 </div>
 
                 <div className="field">
-                    <p className="subtitle is-4 is-spaced">descripción</p>
+                    <p className="subtitle is-4 is-spaced">Descripción</p>
                     <div className="control">
                         <input className="textarea is-primary" type="text"/>
                     </div>
