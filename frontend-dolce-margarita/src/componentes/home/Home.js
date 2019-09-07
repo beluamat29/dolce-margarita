@@ -11,16 +11,28 @@ export default class LoginAdmin extends React.Component {
                 </div>
 
                 <div className="cartas">
-                    <div className="box">
-                        <p>carta 1</p>
+                    <div className="card">
+                        <div className="card-content figuras">
+                        </div>
+                        <div className="card-footer">
+                            <p className="subtitle"> Figuras</p>
+                        </div>
                     </div>
 
-                    <div className="box">
-                        <p>carta 2</p>
+                    <div className="card">
+                        <div className="card-content bombones">
+                        </div>
+                        <div className="card-footer">
+                            <p className="subtitle"> Bomboneria</p>
+                        </div>
                     </div>
 
-                    <div className="box">
-                        <p>carta 3</p>
+                    <div className="card">
+                        <div className="card-content huevos">
+                        </div>
+                        <div className="card-footer">
+                            <p className="subtitle"> Huevos</p>
+                        </div>
                     </div>
                 </div>
             </div>
