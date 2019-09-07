@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import LoginAdmin from "./componentes/loginAdmin/LoginAdmin";
 import Home from "./componentes/home/Home";
 import CargaDeDatos from "./componentes/paginaCargaDeDatos/cargaDeDatos";
+import ListadoDeProductos from "./componentes/listadoDeProductos/ListadoDeProductos";
 
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
                       exact
                       path="/cargadatos"
                       component={CargaDeDatos} />
+                  <Route
+                      exact
+                      path="/listado"
+                      component={ListadoDeProductos} />
               </Switch>
       </BrowserRouter>
   );
