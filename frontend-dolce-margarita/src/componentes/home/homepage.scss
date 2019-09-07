@@ -21,20 +21,18 @@
 
       .card-content {
         height: 240px;
+        background-size: cover;
 
         &.bombones {
           background-image: url("../../assets/bombones.jpg");
-          background-size: cover;
         }
 
         &.huevos {
           background-image: url("../../assets/huevos1.jpg");
-          background-size: cover;
         }
 
         &.figuras {
           background-image: url("../../assets/gallinas.jpg");
-          background-size: cover;
         }
       }
 
