@@ -1,1 +1,53 @@
+.home-usuario {
+  background-color: #ffd8dd;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  text-align: center;
 
+  .cartas {
+    display: flex;
+    flex-direction: row;
+
+    .card {
+      width: 300px;
+      height: 300px;
+      margin: 15px;
+      box-shadow: 4px 3px 4px;
+      font-family: "Helvetica Neue", "Arial", sans-serif;
+
+      .card-content {
+        height: 240px;
+        background-size: cover;
+
+        &.bombones {
+          background-image: url("../../assets/bombones.jpg");
+        }
+
+        &.huevos {
+          background-image: url("../../assets/huevos1.jpg");
+        }
+
+        &.figuras {
+          background-image: url("../../assets/gallinas.jpg");
+        }
+      }
+
+      .card-footer {
+        background-color: #e1a0c2;
+        height: 60px;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .title {
+    margin: 15px 0 30px;
+    display: inline-block;
+    padding: 15px;
+  }
+}
