@@ -2,7 +2,25 @@ import React from 'react';
 
 import './homepage.scss';
 
+const categorias = [
+    {nombreCategoria: 'figuras', tituloCarta: 'Figuras'},
+    {nombreCategoria: 'bombones', tituloCarta: 'Bombonería'},
+    {nombreCategoria: 'huevos', tituloCarta: 'Huevos'}
+]
 export default class Home extends React.Component {
+
+    renderCarta = (titulo, imagenDeCarta) => {
+        return (
+            <div className="card">
+                <div className={"card-content " + imagenDeCarta}>
+                </div>
+                <div className="card-footer">
+                    <p className="subtitle">{titulo}</p>
+                </div>
+            </div>
+        )
+    }
+
     render() {
         return (
             <div className="home-usuario">
@@ -11,29 +29,9 @@ export default class Home extends React.Component {
                 </div>
 
                 <div className="cartas">
-                    <div className="card">
-                        <div className="card-content figuras">
-                        </div>
-                        <div className="card-footer">
-                            <p className="subtitle"> Figuras</p>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card-content bombones">
-                        </div>
-                        <div className="card-footer">
-                            <p className="subtitle"> Bomboneria</p>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card-content huevos">
-                        </div>
-                        <div className="card-footer">
-                            <p className="subtitle"> Huevos</p>
-                        </div>
-                    </div>
+                    {
+                        categorias.map((categoria) => this.renderCarta(categoria.tituloCarta, categoria.nombreCategoria))
+                    }
                 </div>
             </div>
         )
