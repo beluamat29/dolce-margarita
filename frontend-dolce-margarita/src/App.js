@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import LoginAdmin from "./componentes/loginAdmin/LoginAdmin";
@@ -12,6 +11,7 @@ function App() {
       <BrowserRouter>
               <Switch>
                   <Route
+                      exact
                       path="/"
                       component={Home} />
                   <Route
