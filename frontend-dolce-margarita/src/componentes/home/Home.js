@@ -9,11 +9,10 @@ const categorias = [
 ]
 export default class Home extends React.Component {
 
-    renderCarta = (titulo, imagenDeCarta) => {
+    renderCarta = (titulo, categoria) => {
         return (
             <div className="card">
-                <div className={"card-content " + imagenDeCarta}>
-                </div>
+                <div className={"card-content " + categoria}/>
                 <div className="card-footer">
                     <p className="subtitle">{titulo}</p>
                 </div>
