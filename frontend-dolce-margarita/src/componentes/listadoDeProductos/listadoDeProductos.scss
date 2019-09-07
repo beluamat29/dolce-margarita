@@ -45,12 +45,17 @@
     }
 
     .flip-card-back {
+      height: 100%;
+      width: 100%;
       background-color: #e1a0c2;
       color: white;
       transform: rotateY(180deg);
       justify-content: center;
       align-items: center;
-      padding: 15px;
+
+      .datos {
+        padding: 15px;
+      }
     }
 
     .flip-card-footer {

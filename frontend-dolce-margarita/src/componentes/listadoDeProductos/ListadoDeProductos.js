@@ -16,9 +16,9 @@ export default class ListadoDeProductos extends React.Component {
                         </div>
                     </div>
                     <div className="flip-card-back">
-                        <p>{producto.descripcion}</p>
-                        <p>${producto.precio}</p>
-                        <a className="button is-danger is-outlined">Comprar</a>
+                        <p className="datos">{producto.descripcion}</p>
+                        <p className="datos">${producto.precio}</p>
+                        <a className="button is-danger is-outlined datos">Comprar</a>
                     </div>
                 </div>
             </div>
