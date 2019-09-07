@@ -20,15 +20,56 @@ export default class CargaDeDatos extends React.Component {
         super(props);
 
         this.state = {
-            formatoSeleccionado: chocolateNulo
+            formatoSeleccionado: chocolateNulo,
+            nombre: "",
+            precio: "",
+            descripcion: "",
+            imagen: "",
+            peso: "",
+            tamaño:""
         }
+    }
+
+    agregarNombre = (event) => {
+        this.setState({ nombre: event.target.value })
+    }
+
+    agregarPrecio = (event) => {
+        this.setState({ precio: event.target.value })
+    }
+
+    agregarDescripcion = (event) => {
+        this.setState({ descripcion: event.target.value })
+    }
+
+    agregarImagen = (event) => {
+        this.setState({ imagen: event.target.value })
+    }
+
+    agregarPeso = (event) => {
+        this.setState({ peso: event.target.value })
+    }
+
+    agregarTamaño = (event) => {
+        this.setState({ tamaño: event.target.value })
+    }
+
+    renderCampo = (campo, actualizarCampo) => {
+        return (
+            <div className="field">
+                <p className="subtitle is-4 is-spaced"> {campo} </p>
+                <div className="control">
+                    <input className="input is-primary" type="text" onChange={ actualizarCampo } />
+                </div>
+            </div>
+        )
     }
 
     render() {
         return (
-            <div class="home-carga-de-datos ">
+            <div className="home-carga-de-datos ">
                 <div>
-                    <p class="title is-1 is-spaced">Carga de datos</p>
+                    <p className="title is-1 is-spaced">Carga de datos</p>
                 </div>
 
                 <div className="field">
@@ -42,29 +83,39 @@ export default class CargaDeDatos extends React.Component {
                     </div>
                 </div>
 
-                <div className="field">
-                    <p className="subtitle is-4 is-spaced">Nombre</p>
-                        <div className="control">
-                            <input className="input is-primary" type="text"/>
-                        </div>
-                </div>
+                {
+                    this.renderCampo("Nombre", this.agregarNombre)
+                }
 
-                <div className="field">
-                    <p className="subtitle is-4 is-spaced">Precio</p>
-                        <div className="control">
-                            <input className="input is-primary" type="text"/>
-                        </div>
-                </div>
+                {
+                    this.renderCampo("Precio", this.agregarPrecio)
+                }
+
+                {
+                    this.renderCampo("Imagen", this.agregarImagen)
+                }
+
+                {
+                    this.state.formatoSeleccionado.value !== 'huevo' &&
+                    this.renderCampo("Peso", this.agregarPeso)
+                }
+
+                {
+                    this.state.formatoSeleccionado.value === 'huevo' &&
+                    this.renderCampo("Tamaño", this.agregarTamaño)
+                }
 
                 <div className="field">
                     <p className="subtitle is-4 is-spaced">Descripción</p>
                     <div className="control">
-                        <input className="textarea is-primary" type="text"/>
+                        <textarea className="textarea is-primary" type="text" onChange={ this.agregarDescripcion }/>
                     </div>
                 </div>
 
-                <RellenoDeParedesDeHuevoCheckbox admiteRelleno={this.state.formatoSeleccionado.value === 'huevo'}/>
-
+                {
+                    this.state.formatoSeleccionado.value === 'huevo' &&
+                    <RellenoDeParedesDeHuevoCheckbox/>
+                }
             </div>
         )
     }
