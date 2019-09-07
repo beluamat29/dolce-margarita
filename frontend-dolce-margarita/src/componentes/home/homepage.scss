@@ -1,1 +1,27 @@
+.home-usuario {
+  background-color: #ffd8dd;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  text-align: center;
 
+  .cartas {
+    display: flex;
+    flex-direction: row;
+
+    .box {
+      width: 300px;
+      height: 300px;
+      margin: 35px;
+    }
+  }
+
+  .title {
+    margin: 15px 0 30px;
+    display: inline-block;
+    padding: 15px;
+  }
+}
