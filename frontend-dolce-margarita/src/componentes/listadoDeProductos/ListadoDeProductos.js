@@ -17,7 +17,11 @@ export default class ListadoDeProductos extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({productos: servicio.productosConMolde(this.props.moldeSeleccionado)});
+        const p = servicio.productosConMolde(this.props.moldeSeleccionado, this.actualizarProductos);
+    }
+
+    actualizarProductos = (productos) => {
+        this.setState({productos});
     }
 
     showModal = (producto) => {
@@ -28,9 +32,9 @@ export default class ListadoDeProductos extends React.Component {
             });
     };
 
-    renderCarta = (producto) => {
+    renderCarta = (producto, index) => {
         return (
-            <div className="flip-card">
+            <div className="flip-card" key={index}>
                 <div className="flip-card-inner">
                     <div className="flip-card-front">
                         <div className="flip-card-content">
