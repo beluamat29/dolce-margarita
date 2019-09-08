@@ -10,7 +10,8 @@ import ListadoDeProductos from "./componentes/listadoDeProductos/ListadoDeProduc
 class App extends React.Component{
 
     state = {
-        moldeSeleccionado: "figuras"
+        moldeSeleccionado: "figuras",
+        pedidoActual: {}
     }
 
     seleccionarMolde = (moldeSeleccionado) => {
@@ -36,7 +37,10 @@ class App extends React.Component{
                     <Route
                         exact
                         path="/listado"
-                        render={props => <ListadoDeProductos moldeSeleccionado={this.state.moldeSeleccionado}/>} />
+                        render={props => <ListadoDeProductos
+                            moldeSeleccionado={this.state.moldeSeleccionado}
+                            onConfirm={(pedido)=>this.setState({pedidoActual: pedido})}
+                            />}/>
                 </Switch>
             </BrowserRouter>
         );
