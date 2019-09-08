@@ -1,9 +1,48 @@
-.modal {
-  width: 500px;
-  height: 500px;
+$primary: #ffa5cd;
 
-  .campo-de-modal {
-    font-size: 26px !important;
-    padding: 15px !important;
+@import "~bulma/bulma.sass";
+
+.modal {
+  width: 100%;
+  height: 100%;
+
+  .modal-card-head {
+    .modal-card-title{
+      margin: 0;
+      font-size: 35px;
+    }
   }
+
+  .modal-card-body{
+    .titulo-producto{
+      font-size: 28px;
+    }
+
+    .datos-pedido {
+      margin: 15px;
+
+      .input-cantidad {
+        width: 80px;
+        margin-bottom: 15px;
+      }
+
+      .input-tipo-chocolate {
+        width: 230px;
+        margin-bottom: 15px;
+      }
+      .subtitle {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .modal-card-foot {
+    justify-content: flex-end;
+  }
+}
+
+.radio-dulce-de-leche {
+  width: 16px;
+  height: 16px;
+  margin: 10px;
 }
