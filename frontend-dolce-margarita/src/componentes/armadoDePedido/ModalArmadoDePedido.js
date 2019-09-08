@@ -18,7 +18,7 @@ export default class ModalArmadoDePedido extends React.Component {
                     </section>
                     <footer className="modal-card-foot">
                         <button className="button is-success">Save changes</button>
-                        <button className="button">Cancel</button>
+                        <button className="button" onClick={this.props.onClose}>Cancel</button>
                     </footer>
                 </div>
             </div>

@@ -53,7 +53,9 @@ export default class ListadoDeProductos extends React.Component {
                 </div>
 
 
-                {this.state.mostrarModalDeCompra && <ModalArmadoDePedido/>}
+                {this.state.mostrarModalDeCompra &&
+                <ModalArmadoDePedido
+                    onClose={()=>this.setState({mostrarModalDeCompra: false})}/>}
 
             </div>
         )
