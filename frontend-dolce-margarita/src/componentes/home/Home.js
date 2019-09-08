@@ -1,18 +1,20 @@
 import React from 'react';
-
+import {moldes} from "./moldes";
 import './homepage.scss';
 
-const categorias = [
-    {nombreCategoria: 'figuras', tituloCarta: 'Figuras'},
-    {nombreCategoria: 'bombones', tituloCarta: 'Bombonería'},
-    {nombreCategoria: 'huevos', tituloCarta: 'Huevos'}
-]
-export default class Home extends React.Component {
+import {withRouter} from "react-router-dom";
 
-    renderCarta = (titulo, categoria) => {
+class Home extends React.Component {
+
+    irAPaginaDeListados = (molde) => {
+        this.props.seleccionarMolde(molde)
+        this.props.history.push("/listado")
+    }
+
+    renderCarta = (titulo, molde) => {
         return (
-            <div className="card">
-                <div className={"card-content " + categoria}/>
+            <div className="card" key={molde} onClick={() => this.irAPaginaDeListados(molde)}>
+                <div className={"card-content " + molde}/>
                 <div className="card-footer">
                     <p className="subtitle">{titulo}</p>
                 </div>
@@ -29,10 +31,12 @@ export default class Home extends React.Component {
 
                 <div className="cartas">
                     {
-                        categorias.map((categoria) => this.renderCarta(categoria.tituloCarta, categoria.nombreCategoria))
+                        moldes.map((molde) => this.renderCarta(molde.tituloCarta, molde.nombreCategoria))
                     }
                 </div>
             </div>
         )
     }
 }
+
+export default withRouter(Home);
