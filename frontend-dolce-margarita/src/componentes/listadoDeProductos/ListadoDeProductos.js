@@ -17,7 +17,7 @@ export default class ListadoDeProductos extends React.Component {
     }
 
     componentDidMount() {
-        const p = servicio.productosConMolde(this.props.moldeSeleccionado, this.actualizarProductos);
+        servicio.productosConMolde(this.props.moldeSeleccionado, this.actualizarProductos);
     }
 
     actualizarProductos = (productos) => {
