@@ -12,5 +12,17 @@
     .titulo-producto{
       font-size: 26px;
     }
+
+    .datos-pedido {
+      margin: 15px;
+
+      .subtitle {
+        margin-bottom: 10px;
+
+      .input {
+        width: 300px !important;
+      }
+      }
+    }
   }
 }

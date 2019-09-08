@@ -4,6 +4,10 @@ import './modalArmadoDePedido.scss'
 export default class ModalArmadoDePedido extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            cantidadALlevar: 1
+        }
     }
 
     render() {
@@ -17,6 +21,15 @@ export default class ModalArmadoDePedido extends React.Component {
                     </header>
                     <section className="modal-card-body">
                         <p className="titulo-producto">{this.props.nombreProducto + " de " + this.props.pesoProducto + " grs"} </p>
+                        <div className="datos-pedido">
+                            <p className="subtitle">¿Cuántos vas a llevar?</p>
+                            <input
+                                min={1}
+                                className="input"
+                                type="number"
+                                value={this.state.cantidadALlevar}
+                                onChange={(event) => this.setState({cantidadALlevar: event.target.value})}/>
+                        </div>
                     </section>
                     <footer className="modal-card-foot">
                         <button className="button is-success">Continuar</button>
