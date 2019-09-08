@@ -118,4 +118,4 @@ const bombones = [
     },
 ]
 
-export {productos, bombones, figuras, huevos}
+export {bombones, figuras, huevos}

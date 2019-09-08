@@ -1,7 +1,7 @@
 import './listadoDeProductos.scss';
-import {productos} from "./listado-hasta-que-mica-levante-el-back";
 import React from "react";
 import ModalArmadoDePedido from "../armadoDePedido/ModalArmadoDePedido";
+import servicio from "../../servicios/servicio";
 
 
 export default class ListadoDeProductos extends React.Component {
@@ -11,8 +11,27 @@ export default class ListadoDeProductos extends React.Component {
         this.state = {
             mostrarModalDeCompra: false,
             nombreProductoSeleccionado: "",
-            precioProductoSeleccionado: ""
+            precioProductoSeleccionado: "",
+            productos: []
         }
+    }
+
+    componentDidMount() {
+        this.obtenerProductos(this.props.moldeSeleccionado)
+    }
+
+    obtenerProductos = (molde) => {
+        let productos = (() => {
+            switch (molde) {
+                case 'figuras':
+                    return servicio.listadoFiguras();
+                case 'bombones':
+                    return servicio.listadoBombones();
+                case 'huevos':
+                    return servicio.listadoHuevos();
+            }
+        })()
+        this.setState({productos});
     }
 
     showModal = (producto) => {
@@ -50,9 +69,8 @@ export default class ListadoDeProductos extends React.Component {
         return (
             <div className="home-listado-productos">
                 <div className="cartas">
-                    {productos.map(this.renderCarta)}
+                    {this.state.productos.map(this.renderCarta)}
                 </div>
-
 
                 {this.state.mostrarModalDeCompra &&
                 <ModalArmadoDePedido
@@ -61,7 +79,6 @@ export default class ListadoDeProductos extends React.Component {
                     precioProducto={this.state.precioProductoSeleccionado}
                     onClose={()=>this.setState({mostrarModalDeCompra: false})}
                 />}
-
             </div>
         )
     }
