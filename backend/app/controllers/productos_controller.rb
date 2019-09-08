@@ -67,4 +67,12 @@ class ProductosController < ApplicationController
   def show_figuras
     render json: FIGURAS, status: :ok
   end
+
+  def show_bombones
+    render json: BOMBONES, status: :ok
+  end
+
+  def show_huevos
+    render json: HUEVOS, status: :ok
+  end
 end
