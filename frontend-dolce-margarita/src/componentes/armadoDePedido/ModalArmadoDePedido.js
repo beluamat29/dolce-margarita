@@ -1,6 +1,7 @@
 import React from "react";
 import './modalArmadoDePedido.scss';
 import Select from 'react-select';
+import DatosDeHuevoParaPedido from "./DatosDeHuevoParaPedido";
 
 const tiposDeChocolate = [
     { value: 'semiamargo', label: 'Chocolate semi amargo' },
@@ -13,14 +14,21 @@ const chocolateNulo = {
     value: 'chocolatenulo', label: ''
 }
 
+const moldeSeleccionadoDesdeHome = 'huevo';
+
 export default class ModalArmadoDePedido extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             cantidadALlevar: 1,
-            tipoDeChocolateALlevar: chocolateNulo
+            tipoDeChocolateALlevar: chocolateNulo,
+            paredesRellenas: false
         }
+    }
+
+    esHuevo = () => {
+        return true
     }
 
     render() {
@@ -52,6 +60,14 @@ export default class ModalArmadoDePedido extends React.Component {
                                         onChange={(tipo) => this.setState({tipoDeChocolateALlevar: tipo})}
                                         options={tiposDeChocolate}
                                 />
+                            </div>
+
+                            <div>
+                                {
+                                    this.esHuevo() && <DatosDeHuevoParaPedido
+                                        moldeSeleccionado={moldeSeleccionadoDesdeHome}
+                                        onChange={(paredes) => this.setState({paredesRellenas: paredes})}/>
+                                }
                             </div>
                         </div>
                     </section>
