@@ -1,7 +1,6 @@
 import './listadoDeProductos.scss';
 import {productos} from "./listado-hasta-que-mica-levante-el-back";
 import React from "react";
-import Modal from 'react-modal';
 import ModalArmadoDePedido from "../armadoDePedido/ModalArmadoDePedido";
 
 
@@ -53,11 +52,8 @@ export default class ListadoDeProductos extends React.Component {
                     {productos.map(this.renderCarta)}
                 </div>
 
-                <ModalArmadoDePedido
-                    modalAbierto={this.state.mostrarModalDeCompra}
-                    nombreDelProducto={this.state.nombreProductoSeleccionado}
-                    precioDelProducto={this.state.precioProductoSeleccionado}
-                />
+
+                {this.state.mostrarModalDeCompra && <ModalArmadoDePedido/>}
 
             </div>
         )
