@@ -1,7 +1,7 @@
 import './listadoDeProductos.scss';
-import {productos} from "./listado-hasta-que-mica-levante-el-back";
 import React from "react";
 import ModalArmadoDePedido from "../armadoDePedido/ModalArmadoDePedido";
+import servicio from "../../servicios/servicio";
 
 
 export default class ListadoDeProductos extends React.Component {
@@ -11,8 +11,13 @@ export default class ListadoDeProductos extends React.Component {
         this.state = {
             mostrarModalDeCompra: false,
             nombreProductoSeleccionado: "",
-            precioProductoSeleccionado: ""
+            precioProductoSeleccionado: "",
+            productos: []
         }
+    }
+
+    componentDidMount() {
+        this.setState({productos: servicio.productosConMolde(this.props.moldeSeleccionado)});
     }
 
     showModal = (producto) => {
@@ -29,7 +34,7 @@ export default class ListadoDeProductos extends React.Component {
                 <div className="flip-card-inner">
                     <div className="flip-card-front">
                         <div className="flip-card-content">
-                            <img src={require('./bombones.jpg')} />
+                            <img src={require('../../assets/bombones.jpg')} />
                         </div>
                         <div className="flip-card-footer">
                             <p>{producto.nombre}</p>
@@ -50,9 +55,8 @@ export default class ListadoDeProductos extends React.Component {
         return (
             <div className="home-listado-productos">
                 <div className="cartas">
-                    {productos.map(this.renderCarta)}
+                    {this.state.productos.map(this.renderCarta)}
                 </div>
-
 
                 {this.state.mostrarModalDeCompra &&
                 <ModalArmadoDePedido
@@ -61,7 +65,6 @@ export default class ListadoDeProductos extends React.Component {
                     precioProducto={this.state.precioProductoSeleccionado}
                     onClose={()=>this.setState({mostrarModalDeCompra: false})}
                 />}
-
             </div>
         )
     }

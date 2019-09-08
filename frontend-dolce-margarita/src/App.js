@@ -7,29 +7,40 @@ import CargaDeDatos from "./componentes/paginaCargaDeDatos/cargaDeDatos";
 import ListadoDeProductos from "./componentes/listadoDeProductos/ListadoDeProductos";
 
 
-function App() {
-  return (
-      <BrowserRouter>
-              <Switch>
-                  <Route
-                      exact
-                      path="/"
-                      component={Home} />
-                  <Route
-                      exact
-                      path="/adminlogin"
-                      component={LoginAdmin} />
-                  <Route
-                      exact
-                      path="/cargadatos"
-                      component={CargaDeDatos} />
-                  <Route
-                      exact
-                      path="/listado"
-                      component={ListadoDeProductos} />
-              </Switch>
-      </BrowserRouter>
-  );
+class App extends React.Component{
+
+    state = {
+        moldeSeleccionado: ""
+    }
+
+    seleccionarMolde = (moldeSeleccionado) => {
+        this.setState({moldeSeleccionado})
+    }
+
+    render() {
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route
+                        exact
+                        path="/"
+                        render={props => <Home seleccionarMolde={this.seleccionarMolde}/>} />
+                    <Route
+                        exact
+                        path="/adminlogin"
+                        component={LoginAdmin} />
+                    <Route
+                        exact
+                        path="/cargadatos"
+                        component={CargaDeDatos} />
+                    <Route
+                        exact
+                        path="/listado"
+                        render={props => <ListadoDeProductos moldeSeleccionado={this.state.moldeSeleccionado}/>} />
+                </Switch>
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;
