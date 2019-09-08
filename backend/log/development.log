@@ -844,3 +844,8 @@ Started GET "/" for 127.0.0.1 at 2019-09-04 20:55:41 -0300
 Processing by Rails::WelcomeController#index as HTML
   Rendered /home/belu/.rvm/gems/ruby-2.4.4/gems/railties-4.2.8/lib/rails/templates/rails/welcome/index.html.erb within layouts/application (0.9ms)
 Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/productos/figuras" for 127.0.0.1 at 2019-09-08 20:07:30 -0300
+Processing by ProductosController#show_figuras as */*
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.0ms)
