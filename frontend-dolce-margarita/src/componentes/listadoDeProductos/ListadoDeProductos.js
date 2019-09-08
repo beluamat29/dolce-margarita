@@ -19,6 +19,7 @@ export default class ListadoDeProductos extends React.Component {
         this.setState({ mostrarModalDeCompra: true,
             nombreProductoSeleccionado: producto.nombre,
             precioProductoSeleccionado: producto.precio,
+            pesoProductoSeleccionado: producto.peso
             });
     };
 
@@ -55,7 +56,11 @@ export default class ListadoDeProductos extends React.Component {
 
                 {this.state.mostrarModalDeCompra &&
                 <ModalArmadoDePedido
-                    onClose={()=>this.setState({mostrarModalDeCompra: false})}/>}
+                    pesoProducto={this.state.pesoProductoSeleccionado}
+                    nombreProducto={this.state.nombreProductoSeleccionado}
+                    precioProducto={this.state.precioProductoSeleccionado}
+                    onClose={()=>this.setState({mostrarModalDeCompra: false})}
+                />}
 
             </div>
         )

@@ -1,9 +1,16 @@
 .modal {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
 
-  .campo-de-modal {
-    font-size: 26px !important;
-    padding: 15px !important;
+  .modal-card-head {
+    .modal-card-title{
+      font-size: 35px;
+    }
+  }
+
+  .modal-card-body{
+    .titulo-producto{
+      font-size: 26px;
+    }
   }
 }
