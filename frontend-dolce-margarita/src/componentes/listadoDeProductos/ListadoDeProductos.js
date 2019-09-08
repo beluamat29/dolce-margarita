@@ -26,7 +26,7 @@ class ListadoDeProductos extends React.Component {
             pesoProducto: datosPedido.peso
         }
         this.props.onConfirm(pedido)
-        this.props.history.push("/home")
+        this.props.history.push("/confirmacion")
     }
 
     componentDidMount() {

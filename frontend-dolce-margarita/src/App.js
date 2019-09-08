@@ -5,6 +5,7 @@ import LoginAdmin from "./componentes/loginAdmin/LoginAdmin";
 import Home from "./componentes/home/Home";
 import CargaDeDatos from "./componentes/paginaCargaDeDatos/cargaDeDatos";
 import ListadoDeProductos from "./componentes/listadoDeProductos/ListadoDeProductos";
+import ConfirmacionDePedido from "./componentes/confirmacionDePedido/ConfirmacionDePedido";
 
 
 class App extends React.Component{
@@ -41,6 +42,12 @@ class App extends React.Component{
                             moldeSeleccionado={this.state.moldeSeleccionado}
                             onConfirm={(pedido)=>this.setState({pedidoActual: pedido})}
                             />}/>
+                    <Route
+                        exact
+                        path="/confirmacion"
+                        render={props => <ConfirmacionDePedido
+                            pedido={this.state.pedidoActual}
+                        />}/>
                 </Switch>
             </BrowserRouter>
         );
