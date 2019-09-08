@@ -17,21 +17,7 @@ export default class ListadoDeProductos extends React.Component {
     }
 
     componentDidMount() {
-        this.obtenerProductos(this.props.moldeSeleccionado)
-    }
-
-    obtenerProductos = (molde) => {
-        let productos = (() => {
-            switch (molde) {
-                case 'figuras':
-                    return servicio.listadoFiguras();
-                case 'bombones':
-                    return servicio.listadoBombones();
-                case 'huevos':
-                    return servicio.listadoHuevos();
-            }
-        })()
-        this.setState({productos});
+        this.setState({productos: servicio.productosConMolde(this.props.moldeSeleccionado)});
     }
 
     showModal = (producto) => {
