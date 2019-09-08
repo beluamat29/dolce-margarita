@@ -29,7 +29,7 @@ export default class ListadoDeProductos extends React.Component {
                 <div className="flip-card-inner">
                     <div className="flip-card-front">
                         <div className="flip-card-content">
-                            <img src={require('./bombones.jpg')} />
+                            <img src={require('../../assets/bombones.jpg')} />
                         </div>
                         <div className="flip-card-footer">
                             <p>{producto.nombre}</p>
