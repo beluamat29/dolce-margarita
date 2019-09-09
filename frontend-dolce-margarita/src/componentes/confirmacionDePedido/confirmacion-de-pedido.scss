@@ -23,12 +23,23 @@
       flex-direction: row;
 
       .subtitle {
-        margin: 15px;
+        margin-left: 15px;
+        margin-bottom: 3px;
+
+        .cantidad {
+          margin-bottom: 10px;
+        }
       }
 
-      .input-cantidad {
-        width: 80px;
-        margin-bottom: 15px;
+      .field {
+        margin-bottom: 10px;
+        text-align: left;
+
+        .nombre-cliente {
+          margin-left: 15px;
+          width: 250px;
+          margin-bottom: 3px;
+        }
       }
     }
 

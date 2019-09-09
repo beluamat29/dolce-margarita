@@ -8,7 +8,8 @@ export default class ConfirmacionDePedido extends React.Component {
 
         this.state = {
             nombreClienteDelPedido: '',
-            emailClientePedido: ''
+            emailClientePedido: '',
+            telefonoClientePedido: ''
         }
     }
 
@@ -28,8 +29,34 @@ export default class ConfirmacionDePedido extends React.Component {
                     </header>
                     <div className="card-content">
                         <div className="content">
-                            <div>
-                                <p>Cantidad: 5</p>
+                            <div className="field">
+                                <p className="subtitle">Nombre</p>
+
+                                <input
+                                    className="input field nombre-cliente"
+                                    type="text"
+                                    value={this.state.nombreClienteDelPedido}
+                                    onChange={(event) => this.setState({nombreClienteDelPedido: event.target.value})}/>
+                            </div>
+
+                            <div className="field">
+                                <p className="subtitle">Email</p>
+
+                                <input
+                                    className="input field nombre-cliente"
+                                    type="text"
+                                    value={this.state.emailClientePedido}
+                                    onChange={(event) => this.setState({emailClientePedido: event.target.value})}/>
+                            </div>
+
+                            <div className="field">
+                                <p className="subtitle">Telefono</p>
+
+                                <input
+                                    className="input field nombre-cliente"
+                                    type="text"
+                                    value={this.state.telefonoClientePedido}
+                                    onChange={(event) => this.setState({telefonoClientePedido: event.target.value})}/>
                             </div>
                         </div>
                     </div>
