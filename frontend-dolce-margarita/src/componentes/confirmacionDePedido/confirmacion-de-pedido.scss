@@ -13,8 +13,24 @@
   }
 
   .pedido {
-    width: 70%;
+    width: 653px;
     height: 60%;
+
+    .card-content {
+      height: 70%;
+      display: flex;
+      justify-content: left;
+      flex-direction: row;
+
+      .subtitle {
+        margin: 15px;
+      }
+
+      .input-cantidad {
+        width: 80px;
+        margin-bottom: 15px;
+      }
+    }
 
     .card-header {
       height: 75px;
@@ -26,6 +42,14 @@
       }
     }
 
+    .card-footer {
+      height: 60px;
+      justify-content: flex-end;
+
+      button {
+        margin: 10px 10px 5px;
+      }
+    }
     .titulos {
       font-size: 28px;
     }
