@@ -10,7 +10,7 @@ import ListadoDeProductos from "./componentes/listadoDeProductos/ListadoDeProduc
 class App extends React.Component{
 
     state = {
-        moldeSeleccionado: ""
+        moldeSeleccionado: "figuras"
     }
 
     seleccionarMolde = (moldeSeleccionado) => {

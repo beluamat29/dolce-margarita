@@ -1,35 +1,33 @@
 import * as axios from 'axios';
-import {bombones, figuras, huevos} from "../componentes/listadoDeProductos/listado-hasta-que-mica-levante-el-back";
-
 const SERVICE_URL = 'http://localhost:3000/';
 
 export default class Servicio {
 
-    static productosConMolde(molde) {
+    static productosConMolde(molde, actualizarProductos) {
         return (() => {
             switch (molde) {
                 case 'figuras':
-                    return this.listadoFiguras();
+                    return this.listadoFiguras(actualizarProductos);
                 case 'bombones':
-                    return this.listadoBombones();
+                    return this.listadoBombones(actualizarProductos);
                 case 'huevos':
-                    return this.listadoHuevos();
+                    return this.listadoHuevos(actualizarProductos);
             }
         })()
     }
 
-    static listadoFiguras() {
-        return figuras;
-        // return axios.get(`${SERVICE_URL}/figuras`)
-        //     .then(response => onSuccess(response.data))
-        //     .catch(error => onFailure())
+    static listadoFiguras(actualizarProductos) {
+        return axios.get(`${SERVICE_URL}/productos/figuras`)
+            .then(response => {actualizarProductos(response.data)})
     }
 
-    static listadoHuevos() {
-        return huevos;
+    static listadoHuevos(actualizarProductos) {
+        return axios.get(`${SERVICE_URL}/productos/huevos`)
+            .then(response => {actualizarProductos(response.data)})
     }
 
-    static listadoBombones() {
-        return bombones
+    static listadoBombones(actualizarProductos) {
+        return axios.get(`${SERVICE_URL}/productos/bombones`)
+            .then(response => {actualizarProductos(response.data)})
     }
 }
