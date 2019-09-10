@@ -31,9 +31,32 @@
         }
       }
 
+      .field-row {
+        display: flex;
+      }
+
+      .total-row {
+        justify-content: flex-end;
+        margin: 20px;
+        margin-right: 27px;
+      }
+
       .field {
         margin-bottom: 10px;
         text-align: left;
+        margin-right: 27px;
+
+        .retiro-text {
+          margin-top: 13px;
+          font-size: 15px;
+        }
+
+        .producto-y-cantidad-text {
+          position: absolute;
+          margin-top: 21px;
+          margin-right: 17px;
+          font-weight: 700;
+        }
 
         .nombre-cliente {
           margin-left: 15px;
