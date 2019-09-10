@@ -2,9 +2,10 @@ import './listadoDeProductos.scss';
 import React from "react";
 import ModalArmadoDePedido from "../armadoDePedido/ModalArmadoDePedido";
 import servicio from "../../servicios/servicio";
+import {withRouter} from "react-router-dom";
 
 
-export default class ListadoDeProductos extends React.Component {
+class ListadoDeProductos extends React.Component {
     constructor(props) {
         super(props);
 
@@ -14,6 +15,18 @@ export default class ListadoDeProductos extends React.Component {
             precioProductoSeleccionado: "",
             productos: []
         }
+    }
+
+    irAPaginaConfirmacionDePedido = (datosPedido) => {
+        let pedido = {
+            nombreProducto: this.state.nombreProductoSeleccionado,
+            precio: this.state.precioProductoSeleccionado,
+            cantidadPedido: datosPedido.cantidad,
+            tipoChocolate: datosPedido.tipoChocolate,
+            pesoProducto: datosPedido.peso
+        }
+        this.props.onConfirm(pedido)
+        this.props.history.push("/confirmacion")
     }
 
     componentDidMount() {
@@ -64,6 +77,7 @@ export default class ListadoDeProductos extends React.Component {
 
                 {this.state.mostrarModalDeCompra &&
                 <ModalArmadoDePedido
+                    onConfirm={(datosPedido)=> this.irAPaginaConfirmacionDePedido(datosPedido)}
                     pesoProducto={this.state.pesoProductoSeleccionado}
                     nombreProducto={this.state.nombreProductoSeleccionado}
                     precioProducto={this.state.precioProductoSeleccionado}
@@ -73,3 +87,5 @@ export default class ListadoDeProductos extends React.Component {
         )
     }
 }
+
+export default withRouter(ListadoDeProductos);

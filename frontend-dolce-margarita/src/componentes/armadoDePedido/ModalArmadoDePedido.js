@@ -31,6 +31,16 @@ export default class ModalArmadoDePedido extends React.Component {
         return true
     }
 
+    continuar = () => {
+        let pedido = {
+            cantidad: this.state.cantidadALlevar,
+            tipoChocolate: this.state.tipoDeChocolateALlevar,
+            peso: this.props.pesoProducto
+        }
+
+        this.props.onConfirm(pedido)
+    }
+
     render() {
         return (
             <div className="modal is-active">
@@ -72,7 +82,7 @@ export default class ModalArmadoDePedido extends React.Component {
                         </div>
                     </section>
                     <footer className="modal-card-foot">
-                        <button className="button is-success">Continuar</button>
+                        <button className="button is-success" onClick={this.continuar}>Continuar</button>
                         <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
                     </footer>
                 </div>
