@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   get 'productos/bombones', to: 'productos#show_bombones'
 
   get 'productos/huevos', to: 'productos#show_huevos'
+
+  #Pedidos
+  post 'pedido/crear', to: 'productos#create'
 end

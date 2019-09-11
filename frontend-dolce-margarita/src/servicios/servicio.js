@@ -30,4 +30,15 @@ export default class Servicio {
         return axios.get(`${SERVICE_URL}/productos/bombones`)
             .then(response => {actualizarProductos(response.data)})
     }
+
+    static confirmarPedido(pedido, nombreCliente, emailCliente, telefonoCliente, puntoDeRetiro) {
+        return axios.post(`${SERVICE_URL}pedido/crear`, {
+            pedido: pedido,
+            nombre_cliente: nombreCliente,
+            email_cliente: emailCliente,
+            telefono_cliente: telefonoCliente,
+            punto_retiro: puntoDeRetiro
+        })
+          .then(response => window.open(response))
+    }
 }

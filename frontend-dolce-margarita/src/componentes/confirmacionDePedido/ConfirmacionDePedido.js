@@ -1,6 +1,7 @@
 import React from 'react';
 import './confirmacion-de-pedido.scss';
 import Select from "react-select";
+import servicio from "../../servicios/servicio";
 
 const puntosDeRetiro = [
     { value: '1', label: 'Calle 6 5047 - Berazategui' },
@@ -24,6 +25,17 @@ export default class ConfirmacionDePedido extends React.Component {
         return this.props.pedido.precio * this.props.pedido.cantidadPedido
     }
 
+    confirmarPedido = () => {
+        const {
+            nombreClienteDelPedio,
+            emailClientePedido,
+            telefonoClientePedido,
+            puntoDeRetiro
+        } = this.state;
+
+        servicio.confirmarPedido(this.props.pedido, nombreClienteDelPedio, emailClientePedido, telefonoClientePedido, puntoDeRetiro)
+    }
+
     render() {
         return (
             <div className="confirmacion-pedido">
@@ -36,23 +48,22 @@ export default class ConfirmacionDePedido extends React.Component {
                         <p className="card-header-title">
                             {this.props.pedido.nombreProducto}
                         </p>
-
                     </header>
+
                     <div className="card-content">
                         <div className="field-row">
                             <div className="field">
                                 <p className="subtitle">Nombre</p>
-
                                 <input
                                     className="input field nombre-cliente"
                                     type="text"
                                     value={this.state.nombreClienteDelPedido}
-                                    onChange={(event) => this.setState({nombreClienteDelPedido: event.target.value})}/>
+                                    onChange={(event) => this.setState({nombreClienteDelPedido: event.target.value})}
+                                />
                             </div>
 
                             <div className="field">
                                 <p className="subtitle">Punto de retiro</p>
-
                                 <Select
                                     placeholder={''}
                                     className="field nombre-cliente"
@@ -66,12 +77,12 @@ export default class ConfirmacionDePedido extends React.Component {
                         <div className="field-row">
                             <div className="field">
                                 <p className="subtitle">Email</p>
-
                                 <input
                                     className="input field nombre-cliente"
                                     type="text"
                                     value={this.state.emailClientePedido}
-                                    onChange={(event) => this.setState({emailClientePedido: event.target.value})}/>
+                                    onChange={(event) => this.setState({emailClientePedido: event.target.value})}
+                                />
                             </div>
 
                             <div className="field">
@@ -100,7 +111,7 @@ export default class ConfirmacionDePedido extends React.Component {
                         </div>
                     </div>
                     <footer className="card-footer">
-                        <button className="button is-success" onClick={this.continuar}>Continuar</button>
+                        <button className="button is-success" onClick={this.confirmarPedido}>Continuar</button>
                         <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
                     </footer>
                 </div>

@@ -75,4 +75,10 @@ class ProductosController < ApplicationController
   def show_huevos
     render json: HUEVOS, status: :ok
   end
+
+  def create
+    #Crear pedido
+    render json: { message: "Alto pedido wacho", datos: params }, status: :created
+
+  end
 end
