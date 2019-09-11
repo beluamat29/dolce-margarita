@@ -82,6 +82,7 @@ class ListadoDeProductos extends React.Component {
                     nombreProducto={this.state.nombreProductoSeleccionado}
                     precioProducto={this.state.precioProductoSeleccionado}
                     onClose={()=>this.setState({mostrarModalDeCompra: false})}
+                    esHuevo={this.props.moldeSeleccionado === 'huevos'}
                 />}
             </div>
         )
