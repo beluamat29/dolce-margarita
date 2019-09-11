@@ -11,6 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20190911205657) do
+
+  create_table "productos", force: :cascade do |t|
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "nombre"
+    t.integer  "precio"
+    t.integer  "peso_en_gramos"
+    t.text     "descripcion"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "nombre",            null: false
+    t.string   "descripcion",       null: false
+    t.float    "precio",            null: false
+    t.integer  "tamaño"
+    t.integer  "peso"
+    t.string   "type"
+    t.boolean  "con_pared_rellena"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
