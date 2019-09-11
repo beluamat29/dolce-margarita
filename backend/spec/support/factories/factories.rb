@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :figura do
+  factory :producto do
     nombre { "Barra" }
     descripcion { "Una descripción" }
     precio { 200.0 }
