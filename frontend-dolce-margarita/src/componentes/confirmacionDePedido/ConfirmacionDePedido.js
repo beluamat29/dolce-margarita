@@ -39,67 +39,64 @@ export default class ConfirmacionDePedido extends React.Component {
 
                     </header>
                     <div className="card-content">
-                        <div className="content">
+                        <div className="field-row">
+                            <div className="field">
+                                <p className="subtitle">Nombre</p>
 
-                            <div className="field-row">
-                                <div className="field ">
-                                    <p className="subtitle">Nombre</p>
-
-                                    <input
-                                        className="input field nombre-cliente"
-                                        type="text"
-                                        value={this.state.nombreClienteDelPedido}
-                                        onChange={(event) => this.setState({nombreClienteDelPedido: event.target.value})}/>
-                                </div>
-
-                                <div className="field">
-                                    <p className="subtitle">Punto de retiro</p>
-
-                                    <Select
-                                        placeholder={''}
-                                        className="field nombre-cliente"
-                                        value={this.state.puntoDeRetiro}
-                                        onChange={(tipo) => this.setState({puntoDeRetiro: tipo})}
-                                        options={puntosDeRetiro}
-                                    />
-                                </div>
+                                <input
+                                    className="input field nombre-cliente"
+                                    type="text"
+                                    value={this.state.nombreClienteDelPedido}
+                                    onChange={(event) => this.setState({nombreClienteDelPedido: event.target.value})}/>
                             </div>
 
-                            <div className="field-row">
-                                <div className="field">
-                                    <p className="subtitle">Email</p>
+                            <div className="field">
+                                <p className="subtitle">Punto de retiro</p>
 
-                                    <input
-                                        className="input field nombre-cliente"
-                                        type="text"
-                                        value={this.state.emailClientePedido}
-                                        onChange={(event) => this.setState({emailClientePedido: event.target.value})}/>
-                                </div>
+                                <Select
+                                    placeholder={''}
+                                    className="field nombre-cliente"
+                                    value={this.state.puntoDeRetiro}
+                                    onChange={(tipo) => this.setState({puntoDeRetiro: tipo})}
+                                    options={puntosDeRetiro}
+                                />
+                            </div>
+                        </div>
 
-                                <div className="field">
-                                    <p className="subtitle retiro-text">¡Elegí el punto de entrega que quieras! Te avisamos cuando tu pedido esté listo para que lo pases a buscar</p>
-                                </div>
+                        <div className="field-row">
+                            <div className="field">
+                                <p className="subtitle">Email</p>
+
+                                <input
+                                    className="input field nombre-cliente"
+                                    type="text"
+                                    value={this.state.emailClientePedido}
+                                    onChange={(event) => this.setState({emailClientePedido: event.target.value})}/>
                             </div>
 
-                            <div className="field-row">
-                                <div className="field">
-                                    <p className="subtitle">Telefono</p>
+                            <div className="field">
+                                <p className="subtitle retiro-text">¡Elegí el punto de entrega que quieras! Te avisamos cuando tu pedido esté listo para que lo pases a buscar</p>
+                            </div>
+                        </div>
 
-                                    <input
-                                        className="input field nombre-cliente"
-                                        type="text"
-                                        value={this.state.telefonoClientePedido}
-                                        onChange={(event) => this.setState({telefonoClientePedido: event.target.value})}/>
-                                </div>
+                        <div className="field-row">
+                            <div className="field">
+                                <p className="subtitle">Telefono</p>
 
-                                <div className="field">
-                                    <p className="subtitle is-5 producto-y-cantidad-text">{this.props.pedido.nombreProducto + " "+ this.props.pedido.pesoProducto + " gr x " + this.props.pedido.cantidadPedido + "u."}</p>
-                                </div>
+                                <input
+                                    className="input field nombre-cliente"
+                                    type="text"
+                                    value={this.state.telefonoClientePedido}
+                                    onChange={(event) => this.setState({telefonoClientePedido: event.target.value})}/>
                             </div>
 
-                            <div className="field-row total-row">
-                                <p>Total: {"$" + this.calcularTotal()}</p>
+                            <div className="field">
+                                <p className="subtitle is-5 producto-y-cantidad-text">{this.props.pedido.nombreProducto + " "+ this.props.pedido.pesoProducto + " gr x " + this.props.pedido.cantidadPedido + "u."}</p>
                             </div>
+                        </div>
+
+                        <div className="field-row total-row">
+                            <p>Total: {"$" + this.calcularTotal()}</p>
                         </div>
                     </div>
                     <footer className="card-footer">
