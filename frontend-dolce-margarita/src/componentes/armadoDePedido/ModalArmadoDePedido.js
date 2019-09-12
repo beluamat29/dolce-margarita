@@ -33,7 +33,8 @@ export default class ModalArmadoDePedido extends React.Component {
 
     continuar = () => {
         let pedido = {
-            cantidad: this.state.cantidadALlevar,
+            productos: this.props.producto,
+            cantidades: this.state.cantidadALlevar,
             tipoChocolate: this.state.tipoDeChocolateALlevar,
             peso: this.props.pesoProducto
         }
@@ -42,6 +43,8 @@ export default class ModalArmadoDePedido extends React.Component {
     }
 
     render() {
+        const { producto } = this.props;
+
         return (
             <div className="modal is-active">
                 <div className="modal-background"/>
@@ -52,7 +55,7 @@ export default class ModalArmadoDePedido extends React.Component {
                     </header>
 
                     <section className="modal-card-body">
-                        <p className="titulo-producto">{this.props.nombreProducto + " de " + this.props.pesoProducto + " grs"} </p>
+                        <p className="titulo-producto">{`${producto.nombre} de ${producto.peso}grs`} </p>
                         <div className="datos-pedido">
                             <p className="subtitle">¿Cuántos vas a llevar?</p>
                             <div className="input-cantidad">
