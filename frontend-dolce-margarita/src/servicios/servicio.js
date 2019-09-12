@@ -32,13 +32,13 @@ export default class Servicio {
     }
 
     static confirmarPedido(pedido, nombreCliente, emailCliente, telefonoCliente, puntoDeRetiro) {
-        return axios.post(`${SERVICE_URL}pedido/crear`, {
+        return axios.post(`${SERVICE_URL}pedidos/crear`, {
             pedido: pedido,
             nombre_cliente: nombreCliente,
             email_cliente: emailCliente,
             telefono_cliente: telefonoCliente,
             punto_retiro: puntoDeRetiro
         })
-          .then(response => window.open(response))
+          .then(response => alert("Tu pedido se ha realizado con exito!"))
     }
 }
