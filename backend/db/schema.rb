@@ -11,27 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190911205657) do
+ActiveRecord::Schema.define(version: 20190912235354) do
+
+  create_table "pedidos", force: :cascade do |t|
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "email_cliente"
+    t.string   "telefono_cliente"
+    t.string   "nombre_cliente"
+    t.string   "tipo_chocolate"
+    t.integer  "cantidad"
+    t.string   "lugar_retiro"
+    t.integer  "precio_total"
+    t.integer  "producto_id"
+  end
 
   create_table "productos", force: :cascade do |t|
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "pedido_id"
     t.string   "nombre"
     t.integer  "precio"
     t.integer  "peso_en_gramos"
     t.text     "descripcion"
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.string   "nombre",            null: false
-    t.string   "descripcion",       null: false
-    t.float    "precio",            null: false
-    t.integer  "tamaño"
-    t.integer  "peso"
-    t.string   "type"
-    t.boolean  "con_pared_rellena"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end
