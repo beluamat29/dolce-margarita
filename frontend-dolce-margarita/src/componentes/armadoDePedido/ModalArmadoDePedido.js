@@ -28,30 +28,34 @@ export default class ModalArmadoDePedido extends React.Component {
     }
 
     esHuevo = () => {
-        return true
+        return this.props.esHuevo
     }
 
     continuar = () => {
         let pedido = {
+            producto: this.props.producto,
             cantidad: this.state.cantidadALlevar,
-            tipoChocolate: this.state.tipoDeChocolateALlevar,
-            peso: this.props.pesoProducto
+            precio_total: this.props.producto.precio * this.state.cantidadALlevar,
+            tipo_chocolate: this.state.tipoDeChocolateALlevar.value,
         }
 
         this.props.onConfirm(pedido)
     }
 
     render() {
+        const { producto } = this.props;
+
         return (
             <div className="modal is-active">
-                <div className="modal-background"></div>
+                <div className="modal-background"/>
                 <div className="modal-card">
                     <header className="modal-card-head">
                         <p className="modal-card-title title">Arma tu pedido!</p>
-                        <button className="delete" aria-label="close" onClick={this.props.onClose}></button>
+                        <button className="delete" aria-label="close" onClick={this.props.onClose}/>
                     </header>
+
                     <section className="modal-card-body">
-                        <p className="titulo-producto">{this.props.nombreProducto + " de " + this.props.pesoProducto + " grs"} </p>
+                        <p className="titulo-producto">{`${producto.nombre} de ${producto.peso}grs`} </p>
                         <div className="datos-pedido">
                             <p className="subtitle">¿Cuántos vas a llevar?</p>
                             <div className="input-cantidad">
@@ -66,9 +70,9 @@ export default class ModalArmadoDePedido extends React.Component {
                             <p className="subtitle">¡Elegí el chocolate que más te guste!</p>
                             <div className="input-tipo-chocolate">
                                 <Select
-                                        value={this.state.tipoDeChocolateALlevar}
-                                        onChange={(tipo) => this.setState({tipoDeChocolateALlevar: tipo})}
-                                        options={tiposDeChocolate}
+                                    value={this.state.tipoDeChocolateALlevar}
+                                    onChange={(tipo) => this.setState({tipoDeChocolateALlevar: tipo})}
+                                    options={tiposDeChocolate}
                                 />
                             </div>
 
@@ -81,6 +85,7 @@ export default class ModalArmadoDePedido extends React.Component {
                             </div>
                         </div>
                     </section>
+
                     <footer className="modal-card-foot">
                         <button className="button is-success" onClick={this.continuar}>Continuar</button>
                         <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>

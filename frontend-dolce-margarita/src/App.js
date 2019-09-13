@@ -26,28 +26,33 @@ class App extends React.Component{
                     <Route
                         exact
                         path="/"
-                        render={props => <Home seleccionarMolde={this.seleccionarMolde}/>} />
+                        render={props => <Home seleccionarMolde={this.seleccionarMolde}/>}
+                    />
                     <Route
                         exact
                         path="/adminlogin"
-                        component={LoginAdmin} />
+                        component={LoginAdmin}
+                    />
                     <Route
                         exact
                         path="/cargadatos"
-                        component={CargaDeDatos} />
+                        component={CargaDeDatos}
+                    />
                     <Route
                         exact
                         path="/listado"
                         render={props => <ListadoDeProductos
                             moldeSeleccionado={this.state.moldeSeleccionado}
                             onConfirm={(pedido)=>this.setState({pedidoActual: pedido})}
-                            />}/>
+                            />}
+                    />
                     <Route
                         exact
                         path="/confirmacion"
                         render={props => <ConfirmacionDePedido
                             pedido={this.state.pedidoActual}
-                        />}/>
+                        />}
+                    />
                 </Switch>
             </BrowserRouter>
         );

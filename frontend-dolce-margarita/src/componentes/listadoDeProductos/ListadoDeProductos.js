@@ -11,26 +11,18 @@ class ListadoDeProductos extends React.Component {
 
         this.state = {
             mostrarModalDeCompra: false,
-            nombreProductoSeleccionado: "",
-            precioProductoSeleccionado: "",
+            producto: null,
             productos: []
         }
     }
 
-    irAPaginaConfirmacionDePedido = (datosPedido) => {
-        let pedido = {
-            nombreProducto: this.state.nombreProductoSeleccionado,
-            precio: this.state.precioProductoSeleccionado,
-            cantidadPedido: datosPedido.cantidad,
-            tipoChocolate: datosPedido.tipoChocolate,
-            pesoProducto: datosPedido.peso
-        }
-        this.props.onConfirm(pedido)
-        this.props.history.push("/confirmacion")
-    }
-
     componentDidMount() {
         servicio.productosConMolde(this.props.moldeSeleccionado, this.actualizarProductos);
+    }
+
+    irAPaginaConfirmacionDePedido = (pedido) => {
+        this.props.onConfirm(pedido)
+        this.props.history.push("/confirmacion")
     }
 
     actualizarProductos = (productos) => {
@@ -38,11 +30,10 @@ class ListadoDeProductos extends React.Component {
     }
 
     showModal = (producto) => {
-        this.setState({ mostrarModalDeCompra: true,
-            nombreProductoSeleccionado: producto.nombre,
-            precioProductoSeleccionado: producto.precio,
-            pesoProductoSeleccionado: producto.peso
-            });
+        this.setState({
+            producto,
+            mostrarModalDeCompra: true
+        });
     };
 
     renderCarta = (producto, index) => {
@@ -77,11 +68,10 @@ class ListadoDeProductos extends React.Component {
 
                 {this.state.mostrarModalDeCompra &&
                 <ModalArmadoDePedido
-                    onConfirm={(datosPedido)=> this.irAPaginaConfirmacionDePedido(datosPedido)}
-                    pesoProducto={this.state.pesoProductoSeleccionado}
-                    nombreProducto={this.state.nombreProductoSeleccionado}
-                    precioProducto={this.state.precioProductoSeleccionado}
+                    onConfirm={this.irAPaginaConfirmacionDePedido}
+                    producto={this.state.producto}
                     onClose={()=>this.setState({mostrarModalDeCompra: false})}
+                    esHuevo={this.props.moldeSeleccionado === 'huevos'}
                 />}
             </div>
         )

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190912232208) do
+ActiveRecord::Schema.define(version: 20190913021615) do
 
   create_table "pedidos", force: :cascade do |t|
     t.datetime "created_at",       null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20190912232208) do
     t.string   "tipo_chocolate"
     t.integer  "cantidad"
     t.string   "lugar_retiro"
-    t.integer  "precio_total"
+    t.float    "precio_total"
   end
 
   create_table "productos", force: :cascade do |t|
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20190912232208) do
     t.integer  "precio"
     t.integer  "peso_en_gramos"
     t.text     "descripcion"
+    t.string   "molde"
   end
 
 end
