@@ -1,3 +1,3 @@
 class Producto < ActiveRecord::Base
-  validates_presence_of :nombre, :precio, :peso_en_gramos, :descripcion
+  validates_presence_of :nombre, :precio, :peso_en_gramos, :descripcion, :molde
 end

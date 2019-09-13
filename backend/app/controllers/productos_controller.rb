@@ -65,7 +65,7 @@ class ProductosController < ApplicationController
   ].freeze
 
   def show_figuras
-    render json: FIGURAS, status: :ok
+    render json: Producto.where(molde: "figura"), status: :ok
   end
 
   def show_bombones
