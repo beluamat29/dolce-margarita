@@ -22,7 +22,9 @@ export default class ConfirmacionDePedido extends React.Component {
     }
 
     calcularTotal = () => {
-        return this.props.pedido.precio * this.props.pedido.cantidadPedido
+        const {pedido} = this.props;
+
+        return pedido.producto.precio * pedido.cantidad
     }
 
     confirmarPedido = () => {
@@ -37,6 +39,8 @@ export default class ConfirmacionDePedido extends React.Component {
     }
 
     render() {
+        const { pedido } = this.props;
+
         return (
             <div className="confirmacion-pedido">
                 <div className="title">
@@ -46,7 +50,7 @@ export default class ConfirmacionDePedido extends React.Component {
                 <div className="card pedido">
                     <header className="card-header">
                         <p className="card-header-title">
-                            {this.props.pedido.nombreProducto}
+                            {pedido.producto.nombre}
                         </p>
                     </header>
 
@@ -102,7 +106,9 @@ export default class ConfirmacionDePedido extends React.Component {
                             </div>
 
                             <div className="field">
-                                <p className="subtitle is-5 producto-y-cantidad-text">{this.props.pedido.nombreProducto + " "+ this.props.pedido.pesoProducto + " gr x " + this.props.pedido.cantidadPedido + "u."}</p>
+                                <p className="subtitle is-5 producto-y-cantidad-text">
+                                    {`${pedido.producto.nombre} ${pedido.producto.peso}gr x ${pedido.cantidad} u.`}
+                                </p>
                             </div>
                         </div>
 

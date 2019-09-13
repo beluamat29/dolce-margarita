@@ -20,14 +20,7 @@ class ListadoDeProductos extends React.Component {
         servicio.productosConMolde(this.props.moldeSeleccionado, this.actualizarProductos);
     }
 
-    irAPaginaConfirmacionDePedido = (datosPedido) => {
-        let pedido = {
-            nombreProducto: this.state.nombreProductoSeleccionado,
-            precio: this.state.precioProductoSeleccionado,
-            cantidadPedido: datosPedido.cantidad,
-            tipoChocolate: datosPedido.tipoChocolate,
-            pesoProducto: datosPedido.peso
-        }
+    irAPaginaConfirmacionDePedido = (pedido) => {
         this.props.onConfirm(pedido)
         this.props.history.push("/confirmacion")
     }
@@ -75,7 +68,7 @@ class ListadoDeProductos extends React.Component {
 
                 {this.state.mostrarModalDeCompra &&
                 <ModalArmadoDePedido
-                    onConfirm={(datosPedido)=> this.irAPaginaConfirmacionDePedido(datosPedido)}
+                    onConfirm={this.irAPaginaConfirmacionDePedido}
                     producto={this.state.producto}
                     onClose={()=>this.setState({mostrarModalDeCompra: false})}
                     esHuevo={this.props.moldeSeleccionado === 'huevos'}

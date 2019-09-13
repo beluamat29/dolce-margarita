@@ -33,7 +33,7 @@ export default class Servicio {
 
     static confirmarPedido(pedido, nombreCliente, emailCliente, telefonoCliente, puntoDeRetiro) {
         return axios.post(`${SERVICE_URL}pedidos/crear`, {
-            pedido: pedido,
+            pedido_parcial: pedido,
             nombre_cliente: nombreCliente,
             email_cliente: emailCliente,
             telefono_cliente: telefonoCliente,
