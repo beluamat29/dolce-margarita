@@ -3,6 +3,7 @@ class CreatePedidos < ActiveRecord::Migration
     create_table :pedidos do |t|
 
       t.timestamps null: false
+      t.belongs_to :producto
     end
   end
 end

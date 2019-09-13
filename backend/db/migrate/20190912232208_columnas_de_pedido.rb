@@ -7,6 +7,5 @@ class ColumnasDePedido < ActiveRecord::Migration
     add_column :pedidos, :cantidad, :integer
     add_column :pedidos, :lugar_retiro, :string
     add_column :pedidos, :precio_total , :integer
-    add_reference :pedidos, :producto
   end
 end

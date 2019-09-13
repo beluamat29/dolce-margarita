@@ -3,5 +3,5 @@ class Pedido < ActiveRecord::Base
   validates :cantidad, numericality: { greater_than: 0 }
   validates :precio_total, numericality: { greater_than: 0 }
 
-  has_one :producto
+  belongs_to :producto
 end
