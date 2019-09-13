@@ -8,7 +8,7 @@ class PedidosController < ApplicationController
         producto: producto,
         cantidad: pedido_parcial[:cantidad],
         tipo_chocolate: pedido_parcial[:tipo_chocolate],
-        precio_total: pedido_parcial[:precio_total].to_i,
+        precio_total: pedido_parcial[:precio_total].to_f,
         nombre_cliente: params[:nombre_cliente],
         email_cliente: params[:email_cliente],
         telefono_cliente: params[:telefono_cliente],

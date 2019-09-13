@@ -29,13 +29,13 @@ export default class ConfirmacionDePedido extends React.Component {
 
     confirmarPedido = () => {
         const {
-            nombreClienteDelPedio,
+            nombreClienteDelPedido,
             emailClientePedido,
             telefonoClientePedido,
             puntoDeRetiro
         } = this.state;
 
-        servicio.confirmarPedido(this.props.pedido, nombreClienteDelPedio, emailClientePedido, telefonoClientePedido, puntoDeRetiro)
+        servicio.confirmarPedido(this.props.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label)
     }
 
     render() {
@@ -113,7 +113,7 @@ export default class ConfirmacionDePedido extends React.Component {
                         </div>
 
                         <div className="field-row total-row">
-                            <p>Total: {"$" + this.calcularTotal()}</p>
+                            <p>Total: {`$ ${pedido.precio_total}`}</p>
                         </div>
                     </div>
                     <footer className="card-footer">
