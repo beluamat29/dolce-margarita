@@ -34,8 +34,9 @@ export default class ModalArmadoDePedido extends React.Component {
     continuar = () => {
         let pedido = {
             producto: this.props.producto,
+            precio_total: this.props.producto * this.state.cantidadALlevar,
             cantidad: this.state.cantidadALlevar,
-            tipoChocolate: this.state.tipoDeChocolateALlevar,
+            tipo_chocolate: this.state.tipoDeChocolateALlevar,
         }
 
         this.props.onConfirm(pedido)

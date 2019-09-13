@@ -37,7 +37,7 @@ export default class Servicio {
             nombre_cliente: nombreCliente,
             email_cliente: emailCliente,
             telefono_cliente: telefonoCliente,
-            punto_retiro: puntoDeRetiro
+            lugar_retiro: puntoDeRetiro
         })
           .then(response => alert("Tu pedido se ha realizado con exito!"))
     }
