@@ -55,7 +55,7 @@ export default class ModalArmadoDePedido extends React.Component {
                     </header>
 
                     <section className="modal-card-body">
-                        <p className="titulo-producto">{`${producto.nombre} de ${producto.peso}grs`} </p>
+                        <p className="titulo-producto">{`${producto.nombre} de ${producto.peso_en_gramos}grs`} </p>
                         <div className="datos-pedido">
                             <p className="subtitle">¿Cuántos vas a llevar?</p>
                             <div className="input-cantidad">
