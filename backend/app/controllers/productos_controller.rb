@@ -1,10 +1,19 @@
 class ProductosController < ApplicationController
-  before_action :producto_params,
+  before_action :producto_params
   #protect_from_forgery with: :null_session
 
   def agregar_producto
+    if es_figura_o_bomboneria
+      Producto.agregar_figura(params)
+    end
 
+    render status: :created, nothing: true
   end
+
+  def es_figura_o_bomboneria
+    params[:molde].eql? 'figura' || (params[:molde].eql? 'bomboneria')
+  end
+
   FIGURAS = [
       {
           nombre: "Chupetin de conejo",
