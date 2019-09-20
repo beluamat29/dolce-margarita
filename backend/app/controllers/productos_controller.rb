@@ -11,7 +11,7 @@ class ProductosController < ApplicationController
   end
 
   def es_figura_o_bomboneria
-    params[:molde].eql? 'figura' || (params[:molde].eql? 'bomboneria')
+    (params[:molde].eql? 'figura') || (params[:molde].eql? 'bomboneria')
   end
 
   FIGURAS = [
