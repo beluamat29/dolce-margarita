@@ -7,6 +7,7 @@ class ProductosController < ApplicationController
       Producto.agregar_figura(params)
     end
 
+    #TODO: AGREGAR EL PRODUCTO CREADO AL BODY DE LA RESPONSE
     render status: :created, nothing: true
   end
 
