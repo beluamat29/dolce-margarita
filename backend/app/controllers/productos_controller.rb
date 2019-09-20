@@ -4,11 +4,10 @@ class ProductosController < ApplicationController
 
   def agregar_producto
     if es_figura_o_bomboneria
-      Producto.agregar_figura(params)
+      @producto = Producto.agregar_figura(params)
     end
 
-    #TODO: AGREGAR EL PRODUCTO CREADO AL BODY DE LA RESPONSE
-    render status: :created, nothing: true
+    render json: @producto, status: :created, nothing: true
   end
 
   def es_figura_o_bomboneria
