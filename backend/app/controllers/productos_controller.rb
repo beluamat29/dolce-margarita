@@ -5,6 +5,8 @@ class ProductosController < ApplicationController
   def agregar_producto
     if es_figura_o_bomboneria
       @producto = Producto.agregar_figura(params)
+    else
+      @producto = Producto.agregar_huevo(params)
     end
 
     render json: @producto, status: :created, nothing: true

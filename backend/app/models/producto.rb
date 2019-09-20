@@ -9,4 +9,14 @@ class Producto < ActiveRecord::Base
                 descripcion: params[:descripcion]
                 )
   end
+
+  def self.agregar_huevo(params)
+    self.create(nombre: params[:nombre],
+                precio: params[:precio],
+                peso_en_gramos: params[:peso_en_gramos],
+                molde: params[:molde],
+                descripcion: params[:descripcion],
+                tamanio: params[:tamanio]
+    )
+  end
 end
