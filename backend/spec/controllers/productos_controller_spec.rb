@@ -68,6 +68,22 @@ RSpec.describe ProductosController, type: :request do
         expect(JSON.parse(response.body)["molde"]).to eq(params[:molde])
       end
     end
+
+    context 'cuando falta algun campo' do
+      let(:params) do
+        {
+            precio: 150,
+            peso_en_gramos: 300,
+            descripcion: "Conejito relleno de rocklets",
+            molde: "figura"
+        }
+      end
+
+      it 'agrega la figura a la lista de figuras, tiene estado created y devuelve la figura creada' do
+        post '/productos', params
+        expect(response).to have_http_status :bad_request
+      end
+    end
   end
 
 end

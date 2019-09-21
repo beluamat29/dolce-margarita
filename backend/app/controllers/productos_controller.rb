@@ -92,7 +92,13 @@ class ProductosController < ApplicationController
   end
 
   private
+
   def producto_params
-    params.permit(:nombre, :precio, :peso_en_gramos, :descripcion, :molde)
+    begin
+      params.require(:nombre).require(:precio).require(:peso_en_gramos).require(:descripcion).require(:molde)
+      params.permit(:nombre, :precio, :peso_en_gramos, :descripcion, :molde)
+    rescue
+      render status: :bad_request, nothing: true
+    end
   end
 end
