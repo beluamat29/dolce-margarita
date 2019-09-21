@@ -1,21 +1,19 @@
 import React from 'react';
 
 import './loginAdmin.scss';
+import servicio from "../../servicios/ServicioLogin";
 
 export default class LoginAdmin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             nombreUsuario: '',
-            contraseña: ''
+            contrasenia: ''
         }
     }
 
     validarDatos= () => {
-        //Aca deberiamos pegarle al backend
-        if (this.state.nombreUsuario === 'Eli' && this.state.contraseña === '1234') {
-            this.props.history.push("/cargaDatos")
-        }
+        servicio.logearAdmin(this.state.nombreUsuario, this.state.contrasenia)
     }
 
     render() {
@@ -40,8 +38,8 @@ export default class LoginAdmin extends React.Component {
                             <input className="input is-primary"
                                    type="text"
                                    placeholder="Contraseña"
-                                   value={this.state.contraseña}
-                                   onChange={(event) => this.setState({contraseña: event.target.value})}
+                                   value={this.state.contrasenia}
+                                   onChange={(event) => this.setState({contrasenia: event.target.value})}
                             />
                         </div>
                     </div>
