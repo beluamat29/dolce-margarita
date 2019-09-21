@@ -1,6 +1,7 @@
 import './listadoDeProductos.scss';
 import React from "react";
 import ModalArmadoDePedido from "../armadoDePedido/ModalArmadoDePedido";
+import Navbar from "../navbar/Navbar";
 import servicio from "../../servicios/servicio";
 import {withRouter} from "react-router-dom";
 
@@ -62,6 +63,7 @@ class ListadoDeProductos extends React.Component {
     render() {
         return (
             <div className="home-listado-productos">
+                <Navbar/>
                 <div className="cartas">
                     {this.state.productos.map(this.renderCarta)}
                 </div>
