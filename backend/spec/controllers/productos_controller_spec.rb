@@ -79,7 +79,7 @@ RSpec.describe ProductosController, type: :request do
         }
       end
 
-      it 'agrega la figura a la lista de figuras, tiene estado created y devuelve la figura creada' do
+      it 'devuelve bas request' do
         post '/productos', params
         expect(response).to have_http_status :bad_request
       end
