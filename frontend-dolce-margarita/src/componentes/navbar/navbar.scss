@@ -3,3 +3,11 @@
 .navbar{
   background: transparent;
 }
+
+.navbar-start {
+  a:hover {
+    background: #e1a0c2;
+    font-weight: bold;
+    color: darkslategray;
+  }
+}
