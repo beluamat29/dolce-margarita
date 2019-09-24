@@ -116,6 +116,8 @@ export default class CargaDeDatos extends React.Component {
                     this.state.formatoSeleccionado.value === 'huevo' &&
                     <RellenoDeParedesDeHuevoCheckbox/>
                 }
+
+                <a className="button is-danger">Cargar Producto</a>
             </div>
         )
     }
