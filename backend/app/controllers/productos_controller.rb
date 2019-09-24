@@ -1,5 +1,20 @@
 class ProductosController < ApplicationController
-  protect_from_forgery with: :null_session
+  before_action :producto_params
+  #protect_from_forgery with: :null_session
+
+  def agregar_producto
+    if es_figura_o_bomboneria
+      @producto = Producto.agregar_figura(params)
+    else
+      @producto = Producto.agregar_huevo(params)
+    end
+
+    render json: @producto, status: :created, nothing: true
+  end
+
+  def es_figura_o_bomboneria
+    (params[:molde].eql? 'figura') || (params[:molde].eql? 'bomboneria')
+  end
 
   HUEVOS = [
       {
@@ -32,5 +47,11 @@ class ProductosController < ApplicationController
 
   def show_huevos
     render json: HUEVOS, status: :ok
+  end
+
+  private
+
+  def producto_params
+      params.permit(:nombre, :precio, :peso_en_gramos, :descripcion, :molde)
   end
 end
