@@ -2,6 +2,7 @@ import React from 'react';
 import './cargaDeDatos.scss';
 import Select from 'react-select';
 import {RellenoDeParedesDeHuevoCheckbox} from "./RellenoDeParedesDeHuevoCheckbox";
+import servicioCarga from "../../servicios/ServicioCargaProducto"
 
 //EXTRAER A UN ARCHIVO DE CONSTANTES
 const tiposDeFormato = [
@@ -65,6 +66,11 @@ export default class CargaDeDatos extends React.Component {
         )
     }
 
+    cargarProducto = () => {
+        //Deberiamos agregar validaciones para los campos en el frontend
+        servicioCarga.cargarProducto(this.state)
+    }
+
     render() {
         return (
             <div className="home-carga-de-datos ">
@@ -97,7 +103,7 @@ export default class CargaDeDatos extends React.Component {
 
                 {
                     this.state.formatoSeleccionado.value !== 'huevo' &&
-                    this.renderCampo("Peso", this.agregarPeso)
+                    this.renderCampo("Peso en gramos", this.agregarPeso)
                 }
 
                 {
@@ -117,7 +123,7 @@ export default class CargaDeDatos extends React.Component {
                     <RellenoDeParedesDeHuevoCheckbox/>
                 }
 
-                <a className="button is-danger">Cargar Producto</a>
+                <a className="button is-danger" onClick={this.cargarProducto}>Cargar Producto</a>
             </div>
         )
     }
