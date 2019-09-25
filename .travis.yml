@@ -1,7 +1,9 @@
 language: ruby
 rvm:
   - 2.4.5
-script:
+before_install:
   - cd backend
-  - bundle install --jobs=3 --retry=3
+script:
+  - bundle install --deployment
+  - rake db:create db:migrate
   - rake spec
