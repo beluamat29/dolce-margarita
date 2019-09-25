@@ -3,5 +3,5 @@ rvm:
   - 2.4.5
 script:
   - cd backend
-  - bundle install --development
+  - bundle install --jobs=3 --retry=3
   - rake spec
