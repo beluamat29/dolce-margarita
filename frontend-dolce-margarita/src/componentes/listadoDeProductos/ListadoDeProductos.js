@@ -18,7 +18,11 @@ class ListadoDeProductos extends React.Component {
     }
 
     componentDidMount() {
-        servicio.productosConMolde(this.props.moldeSeleccionado, this.actualizarProductos);
+        this.reloadPageWith(this.props.moldeSeleccionado, this.actualizarProductos);
+    }
+
+    reloadPageWith = (molde) => {
+        servicio.productosConMolde(molde, this.actualizarProductos);
     }
 
     irAPaginaConfirmacionDePedido = (pedido) => {
@@ -63,7 +67,7 @@ class ListadoDeProductos extends React.Component {
     render() {
         return (
             <div className="home-listado-productos">
-                <Navbar/>
+                <Navbar itemClick={this.reloadPageWith}/>
                 <div className="cartas">
                     {this.state.productos.map(this.renderCarta)}
                 </div>

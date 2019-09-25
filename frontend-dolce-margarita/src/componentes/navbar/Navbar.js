@@ -1,7 +1,8 @@
 import React from "react";
+import {figuras, bombones, huevos} from '../../moldes'
 import './navbar.scss'
 
-const Navbar = () => {
+const Navbar = ({itemClick}) => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -10,15 +11,15 @@ const Navbar = () => {
 
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item">
+          <a className="navbar-item" onClick={() => itemClick(figuras)}>
             Figuras
           </a>
 
-          <a className="navbar-item">
+          <a className="navbar-item" onClick={() => itemClick(bombones)}>
             Bombonería
           </a>
 
-          <a className="navbar-item">
+          <a className="navbar-item" onClick={() => itemClick(huevos)}>
             Huevos
           </a>
         </div>

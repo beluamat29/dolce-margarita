@@ -1,7 +1,7 @@
 @import "~bulma/bulma.sass";
 
 .navbar{
-  background: transparent;
+  background: #ffbfe0;;
 }
 
 .navbar-start {
@@ -10,4 +10,15 @@
     font-weight: bold;
     color: darkslategray;
   }
+}
+
+.navbar-brand {
+  img {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.navbar-item {
+  transition: background-color .2s
 }
