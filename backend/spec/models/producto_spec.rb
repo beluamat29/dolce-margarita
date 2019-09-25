@@ -19,6 +19,39 @@ RSpec.describe Producto, type: :model do
     end
   end
 
+  context 'cuando es un huevo' do
+    context 'y tiene tamanio' do
+      let(:atributos) do
+        {
+            nombre: 'conejo rosa',
+            precio: 130,
+            peso_en_gramos: 200,
+            descripcion: 'conejito de chocolate',
+            molde: 'huevo',
+            tamanio: 12
+        }
+      end
+      it 'es valido' do
+        expect(producto).to be_valid
+      end
+    end
+
+    context 'y NO tiene tamanio' do
+      let(:atributos) do
+        {
+            nombre: 'conejo rosa',
+            precio: 130,
+            peso_en_gramos: 200,
+            descripcion: 'conejito de chocolate',
+            molde: 'huevo'
+        }
+      end
+      it 'no es valido' do
+        expect(producto).not_to be_valid
+      end
+    end
+  end
+
   context 'cuando no tiene nombre' do
     let(:atributos) do
       {
