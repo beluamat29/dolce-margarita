@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
 
   validates_presence_of :nombre, :apellido, :email, :password
+
+  def es_admin
+    :admin
+  end
 end

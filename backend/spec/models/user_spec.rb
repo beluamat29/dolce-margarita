@@ -70,4 +70,19 @@ RSpec.describe User, type: :model do
       expect(usuario).not_to be_valid
     end
   end
+
+  context 'Un usuario puede recibir un booleano en su creacion' do
+    let(:atributos) do
+      {
+          nombre: 'Maria Belen',
+          apellido: 'Amat',
+          email: 'belen@gmail.com',
+          admin: true
+      }
+    end
+
+    it 'y ser admin' do
+      expect(usuario.es_admin)
+    end
+  end
 end
