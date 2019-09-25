@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   #Productos
   post '/productos', to: 'productos#agregar_producto'
 
