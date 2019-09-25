@@ -3,4 +3,5 @@ rvm:
   - 2.4.5
 script:
   - cd backend
+  - bundle install --development
   - rake spec
