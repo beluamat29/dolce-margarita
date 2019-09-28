@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   #Productos
   post '/productos', to: 'productos#agregar_producto'
 
+  post '/usuarios', to: 'user#agregar_usuario'
+
   get '/productos/figuras', to: 'productos#show_figuras'
 
   get '/productos/bombones', to: 'productos#show_bombones'
