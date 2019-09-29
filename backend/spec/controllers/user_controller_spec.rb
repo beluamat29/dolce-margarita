@@ -1,24 +1,29 @@
 require 'rails_helper'
 
+def usuario_se_creo_con_contrasenia(contrasenia)
+  User.find(JSON.parse(response.body)["id"]).valid_password?(contrasenia)
+end
+
 RSpec.describe UserController, type: :request do
   describe 'POST' do
-    context 'cuando se recibe un nombre, un apellido, un email y una contraseña' do
+    context 'cuando se recibe un nombre, un apellido, un email y una contrasea' do
       let(:params) do
         {
             nombre: "Maria Belen",
             apellido: "Amat",
             email: "belen@gmail.com",
-            encrypted_password: "ABC123"
+            password: "ABC123"
         }
       end
 
-      it 'agrega la figura a la lista de figuras, tiene estado created y devuelve la figura creada' do
-        expect { post '/usuarios', params}.to change(User, :count).by(+1)
+      it 'agrega el usuario con los parametros dados' do
+        expect {post '/usuarios', params}.to change(User, :count).by(+1)
         expect(response).to have_http_status :created
+
         expect(JSON.parse(response.body)["nombre"]).to eq(params[:nombre])
         expect(JSON.parse(response.body)["apellido"]).to eq(params[:apellido])
         expect(JSON.parse(response.body)["email"]).to eq(params[:email])
-        expect(JSON.parse(response.body)["password"]).to eq(params[:password])
+        expect(usuario_se_creo_con_contrasenia(params[:password])).to be_truthy
       end
     end
   end
