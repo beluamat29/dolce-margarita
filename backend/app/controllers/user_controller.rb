@@ -7,7 +7,19 @@ class UserController < ApplicationController
     render json: @usuario, status: :created, nothing: true
   end
 
+  private
+
   def usuario_params
-    params.permit(:nombre, :apellido, :email, :password, :admin)
+    begin
+      params.require(:nombre)
+      params.require(:apellido)
+      params.require(:email)
+      params.require(:password)
+
+      params.permit(:nombre, :apellido, :email, :password, :admin)
+    rescue
+      render status: :bad_request, nothing: true
+    end
+
   end
 end

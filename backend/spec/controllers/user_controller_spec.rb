@@ -42,11 +42,27 @@ RSpec.describe UserController, type: :request do
 
 
       it 'entonces el usuario creado es admin' do
-        expect{post '/usuarios', params}.to change(User, :count).by(+1)
+        expect {post '/usuarios', params}.to change(User, :count).by(+1)
         expect(response).to have_http_status :created
         expect(JSON.parse(response.body)["admin"]).to be_truthy
       end
     end
 
+    context 'si no se recibe alguno de los parametros necesarios' do
+      let(:params) do
+        {
+            nombre: "Maria Belen",
+            apellido: "Amat",
+            password: "ABC123"
+        }
+      end
+
+      subject {post '/usuarios', params}
+
+      it 'el estado de la respuesta es bad request' do
+        expect {post '/usuarios', params}.to change(User, :count).by(0)
+        expect(response).to have_http_status :bad_request
+      end
+    end
   end
 end
