@@ -57,8 +57,6 @@ RSpec.describe UserController, type: :request do
         }
       end
 
-      subject {post '/usuarios', params}
-
       it 'el estado de la respuesta es bad request' do
         expect {post '/usuarios', params}.to change(User, :count).by(0)
         expect(response).to have_http_status :bad_request
