@@ -29,7 +29,24 @@ RSpec.describe UserController, type: :request do
       end
     end
 
-    context 'un usuario puede ser admin si se lo indica en los parametros'
+    context 'si se recibe el parametro admin en true' do
+      let(:params) do
+        {
+            nombre: "Maria Belen",
+            apellido: "Amat",
+            email: "belen@gmail.com",
+            password: "ABC123",
+            admin: true
+        }
+      end
+
+
+      it 'entonces el usuario creado es admin' do
+        expect{post '/usuarios', params}.to change(User, :count).by(+1)
+        expect(response).to have_http_status :created
+        expect(JSON.parse(response.body)["admin"]).to be_truthy
+      end
+    end
 
   end
 end

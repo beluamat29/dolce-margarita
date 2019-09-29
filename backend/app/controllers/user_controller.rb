@@ -8,6 +8,6 @@ class UserController < ApplicationController
   end
 
   def usuario_params
-    params.permit(:nombre, :apellido, :email, :password)
+    params.permit(:nombre, :apellido, :email, :password, :admin)
   end
 end
