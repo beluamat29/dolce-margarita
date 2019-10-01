@@ -16,6 +16,7 @@ class ProductosController < ApplicationController
     (params[:molde].eql? 'figura') || (params[:molde].eql? 'bomboneria')
   end
 
+=begin
   HUEVOS = [
       {
           nombre: "Gallina rellena",
@@ -36,6 +37,7 @@ class ProductosController < ApplicationController
           precio: 670
       }
   ].freeze
+=end
 
   def show_figuras
     render json: Producto.where(molde: "figura"), status: :ok
