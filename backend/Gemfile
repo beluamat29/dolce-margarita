@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rack-cors'
   gem 'active_model_serializers'
+  gem 'devise'
 
 end
 

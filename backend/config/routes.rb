@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   #Productos
   post '/productos', to: 'productos#agregar_producto'
 
@@ -11,4 +12,9 @@ Rails.application.routes.draw do
 
   #Pedidos
   post '/pedidos/crear', to: 'pedidos#create'
+
+  #Usuarios
+  post '/usuarios', to: 'user#agregar_usuario'
+
+  post '/admin', to: 'user#validar_usuario_admin'
 end
