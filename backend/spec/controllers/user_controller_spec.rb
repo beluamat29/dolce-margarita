@@ -64,25 +64,26 @@ RSpec.describe UserController, type: :request do
     end
   end
 
-  describe 'GET' do
-    context 'Cuando existe un usuario admin' do
-      User.create(nombre: "Maria Belen",
-                  apellido: "Amat",
-                  email: "belenadmin@gmail.com",
-                  password: "ABC123",
-                  admin: true)
+  context 'Cuando existe un usuario admin' do
+     User.create!(nombre: "Maria Belen",
+                apellido: "Amat",
+                email: "belenadmin@gmail.com",
+                password: "ABC123",
+                admin: true)
 
-      context 'y paso el email y la contrasenia  correcta' do
-        let(:params) do
-          {
-              email: "belenadmin@gmail.com",
-              password: "ABC123"
-          }
-        end
-        it 'puedo obtenerlo' do
-          get '/admin', params
-          expect(response).to have_http_status :ok
-        end
+
+    context 'y paso el email y la contrasenia  correcta' do
+      let(:params) do
+        {
+            email: "belenadmin@gmail.com",
+            password: "ABC123"
+        }
+      end
+      it 'puedo obtenerlo' do
+        post '/admin', params
+        expect(response).to have_http_status :ok
+        puts (JSON.parse(response.body))
+        expect(JSON.parse(response.body)["email"]).to eq("belenadmin@gmail.com")
       end
     end
   end

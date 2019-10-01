@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   #Usuarios
   post '/usuarios', to: 'user#agregar_usuario'
 
-  get '/admin', to: 'user#validar_usuario_admin'
+  post '/admin', to: 'user#validar_usuario_admin'
 end
