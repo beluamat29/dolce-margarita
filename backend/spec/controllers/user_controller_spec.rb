@@ -82,9 +82,21 @@ RSpec.describe UserController, type: :request do
       it 'puedo obtenerlo' do
         post '/admin', params
         expect(response).to have_http_status :ok
-        puts (JSON.parse(response.body))
         expect(JSON.parse(response.body)["email"]).to eq("belenadmin@gmail.com")
       end
     end
+
+     context 'y paso el email y la contrasenia  incorrecta' do
+       let(:params) do
+         {
+             email: "belenadmin@gmail.com",
+             password: "contraseniaincorrecta"
+         }
+       end
+       it 'no puedo obtenerlo' do
+         post '/admin', params
+         expect(response).to have_http_status :unauthorized
+       end
+     end
   end
 end

@@ -9,21 +9,21 @@ class UserController < ApplicationController
   end
 
   def validar_usuario_admin
-    @usuario = User.find_by(email: "belenadmin@gmail.com")
+    @usuario = User.find_by(email: params[:email])
 
+    begin
     autenticar_usuario(@usuario)
 
     render json: {id: @usuario.id, email: @usuario.email}, status: :ok, nothing: true
+    rescue
+      render json: {message: 'La contrasenia es invalida'}, status: :unauthorized, nothing: true
+    end
   end
 
   private
 
   def autenticar_usuario(usuario)
-    begin
     raise ValidacionAdminFallida unless usuario.valid_password?(params[:password])
-    rescue
-      render status: :ok, message: 'La contrasenia es invalida', nothing: true
-    end
   end
 
   def usuario_params
