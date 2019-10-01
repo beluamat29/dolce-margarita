@@ -1,6 +1,7 @@
 import './listadoDeProductos.scss';
 import React from "react";
 import ModalArmadoDePedido from "../armadoDePedido/ModalArmadoDePedido";
+import Navbar from "../navbar/Navbar";
 import servicio from "../../servicios/servicio";
 import {withRouter} from "react-router-dom";
 
@@ -17,7 +18,11 @@ class ListadoDeProductos extends React.Component {
     }
 
     componentDidMount() {
-        servicio.productosConMolde(this.props.moldeSeleccionado, this.actualizarProductos);
+        this.reloadPageWith(this.props.moldeSeleccionado, this.actualizarProductos);
+    }
+
+    reloadPageWith = (molde) => {
+        servicio.productosConMolde(molde, this.actualizarProductos);
     }
 
     irAPaginaConfirmacionDePedido = (pedido) => {
@@ -62,6 +67,7 @@ class ListadoDeProductos extends React.Component {
     render() {
         return (
             <div className="home-listado-productos">
+                <Navbar itemClick={this.reloadPageWith}/>
                 <div className="cartas">
                     {this.state.productos.map(this.renderCarta)}
                 </div>
