@@ -1,21 +1,21 @@
 import React from 'react';
-
+import servicioLogin from "../../servicios/servicioLogin"
 import './loginAdmin.scss';
+import {withRouter} from "react-router-dom";
 
 export default class LoginAdmin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            nombreUsuario: '',
+            email: '',
             contraseña: ''
         }
     }
 
     validarDatos= () => {
-        //Aca deberiamos pegarle al backend
-        if (this.state.nombreUsuario === 'Eli' && this.state.contraseña === '1234') {
-            this.props.history.push("/cargaDatos")
-        }
+        servicioLogin.validarAdmin(this.state.email, this.state.contraseña)
+            .then(response => this.props.history.push("/cargaDatos"))
+            .catch(e => alert("tu usuario o contraseña son incorrectos"))
     }
 
     render() {
@@ -31,8 +31,8 @@ export default class LoginAdmin extends React.Component {
                             <input className="input is-primary"
                                    type="text"
                                    placeholder="Usuario administrador"
-                                   value={this.state.nombreUsuario}
-                                   onChange={(event) => this.setState({nombreUsuario: event.target.value})}/>
+                                   value={this.state.email}
+                                   onChange={(event) => this.setState({email: event.target.value})}/>
                         </div>
                     </div>
                     <div className="field">
@@ -46,9 +46,9 @@ export default class LoginAdmin extends React.Component {
                         </div>
                     </div>
 
-                    <a className="button is-danger datos" onClick={this.validarDatos}>
+                    <button className="button is-danger datos" onClick={()=>this.validarDatos()}>
                         Ingresar
-                    </a>
+                    </button>
                 </div>
             </div>
         )
