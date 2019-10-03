@@ -9,6 +9,14 @@ const puntosDeRetiro = [
     { value: '3', label: 'Perdriel 74 - CABA' },
 ];
 
+// SDK de Mercado Pago
+const mercadopago = require ('mercadopago');
+
+// Agrega credenciales
+mercadopago.configure({
+    access_token: 'TEST-2872476240587920-100223-eeab6dd71d3ae58ca3c33bce34b7c0e9-77626432'
+});
+
 export default class ConfirmacionDePedido extends React.Component {
     constructor(props) {
         super(props);
@@ -17,14 +25,36 @@ export default class ConfirmacionDePedido extends React.Component {
             nombreClienteDelPedido: '',
             emailClientePedido: '',
             telefonoClientePedido: '',
-            puntoDeRetiro: ''
+            puntoDeRetiro: '',
+            formaDePago: 'efectivo',
+            init_point: ''
         }
     }
 
-    calcularTotal = () => {
-        const {pedido} = this.props;
+    componentDidMount() {
+        const { pedido } = this.props;
 
-        return pedido.producto.precio * pedido.cantidad
+        let preference = {
+            items: [
+                {
+                    title: pedido.producto.nombre,
+                    unit_price: pedido.producto.precio,
+                    quantity: pedido.cantidad,
+                }
+            ]
+        };
+
+        mercadopago.preferences.create(preference)
+          .then(function(response){
+              // Este valor reemplazará el string "$$init_point$$" en tu HTML
+              this.setState({ init_point: response.body.init_point })
+          }).catch(function(error){
+            console.log(error);
+        });
+    }
+
+    cambioFormaDePago = (event) => {
+        this.setState({formaDePago: event.target.value})
     }
 
     confirmarPedido = () => {
@@ -36,6 +66,10 @@ export default class ConfirmacionDePedido extends React.Component {
         } = this.state;
 
         servicio.confirmarPedido(this.props.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label)
+    }
+
+    mercadoPagoSeleccionado = () => {
+        return this.state.formaDePago === 'mercadoPago';
     }
 
     render() {
@@ -110,6 +144,37 @@ export default class ConfirmacionDePedido extends React.Component {
                                     {`${pedido.producto.nombre} ${pedido.producto.peso_en_gramos}gr x ${pedido.cantidad} u.`}
                                 </p>
                             </div>
+                        </div>
+
+                        <div className="forma-de-pago">
+                            <label>Pagar con:</label>
+                            <label>
+                                <input type="radio" value="efectivo" checked={this.state.formaDePago === 'efectivo'} onChange={this.cambioFormaDePago} />
+                                Efectivo
+                            </label>
+
+                            <label>
+                                <input type="radio" value="mercadoPago" checked={this.state.formaDePago === 'mercadoPago'} onChange={this.cambioFormaDePago}/>
+                                Mercado Pago
+                            </label>
+
+                            {/*{*/}
+                            {/*    this.mercadoPagoSeleccionado() && (*/}
+                            {/*      <button className="button">*/}
+                            {/*          <a href={`${this.state.init_point}`} target="_blank">Pagar</a>*/}
+                            {/*      </button>*/}
+                            {/*    )*/}
+                            {/*}*/}
+                            {
+                                this.mercadoPagoSeleccionado() && (
+                                  <form action="/procesar-pago" method="POST">
+                                      <script
+                                        src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+                                        data-preference-id={`${this.state.init_point}`}>
+                                      </script>
+                                  </form>
+                                )
+                            }
                         </div>
 
                         <div className="field-row total-row">

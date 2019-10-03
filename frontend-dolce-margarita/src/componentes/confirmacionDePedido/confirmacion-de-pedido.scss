@@ -63,6 +63,12 @@
           margin-bottom: 3px;
         }
       }
+
+      .forma-de-pago {
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+      }
     }
 
     .card-header {
