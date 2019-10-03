@@ -16,3 +16,8 @@ Producto.create(nombre: 'Gallina rellena', peso_en_gramos: 350, precio: 500.0, d
 Producto.create(nombre: 'Gallina rellena', peso_en_gramos: 500, precio: 700.0, descripcion: "Gallina rellena de chocolates", molde: 'huevo', tamanio: 12)
 Producto.create(nombre: 'Huevo de Dinosaurio', peso_en_gramos: 300, precio: 600.0, descripcion: "Huevo ralladito", molde: 'huevo', tamanio: 6)
 Producto.create(nombre: 'Huevo Kinder', peso_en_gramos: 480, precio: 550.0, descripcion: "Huevo versión kinder", molde: 'huevo', tamanio: 10)
+
+#Creando Usuarios Admin
+User.create(nombre: 'Elisabet', apellido: 'Tassiello', email: 'eliadmin@gmail.com', password: '123456', admin: true)
+User.create(nombre: 'Micaela', apellido: 'Alonso', email: 'micaadmin@gmail.com', password: '123456', admin: true)
+User.create(nombre: 'Belen', apellido: 'Amat', email: 'beluadmin@gmail.com', password: '123456', admin: true)
