@@ -6,6 +6,7 @@ import Home from "./componentes/home/Home";
 import CargaDeDatos from "./componentes/paginaCargaDeDatos/cargaDeDatos";
 import ListadoDeProductos from "./componentes/listadoDeProductos/ListadoDeProductos";
 import ConfirmacionDePedido from "./componentes/confirmacionDePedido/ConfirmacionDePedido";
+import IndexPedidos from "./componentes/indexPedidos/IndexPedidos";
 
 
 class App extends React.Component{
@@ -37,6 +38,11 @@ class App extends React.Component{
                         exact
                         path="/cargadatos"
                         component={CargaDeDatos}
+                    />
+                    <Route
+                        exact
+                        path="/indexPedidos"
+                        component={IndexPedidos}
                     />
                     <Route
                         exact
