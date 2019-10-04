@@ -1,5 +1,5 @@
 class ProductosController < ApplicationController
-  before_action :producto_params
+  before_action :producto_params, only: [:agregar_producto]
   #protect_from_forgery with: :null_session
 
   def agregar_producto
@@ -31,6 +31,16 @@ class ProductosController < ApplicationController
   private
 
   def producto_params
-    params.permit(:nombre, :precio, :peso_en_gramos, :descripcion, :molde)
-  end
+    begin
+      params.require(:nombre)
+      params.require(:precio)
+      params.require(:peso_en_gramos)
+      params.require(:descripcion)
+      params.require(:molde)
+
+
+      params.permit(:nombre, :precio, :peso_en_gramos, :descripcion, :molde)
+    rescue
+      render status: :bad_request, nothing: true
+    end  end
 end
