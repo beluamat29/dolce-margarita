@@ -21,8 +21,8 @@ $info: black;
     width: 800px;
     height: auto;
     margin: 20px;
-    border-radius: 2px;
-    border: 2px solid #ffa5cd;
+    border-radius: 7px;
+    border: 1.5px solid #ffa5cd;
     align-items: center;
 
     .separador {
@@ -41,6 +41,16 @@ $info: black;
         margin: 5px;
       }
     }
+
+    .datos-contacto-cliente {
+      width: 100%;
+
+      p {
+        padding: 10px 0 10px 15px;
+        font-size: 20px;
+      }
+    }
+
     .datos-generales {
       display:flex;
       justify-content: space-between;

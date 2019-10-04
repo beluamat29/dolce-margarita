@@ -53,7 +53,7 @@ export default class IndexPedidos extends React.Component {
                     <p>{'Chocolate ' + pedido.tipo_chocolate}</p>
                 </div>
                 <div className='tipo-chocolate'>
-                    <p>{'$' + pedido.precio_total}</p>
+                    <p>{'Total: $' + pedido.precio_total}</p>
                 </div>
             </div>
 
@@ -61,6 +61,15 @@ export default class IndexPedidos extends React.Component {
                 <div className='line'/>
                 <p className='datos-cliente-texto'>datos del cliente</p>
                 <div className='line'/>
+            </div>
+
+            <div className='datos-contacto-cliente'>
+                <div className='tipo-chocolate'>
+                    <p>{'Email: ' + pedido.email_cliente}</p>
+                </div>
+                <div className='tipo-chocolate'>
+                    <p>{'Telefono: ' + pedido.telefono_cliente}</p>
+                </div>
             </div>
         </div>);
     }
