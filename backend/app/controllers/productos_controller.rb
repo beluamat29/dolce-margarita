@@ -3,12 +3,7 @@ class ProductosController < ApplicationController
   #protect_from_forgery with: :null_session
 
   def agregar_producto
-    if es_figura_o_bomboneria
-      @producto = Producto.agregar_figura(params)
-    else
-      @producto = Producto.agregar_huevo(params)
-    end
-
+    @producto = Producto.agregar_producto(params)
     render json: @producto, status: :created, nothing: true
   end
 
