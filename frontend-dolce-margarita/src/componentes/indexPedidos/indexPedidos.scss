@@ -17,20 +17,58 @@ $info: black;
   .row {
     display: flex;
     background-color: white;
+    flex-direction: column;
     width: 800px;
-    height: 80px;
+    height: auto;
     margin: 20px;
     border-radius: 2px;
     border: 2px solid #ffa5cd;
     align-items: center;
-    justify-content: space-between;
 
+    .separador {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      width: 100%;
 
-    .nombre-cliente {
-      font-size: 32px;
-      padding: 15px;
-      font: bold;
+      .line{
+        margin: 15px 5px 15px 5px;
+        width: 40%;
+        border-bottom: 1px solid black;
+      }
+
+      .datos-cliente-texto {
+        margin: 5px;
+      }
     }
+    .datos-generales {
+      display:flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .nombre-y-boton {
+        display: flex;
+        align-items: center;
+
+        a {
+          margin-right: 15px;
+          background-color: #ffa5cd;
+          border-color: #ffa5cd;
+        }
+      }
+
+      .nombre-cliente {
+        font-size: 32px;
+        padding: 15px;
+        font: bold;
+      }
+
+      .tipo-chocolate {
+        padding: 15px;
+        font-size: 20px;
+      }
+    }
+
 
     .pedido {
       font-size: 23px;

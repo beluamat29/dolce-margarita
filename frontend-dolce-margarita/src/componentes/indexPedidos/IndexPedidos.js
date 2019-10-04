@@ -38,9 +38,31 @@ export default class IndexPedidos extends React.Component {
 
     renderPedido = (pedido) => {
         return (<div className='row'>
+            <div className='datos-generales'>
+                <div>
                     <p className="nombre-cliente">{pedido.nombre_cliente}</p>
+                </div>
+                <div className='nombre-y-boton'>
                     <p className="pedido">{pedido.nombre_producto + ' ' + pedido.peso_en_gramos + "grs x " + pedido.cantidad + 'u'}</p>
-                </div>);
+                    <a className='button'>Ver</a>
+                </div>
+            </div>
+
+            <div className='datos-generales'>
+                <div className='tipo-chocolate'>
+                    <p>{'Chocolate ' + pedido.tipo_chocolate}</p>
+                </div>
+                <div className='tipo-chocolate'>
+                    <p>{'$' + pedido.precio_total}</p>
+                </div>
+            </div>
+
+            <div className='separador'>
+                <div className='line'/>
+                <p className='datos-cliente-texto'>datos del cliente</p>
+                <div className='line'/>
+            </div>
+        </div>);
     }
 
     render() {
