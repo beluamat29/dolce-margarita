@@ -14,7 +14,7 @@ class PedidosController < ApplicationController
         telefono_cliente: params[:telefono_cliente],
         lugar_retiro: params[:lugar_retiro]
     )
-    render json: { message: pedido, datos: params }, status: :created
+    render json: pedido, status: :created
   end
 
   private
