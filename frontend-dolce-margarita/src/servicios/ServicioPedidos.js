@@ -14,7 +14,7 @@ export default class ServicioPedidos {
                 nombre_cliente: 'Lucas Avalos',
                 email_cliente: 'eltumba@gmail.com',
                 telefono_cliente: 1122445566,
-                lugar_retiro: 'Calle 6 5047'
+                lugar_retiro: 'Calle 6 5047 - Berazategui'
             },
             {
                 nombre_producto: "Balde Huevitos",
@@ -25,7 +25,7 @@ export default class ServicioPedidos {
                 nombre_cliente: 'Luli Alonso',
                 email_cliente: 'lulipop@gmail.com',
                 telefono_cliente: 1122445566,
-                lugar_retiro: 'Calle 6 5047'
+                lugar_retiro: 'Calle 6 5047 - Berazategui'
             },
             {
                 nombre_producto: "Conejito",
@@ -36,7 +36,7 @@ export default class ServicioPedidos {
                 nombre_cliente: 'Lucas Avalos',
                 email_cliente: 'eltumba@gmail.com',
                 telefono_cliente: 1122445566,
-                lugar_retiro: 'Calle 6 5047'
+                lugar_retiro: 'Calle 6 5047 - Berazategui'
             },
             {
                 nombre_producto: "Conejito",

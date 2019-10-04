@@ -44,7 +44,6 @@ export default class IndexPedidos extends React.Component {
                 </div>
                 <div className='nombre-y-boton'>
                     <p className="pedido">{pedido.nombre_producto + ' ' + pedido.peso_en_gramos + "grs x " + pedido.cantidad + 'u'}</p>
-                    <a className='button'>Ver</a>
                 </div>
             </div>
 
@@ -69,6 +68,9 @@ export default class IndexPedidos extends React.Component {
                 </div>
                 <div className='tipo-chocolate'>
                     <p>{'Telefono: ' + pedido.telefono_cliente}</p>
+                </div>
+                <div className='tipo-chocolate'>
+                    <p>{'Punto de retiro: ' + pedido.lugar_retiro}</p>
                 </div>
             </div>
         </div>);
