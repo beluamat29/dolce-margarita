@@ -7,7 +7,7 @@ import CargaDeDatos from "./componentes/paginaCargaDeDatos/cargaDeDatos";
 import ListadoDeProductos from "./componentes/listadoDeProductos/ListadoDeProductos";
 import ConfirmacionDePedido from "./componentes/confirmacionDePedido/ConfirmacionDePedido";
 import IndexPedidos from "./componentes/indexPedidos/IndexPedidos";
-
+import PedidosOCargaDeDatos from "./componentes/loginAdmin/PedidosOCargaDeDatos";
 
 class App extends React.Component{
 
@@ -51,6 +51,11 @@ class App extends React.Component{
                             moldeSeleccionado={this.state.moldeSeleccionado}
                             onConfirm={(pedido)=>this.setState({pedidoActual: pedido})}
                             />}
+                    />
+                    <Route
+                        exact
+                        path="/adminindex"
+                        component={PedidosOCargaDeDatos}
                     />
                     <Route
                         exact
