@@ -109,7 +109,7 @@ export default class CargaDeDatos extends React.Component {
                     <div className="control image-field">
                         <div className="file has-name is-boxed is-white">
                             <label className="file-label">
-                                <input className="file-input" name='holis' type="file" onChange={this.agregarImagen}/>
+                                <input className="file-input" type="file" onChange={this.agregarImagen}/>
                                     <span className="file-cta">
                                       <span className="file-icon">
                                         <FontAwesomeIcon icon={faUpload}/>
