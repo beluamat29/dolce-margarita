@@ -27,7 +27,7 @@ export default class CargaDeDatos extends React.Component {
             nombre: "",
             precio: "",
             descripcion: "",
-            imagen: null,
+            imagen: "",
             peso: "",
             tamaño: ""
         }
@@ -75,6 +75,7 @@ export default class CargaDeDatos extends React.Component {
 
     agregarImagen = event => {
         this.setState({imagen: event.target.files[0]})
+        console.log(event.target.files[0])
     }
 
     render() {
@@ -106,7 +107,7 @@ export default class CargaDeDatos extends React.Component {
                 <div className="field">
                     <p className="subtitle is-4 is-spaced"> Imagen </p>
                     <div className="control image-field">
-                        <div className="file is-white">
+                        <div className="file has-name is-boxed is-white">
                             <label className="file-label">
                                 <input className="file-input" name='holis' type="file" onChange={this.agregarImagen}/>
                                     <span className="file-cta">
@@ -114,8 +115,11 @@ export default class CargaDeDatos extends React.Component {
                                         <FontAwesomeIcon icon={faUpload}/>
                                       </span>
                                       <span className="file-label">
-                                        Choose a file…
+                                        Elegí una imagen
                                       </span>
+                                     <span>
+                                         {this.state.imagen.name || ''}
+                                     </span>
                                     </span>
                             </label>
                         </div>
