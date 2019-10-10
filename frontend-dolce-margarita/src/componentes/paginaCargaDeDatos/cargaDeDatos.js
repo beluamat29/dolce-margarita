@@ -3,12 +3,14 @@ import './cargaDeDatos.scss';
 import Select from 'react-select';
 import {RellenoDeParedesDeHuevoCheckbox} from "./RellenoDeParedesDeHuevoCheckbox";
 import servicioCarga from "../../servicios/ServicioCargaProducto"
+import {faUpload} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 //EXTRAER A UN ARCHIVO DE CONSTANTES
 const tiposDeFormato = [
-    { value: 'figura', label: 'Figura' },
-    { value: 'huevo', label: 'Huevo' },
-    { value: 'bomboneria', label: 'Bomboneria' },
+    {value: 'figura', label: 'Figura'},
+    {value: 'huevo', label: 'Huevo'},
+    {value: 'bomboneria', label: 'Bomboneria'},
 ];
 
 const chocolateNulo = {
@@ -25,34 +27,34 @@ export default class CargaDeDatos extends React.Component {
             nombre: "",
             precio: "",
             descripcion: "",
-            imagen: "",
+            imagen: null,
             peso: "",
-            tamaño:""
+            tamaño: ""
         }
     }
 
     agregarNombre = (event) => {
-        this.setState({ nombre: event.target.value })
+        this.setState({nombre: event.target.value})
     }
 
     agregarPrecio = (event) => {
-        this.setState({ precio: event.target.value })
+        this.setState({precio: event.target.value})
     }
 
     agregarDescripcion = (event) => {
-        this.setState({ descripcion: event.target.value })
+        this.setState({descripcion: event.target.value})
     }
 
     agregarImagen = (event) => {
-        this.setState({ imagen: event.target.value })
+        this.setState({imagen: event.target.value})
     }
 
     agregarPeso = (event) => {
-        this.setState({ peso: event.target.value })
+        this.setState({peso: event.target.value})
     }
 
     agregarTamaño = (event) => {
-        this.setState({ tamaño: event.target.value })
+        this.setState({tamaño: event.target.value})
     }
 
     renderCampo = (campo, actualizarCampo) => {
@@ -60,7 +62,7 @@ export default class CargaDeDatos extends React.Component {
             <div className="field">
                 <p className="subtitle is-4 is-spaced"> {campo} </p>
                 <div className="control">
-                    <input className="input is-primary" type="text" onChange={ actualizarCampo } />
+                    <input className="input is-primary" type="text" onChange={actualizarCampo}/>
                 </div>
             </div>
         )
@@ -69,6 +71,10 @@ export default class CargaDeDatos extends React.Component {
     cargarProducto = () => {
         //Deberiamos agregar validaciones para los campos en el frontend
         servicioCarga.cargarProducto(this.state)
+    }
+
+    agregarImagen = event => {
+        this.setState({imagen: event.target.files[0]})
     }
 
     render() {
@@ -82,9 +88,9 @@ export default class CargaDeDatos extends React.Component {
                     <p className="subtitle is-4 is-spaced">Formato del producto</p>
                     <div className="control">
                         <Select className="formato-chocolate-selector"
-                            value={this.state.formatoSeleccionado}
-                            onChange={(formato) => this.setState({formatoSeleccionado: formato})}
-                            options={tiposDeFormato}
+                                value={this.state.formatoSeleccionado}
+                                onChange={(formato) => this.setState({formatoSeleccionado: formato})}
+                                options={tiposDeFormato}
                         />
                     </div>
                 </div>
@@ -97,9 +103,24 @@ export default class CargaDeDatos extends React.Component {
                     this.renderCampo("Precio", this.agregarPrecio)
                 }
 
-                {
-                    this.renderCampo("Imagen", this.agregarImagen)
-                }
+                <div className="field">
+                    <p className="subtitle is-4 is-spaced"> Imagen </p>
+                    <div className="control image-field">
+                        <div className="file is-white">
+                            <label className="file-label">
+                                <input className="file-input" name='holis' type="file" onChange={this.agregarImagen}/>
+                                    <span className="file-cta">
+                                      <span className="file-icon">
+                                        <FontAwesomeIcon icon={faUpload}/>
+                                      </span>
+                                      <span className="file-label">
+                                        Choose a file…
+                                      </span>
+                                    </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
                 {
                     this.state.formatoSeleccionado.value !== 'huevo' &&
@@ -114,7 +135,7 @@ export default class CargaDeDatos extends React.Component {
                 <div className="field">
                     <p className="subtitle is-4 is-spaced">Descripción</p>
                     <div className="control">
-                        <textarea className="textarea is-primary" type="text" onChange={ this.agregarDescripcion }/>
+                        <textarea className="textarea is-primary" type="text" onChange={this.agregarDescripcion}/>
                     </div>
                 </div>
 
@@ -125,6 +146,6 @@ export default class CargaDeDatos extends React.Component {
 
                 <a className="button is-danger" onClick={this.cargarProducto}>Cargar Producto</a>
             </div>
-        )
+    )
     }
-}
+    }

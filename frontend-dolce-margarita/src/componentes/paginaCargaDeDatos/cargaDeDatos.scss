@@ -24,6 +24,16 @@ $info: black;
     margin-right: 10px;
   }
 
+  .image-field {
+    display: flex;
+    justify-content: center;
+  }
+
+  .file {
+    border:1px solid black;
+    border-radius: 7px;
+  }
+
   .field {
     display: flex;
     align-items: center;
