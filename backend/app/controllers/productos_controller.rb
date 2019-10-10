@@ -34,7 +34,7 @@ class ProductosController < ApplicationController
       params.require(:molde)
 
 
-      params.permit(:nombre, :precio, :peso_en_gramos, :descripcion, :molde)
+      params.permit(:nombre, :precio, :peso_en_gramos, :descripcion, :molde, :image)
     rescue
       render status: :bad_request, nothing: true
     end  end

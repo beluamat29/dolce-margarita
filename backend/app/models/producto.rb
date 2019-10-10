@@ -1,4 +1,5 @@
 class Producto < ActiveRecord::Base
+  mount_uploader :picture, PictureUploader
   validates_presence_of :nombre, :precio, :peso_en_gramos, :descripcion, :molde
   validates_presence_of :tamanio, if: :molde_es_huevo
 

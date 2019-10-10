@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20190925221458) do
     t.integer  "precio"
     t.integer  "peso_en_gramos"
     t.text     "descripcion"
+    t.string   "picture"
     t.string   "molde"
     t.integer  "tamanio"
   end
