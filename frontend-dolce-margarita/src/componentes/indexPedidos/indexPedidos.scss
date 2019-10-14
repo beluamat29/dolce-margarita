@@ -1,0 +1,88 @@
+$input-border-color: black;
+$primary: #ffa5cd;
+$dropdown-content-arrow: black;
+$info: black;
+@import "~bulma/bulma.sass";
+
+.index-pedidos-home {
+  background-color: #ffd8dd;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .row {
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    width: 800px;
+    height: auto;
+    margin: 20px;
+    border-radius: 7px;
+    border: 1.5px solid #ffa5cd;
+    align-items: center;
+
+    .separador {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      width: 100%;
+
+      .line{
+        margin: 15px 5px 15px 5px;
+        width: 40%;
+        border-bottom: 1px solid black;
+      }
+
+      .datos-cliente-texto {
+        margin: 5px;
+      }
+    }
+
+    .datos-contacto-cliente {
+      width: 100%;
+
+      p {
+        padding: 10px 0 10px 15px;
+        font-size: 20px;
+      }
+    }
+
+    .datos-generales {
+      display:flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .nombre-y-boton {
+        display: flex;
+        align-items: center;
+
+        a {
+          margin-right: 15px;
+          background-color: #ffa5cd;
+          border-color: #ffa5cd;
+        }
+      }
+
+      .nombre-cliente {
+        font-size: 32px;
+        padding: 15px;
+        font: bold;
+      }
+
+      .tipo-chocolate {
+        padding: 15px;
+        font-size: 20px;
+      }
+    }
+
+
+    .pedido {
+      font-size: 23px;
+      padding: 15px;
+
+    }
+  }
+}
