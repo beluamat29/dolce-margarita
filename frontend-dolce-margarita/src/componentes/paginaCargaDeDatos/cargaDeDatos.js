@@ -45,9 +45,6 @@ export default class CargaDeDatos extends React.Component {
         this.setState({descripcion: event.target.value})
     }
 
-    agregarImagen = (event) => {
-        this.setState({imagen: event.target.value})
-    }
 
     agregarPeso = (event) => {
         this.setState({peso: event.target.value})
@@ -70,12 +67,18 @@ export default class CargaDeDatos extends React.Component {
 
     cargarProducto = () => {
         //Deberiamos agregar validaciones para los campos en el frontend
-        servicioCarga.cargarProducto(this.state)
+        const data = new FormData()
+        data.append('file', this.state.imagen)
+        data.append('nombre', this.state.nombre)
+        data.append('precio', this.state.precio)
+        data.append('descripcion', this.state.descripcion)
+        data.append('peso_en_gramos', this.state.peso)
+        data.append('molde', this.state.formatoSeleccionado.value)
+        servicioCarga.cargarProducto(data)
     }
 
     agregarImagen = event => {
         this.setState({imagen: event.target.files[0]})
-        console.log(event.target.files[0])
     }
 
     render() {

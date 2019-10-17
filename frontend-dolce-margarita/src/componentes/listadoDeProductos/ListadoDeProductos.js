@@ -31,6 +31,7 @@ class ListadoDeProductos extends React.Component {
     }
 
     actualizarProductos = (productos) => {
+        console.log(productos)
         this.setState({productos});
     }
 
@@ -47,7 +48,7 @@ class ListadoDeProductos extends React.Component {
                 <div className="flip-card-inner">
                     <div className="flip-card-front">
                         <div className="flip-card-content">
-                            <img src={require('../../assets/bombones.jpg')} />
+                            <img src={'/Users/mariabelenamat/dolce-margarita/backend/public/uploads/producto/picture/7/easter.jpg'} />
                         </div>
                         <div className="flip-card-footer">
                             <p>{producto.nombre}</p>
