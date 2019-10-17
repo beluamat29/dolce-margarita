@@ -48,7 +48,7 @@ class ListadoDeProductos extends React.Component {
                 <div className="flip-card-inner">
                     <div className="flip-card-front">
                         <div className="flip-card-content">
-                            <img src={'/Users/mariabelenamat/dolce-margarita/backend/public/uploads/producto/picture/7/easter.jpg'} />
+                            <img src={require('../../assets/bombones.jpg')} />
                         </div>
                         <div className="flip-card-footer">
                             <p>{producto.nombre}</p>
