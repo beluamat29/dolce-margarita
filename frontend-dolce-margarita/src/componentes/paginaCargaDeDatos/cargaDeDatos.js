@@ -46,6 +46,10 @@ export default class CargaDeDatos extends React.Component {
     }
 
 
+    agregarImagen = (event) => {
+        this.setState({imagen: event.target.value})
+    }
+
     agregarPeso = (event) => {
         this.setState({peso: event.target.value})
     }
@@ -79,6 +83,11 @@ export default class CargaDeDatos extends React.Component {
 
     agregarImagen = event => {
         this.setState({imagen: event.target.files[0]})
+    }
+
+    agregarImagen = event => {
+        this.setState({imagen: event.target.files[0]})
+        console.log(event.target.files[0])
     }
 
     render() {

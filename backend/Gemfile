@@ -41,8 +41,12 @@ group :development, :test do
   gem 'rack-cors'
   gem 'active_model_serializers'
   gem 'devise'
+
   gem 'carrierwave'
   gem 'mini_magick'
+  gem 'pry-byebug'
+  gem 'pry'
+
 
 end
 
