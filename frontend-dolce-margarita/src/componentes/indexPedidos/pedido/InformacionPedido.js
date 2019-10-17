@@ -15,7 +15,8 @@ export default class InformacionPedido extends React.Component {
     }
 
     render() {
-        return (<div className='row'>
+        return (
+          <div className='row'>
             <div className='datos-generales'>
                 <div>
                     <p className="nombre-cliente">{this.props.pedido.nombre_cliente}</p>
@@ -55,6 +56,7 @@ export default class InformacionPedido extends React.Component {
                     <p>{'Punto de retiro: ' + this.props.pedido.lugar_retiro}</p>
                 </div>
             </div>}
-        </div>);
+          </div>
+        );
     }
 }

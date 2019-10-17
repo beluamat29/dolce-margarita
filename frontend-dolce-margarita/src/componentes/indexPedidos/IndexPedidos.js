@@ -8,7 +8,8 @@ export default class IndexPedidos extends React.Component {
         super(props);
 
         this.state = {
-            pedidos: []
+            pedidosTodos: [],
+            pedidosAMostrar: []
         }
     }
 
@@ -21,14 +22,29 @@ export default class IndexPedidos extends React.Component {
     }
 
     actualizarPedidos = (pedidos) => {
-        this.setState({pedidos});
+        this.setState({
+            pedidosTodos: pedidos,
+            pedidosAMostrar: pedidos
+        });
+    }
+
+    actualizarPedidosAMostrar = (pedidosAMostrar) => {
+        this.setState({ pedidosAMostrar });
+    }
+
+    filtrar = (event) => {
+        const pedidosFiltrados = this.state.pedidosTodos.filter((pedido) => pedido.nombre_cliente.includes(event.target.value))
+
+        this.actualizarPedidosAMostrar(pedidosFiltrados);
     }
 
     render() {
         return (
             <div className="index-pedidos-home">
+                <p className="title is-1 is-spaced">Pedidos</p>
+                <input className="pedidos-filtrar" type="text" name="filter" placeholder="Buscar por cliente" onChange={ (event) => this.filtrar(event)}/>
                 <div className="rows">
-                    {this.state.pedidos.map(informacionPedido => <InformacionPedido pedido={informacionPedido}/>)}
+                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido pedido={informacionPedido}/>)}
                 </div>
             </div>
         )
