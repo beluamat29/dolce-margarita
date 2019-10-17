@@ -13,6 +13,7 @@ class Producto < ActiveRecord::Base
     )
     producto.picture = params[:file]
     producto.save!
+    producto
   end
 
   def molde_es_huevo
