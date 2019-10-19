@@ -18,7 +18,7 @@ export default class IndexPedidos extends React.Component {
     }
 
     obtenerPedidos = () => {
-        return servicioPedidos.pedidosActuales();
+        return servicioPedidos.pedidosActuales(this.actualizarPedidos);
     }
 
     actualizarPedidos = (pedidos) => {
