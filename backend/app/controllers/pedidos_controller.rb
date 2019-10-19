@@ -1,5 +1,5 @@
 class PedidosController < ApplicationController
-  before_action :pedido_params
+  before_action :pedido_params, only: [:create]
 
   def create
     pedido_parcial = params[:pedido_parcial]
@@ -16,6 +16,16 @@ class PedidosController < ApplicationController
     )
 
     render json: @pedido, status: :created, nothing: true
+  end
+
+  def index
+    @pedidos = Pedido.all
+    @renderred_pedidos = @pedidos.map do |pedido|
+      producto_de_pedido = Producto.find_by(id: pedido.producto_id)
+      pedido.as_json.merge!({ 'nombre_producto' => producto_de_pedido.nombre, 'peso_en_gramos' => producto_de_pedido.peso_en_gramos} )
+    end
+
+    render json: @renderred_pedidos, status: :ok, nothing: true
   end
 
   private
