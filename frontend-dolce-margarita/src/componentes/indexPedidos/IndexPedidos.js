@@ -2,6 +2,7 @@ import React from 'react';
 import './indexPedidos.scss';
 import servicioPedidos from "../../servicios/ServicioPedidos";
 import InformacionPedido from "./pedido/InformacionPedido";
+import servicio from "../../servicios/servicio";
 
 export default class IndexPedidos extends React.Component {
     constructor(props) {
@@ -14,10 +15,10 @@ export default class IndexPedidos extends React.Component {
     }
 
     componentDidMount() {
-        this.actualizarPedidos(this.obtenerPedidos());
+        this.reloadPageWith(this.actualizarPedidos);
     }
 
-    obtenerPedidos = () => {
+    reloadPageWith = () => {
         return servicioPedidos.pedidosActuales(this.actualizarPedidos);
     }
 
