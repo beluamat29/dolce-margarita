@@ -1,5 +1,5 @@
 class PedidosController < ApplicationController
-  before_action :pedido_params
+  before_action :pedido_params, only: [:create]
 
   def create
     pedido_parcial = params[:pedido_parcial]
@@ -16,6 +16,12 @@ class PedidosController < ApplicationController
     )
 
     render json: @pedido, status: :created, nothing: true
+  end
+
+  def modificar_estado
+    @pedido = Pedido.find_by(id: params[:id])
+    @pedido.update(estado: params[:estado])
+    render json: @pedido, status: :ok, nothing: true
   end
 
   private

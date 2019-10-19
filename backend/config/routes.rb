@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   #Pedidos
   post '/pedidos/crear', to: 'pedidos#create'
+  put '/estadoPedidos', to: 'pedidos#modificar_estado'
 
   #Usuarios
   post '/usuarios', to: 'user#agregar_usuario'
