@@ -11,7 +11,7 @@ export default class PedidosOCargaDeDatos extends React.Component {
     }
 
     irAIndexPedidos = () => {
-        this.props.history.push("/")
+        this.props.history.push("/indexPedidos")
 
     }
     render() {
