@@ -66,6 +66,7 @@ RSpec.describe PedidosController, type: :request do
         expect(response).to have_http_status :created
         response_tiene_los_campos_correctos(response)
         expect(JSON.parse(response.body)['producto_id']).to eq(producto[:id])
+        expect(JSON.parse(response.body)['estado']).to eq(Pedido::EN_ESPERA)
       end
     end
 
