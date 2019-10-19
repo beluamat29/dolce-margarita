@@ -18,6 +18,11 @@ class PedidosController < ApplicationController
     render json: @pedido, status: :created, nothing: true
   end
 
+  def index
+    @pedidos = Pedido.all
+    render json: @pedidos, status: :ok, nothing: true
+  end
+
   private
   def pedido_params
     begin
