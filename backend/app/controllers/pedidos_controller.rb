@@ -12,7 +12,8 @@ class PedidosController < ApplicationController
         nombre_cliente: params[:nombre_cliente],
         email_cliente: params[:email_cliente],
         telefono_cliente: params[:telefono_cliente],
-        lugar_retiro: params[:lugar_retiro]
+        lugar_retiro: params[:lugar_retiro],
+        estado: Pedido::EN_ESPERA,
     )
 
     render json: @pedido, status: :created, nothing: true

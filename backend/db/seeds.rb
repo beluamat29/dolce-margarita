@@ -25,7 +25,8 @@ Pedido.create(producto: producto_1,
               nombre_cliente: 'Luciana Alonso',
               email_cliente: 'lulialonso@gmail.com',
               telefono_cliente: '1144553345',
-              lugar_retiro: 'Calle 6 5047 - Berazategui')
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::EN_ESPERA)
 
 Pedido.create(producto: producto_2,
               cantidad: 1,
@@ -34,7 +35,8 @@ Pedido.create(producto: producto_2,
               nombre_cliente: 'Lucas Avalos',
               email_cliente: 'eltumba@gmail.com',
               telefono_cliente: '1147853345',
-              lugar_retiro: 'Calle 6 5047 - Berazategui')
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::ENTREGADO)
 
 #Creando Usuarios Admin
 User.create(nombre: 'Elisabet', apellido: 'Tassiello', email: 'eliadmin@gmail.com', password: '123456', admin: true)

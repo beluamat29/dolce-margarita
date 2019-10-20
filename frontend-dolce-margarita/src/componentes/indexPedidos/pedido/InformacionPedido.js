@@ -23,7 +23,7 @@ export default class InformacionPedido extends React.Component {
                         <p className="nombre-cliente">{this.props.pedido.nombre_cliente}</p>
                     </div>
                     <div>
-                        <span className="tag is-success is-medium">Entregado</span>
+                        <span className="tag is-success is-medium">{this.props.pedido.estado}</span>
                     </div>
                 </div>
                 <div className='nombre-y-boton'>
