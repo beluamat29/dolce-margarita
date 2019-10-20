@@ -16,6 +16,16 @@
       margin-left: 2px;
     }
 
+    .error-producto {
+      display: flex;
+      justify-content: center;
+      margin: 10px;
+
+      p {
+        color: darkred;
+      }
+    }
+
     .tipo-chocolate {
       margin-top: 10px;
       display: flex;
