@@ -14,6 +14,11 @@ export default class PedidosOCargaDeDatos extends React.Component {
         this.props.history.push("/indexPedidos")
 
     }
+
+    irAProductosARealizar = () => {
+        this.props.history.push("/productosarealizar")
+
+    }
     render() {
         return (
             <div className="home-page">
@@ -47,7 +52,7 @@ export default class PedidosOCargaDeDatos extends React.Component {
                         <p>Conoce cuántos productos te faltan realizar</p>
                     </div>
                     <div>
-                        <a className="button is-danger" onClick={() => this.irACargaDeProductos()}>Ir</a>
+                        <a className="button is-danger" onClick={() => this.irAProductosARealizar()}>Ir</a>
                     </div>
                 </div>
             </div>
