@@ -1,6 +1,8 @@
 import React from 'react';
 import '../indexPedidos.scss';
 import LabelEstadoPedido from "./LabelEstadoPedido";
+import servicioPedidos from "../../../servicios/ServicioPedidos";
+
 
 export default class InformacionPedido extends React.Component {
     constructor(props) {
@@ -18,6 +20,12 @@ export default class InformacionPedido extends React.Component {
     sePuedeCancelarPedido = () => {
         return (this.props.pedido.estado === 'EN ESPERA' || this.props.pedido.estado === 'EN PREPARACION')
     }
+
+    cancelarPedido = () => {
+        return servicioPedidos.cancelarPedido(this.props.pedido)
+            .then(response => this.props.actualizarPedidos())
+    }
+
     render() {
         return (
           <div className='row'>
@@ -65,7 +73,7 @@ export default class InformacionPedido extends React.Component {
                     <p>{'Punto de retiro: ' + this.props.pedido.lugar_retiro}</p>
                 </div>
                 <div className='tipo-chocolate' style={{padding: '15px'}}>
-                    {this.sePuedeCancelarPedido() && <a className='button'>Cancelar</a>}
+                    {this.sePuedeCancelarPedido() && <a className='button' onClick={this.cancelarPedido}>Cancelar</a>}
                 </div>
             </div>}
           </div>

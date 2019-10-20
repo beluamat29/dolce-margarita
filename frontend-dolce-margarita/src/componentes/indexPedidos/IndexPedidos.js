@@ -2,7 +2,6 @@ import React from 'react';
 import './indexPedidos.scss';
 import servicioPedidos from "../../servicios/ServicioPedidos";
 import InformacionPedido from "./pedido/InformacionPedido";
-import servicio from "../../servicios/servicio";
 
 export default class IndexPedidos extends React.Component {
     constructor(props) {
@@ -45,7 +44,7 @@ export default class IndexPedidos extends React.Component {
                 <p className="title is-1 is-spaced">Pedidos</p>
                 <input className="pedidos-filtrar" type="text" name="filter" placeholder="Buscar por cliente" onChange={ (event) => this.filtrar(event)}/>
                 <div className="rows">
-                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido pedido={informacionPedido}/>)}
+                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido actualizarPedidos={this.reloadPageWith} pedido={informacionPedido}/>)}
                 </div>
             </div>
         )

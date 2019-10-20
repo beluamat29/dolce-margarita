@@ -7,4 +7,11 @@ export default class ServicioPedidos {
         return axios.get(`${SERVICE_URL}/pedidos`)
             .then(response => {actualizarPedidos(response.data)})
     }
+
+    static cancelarPedido(pedido) {
+        return axios.put(`${SERVICE_URL}/estadoPedidos`, {
+            id: pedido.id,
+            estado: 'CANCELADO'
+        })
+    }
 }
