@@ -34,6 +34,7 @@ class PedidosController < ApplicationController
   end
 
   private
+
   def pedido_params
     begin
       params.require(:pedido_parcial)
