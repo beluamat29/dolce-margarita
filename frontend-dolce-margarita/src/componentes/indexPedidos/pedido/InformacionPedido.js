@@ -18,8 +18,13 @@ export default class InformacionPedido extends React.Component {
         return (
           <div className='row'>
             <div className='datos-generales'>
-                <div>
-                    <p className="nombre-cliente">{this.props.pedido.nombre_cliente}</p>
+                <div className='nombre-y-estado'>
+                    <div>
+                        <p className="nombre-cliente">{this.props.pedido.nombre_cliente}</p>
+                    </div>
+                    <div>
+                        <span className="tag is-success is-medium">Entregado</span>
+                    </div>
                 </div>
                 <div className='nombre-y-boton'>
                     <p className="pedido">{this.props.pedido.nombre_producto + ' ' + this.props.pedido.peso_en_gramos + "grs x " + this.props.pedido.cantidad + 'u'}</p>

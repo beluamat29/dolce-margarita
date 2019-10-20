@@ -63,6 +63,11 @@ $info: black;
       justify-content: space-between;
       width: 100%;
 
+      .nombre-y-estado {
+        display:flex;
+        align-items: center;
+      }
+
       .nombre-y-boton {
         display: flex;
         align-items: center;
