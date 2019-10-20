@@ -1,7 +1,7 @@
 import React from 'react';
 import './pedidosOCargaDeDatos.scss';
 import {withRouter} from "react-router-dom";
-import {faFileAlt, faArrowAltCircleUp} from '@fortawesome/free-solid-svg-icons'
+import {faFileAlt, faArrowAltCircleUp, faChartBar} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class PedidosOCargaDeDatos extends React.Component {
@@ -37,6 +37,17 @@ export default class PedidosOCargaDeDatos extends React.Component {
                     </div>
                     <div>
                         <a className="button is-danger" onClick={() => this.irACargaDeProductos()}>Cargar</a>
+                    </div>
+                </div>
+                <div className="pedido-o-carga">
+                    <div>
+                        <FontAwesomeIcon icon={faChartBar}/>
+                    </div>
+                    <div>
+                        <p>Conoce cuántos productos te faltan realizar</p>
+                    </div>
+                    <div>
+                        <a className="button is-danger" onClick={() => this.irACargaDeProductos()}>Ir</a>
                     </div>
                 </div>
             </div>
