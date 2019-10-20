@@ -31,6 +31,7 @@ class ListadoDeProductos extends React.Component {
     }
 
     actualizarProductos = (productos) => {
+        console.log(productos)
         this.setState({productos});
     }
 

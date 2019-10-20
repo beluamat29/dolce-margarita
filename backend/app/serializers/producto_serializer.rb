@@ -1,3 +1,3 @@
 class ProductoSerializer < ActiveModel::Serializer
-  attributes  :id, :nombre, :peso_en_gramos, :precio, :molde, :descripcion, :tamanio
+  attributes  :id, :nombre, :peso_en_gramos, :precio, :molde, :descripcion, :tamanio, :picture
 end
