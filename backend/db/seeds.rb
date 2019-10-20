@@ -27,14 +27,45 @@ Pedido.create(producto: producto_1,
               telefono_cliente: '1144553345',
               lugar_retiro: 'Calle 6 5047 - Berazategui')
 
+Pedido.create(producto: producto_5,
+              cantidad: 2,
+              tipo_chocolate: 'blanco',
+              precio_total: 1200.0,
+              nombre_cliente: 'Luciana Alonso',
+              email_cliente: 'lulialonso@gmail.com',
+              telefono_cliente: '1144553345',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::ENTREGADO)
+
 Pedido.create(producto: producto_2,
+              cantidad: 2,
+              tipo_chocolate: 'con leche',
+              precio_total: 1000.0,
+              nombre_cliente: 'Elisabet Tassiello',
+              email_cliente: 'eli@gmail.com',
+              telefono_cliente: '1147853345',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::CANCELADO)
+
+Pedido.create(producto: producto_3,
               cantidad: 1,
               tipo_chocolate: 'semi amargo',
               precio_total: 70.0,
               nombre_cliente: 'Lucas Avalos',
               email_cliente: 'eltumba@gmail.com',
               telefono_cliente: '1147853345',
-              lugar_retiro: 'Calle 6 5047 - Berazategui')
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::FINALIZADO)
+
+Pedido.create(producto: producto_4,
+              cantidad: 1,
+              tipo_chocolate: 'semi amargo',
+              precio_total: 175.0,
+              nombre_cliente: 'Micaela Alonso',
+              email_cliente: 'micaalonso@gmail.com',
+              telefono_cliente: '1143963345',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::EN_PREPARACION)
 
 #Creando Usuarios Admin
 User.create(nombre: 'Elisabet', apellido: 'Tassiello', email: 'eliadmin@gmail.com', password: '123456', admin: true)

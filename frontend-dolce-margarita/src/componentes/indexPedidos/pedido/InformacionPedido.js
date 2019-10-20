@@ -1,5 +1,6 @@
 import React from 'react';
 import '../indexPedidos.scss';
+import LabelEstadoPedido from "./LabelEstadoPedido";
 
 export default class InformacionPedido extends React.Component {
     constructor(props) {
@@ -23,7 +24,7 @@ export default class InformacionPedido extends React.Component {
                         <p className="nombre-cliente">{this.props.pedido.nombre_cliente}</p>
                     </div>
                     <div>
-                        <span className="tag is-success is-medium">Entregado</span>
+                        <LabelEstadoPedido estadoPedido={this.props.pedido.estado}/>
                     </div>
                 </div>
                 <div className='nombre-y-boton'>
