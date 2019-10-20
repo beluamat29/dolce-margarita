@@ -57,7 +57,7 @@ RSpec.describe PedidosController, type: :request do
       end
 
       it 'agrega el pedido creado, tiene' do
-        expect { post_crear }.to change(Pedido, :count).by(+1)
+        expect {post_crear}.to change(Pedido, :count).by(+1)
       end
 
       it 'tiene estado created y devuelve el pedido' do
@@ -66,6 +66,7 @@ RSpec.describe PedidosController, type: :request do
         expect(response).to have_http_status :created
         response_tiene_los_campos_correctos(response)
         expect(JSON.parse(response.body)['producto_id']).to eq(producto[:id])
+        expect(JSON.parse(response.body)['estado']).to eq(Pedido::EN_ESPERA)
       end
     end
 
@@ -83,6 +84,37 @@ RSpec.describe PedidosController, type: :request do
         post_crear
 
         expect(response).to have_http_status :bad_request
+      end
+    end
+  end
+
+  describe '#modificar_estado' do
+    context 'cuando existe un pedido' do
+      let(:producto) {Producto.create!(nombre: 'Conejito', precio: 150.0, peso_en_gramos: 230, molde: 'figura', descripcion: 'paleta conejo')}
+      let(:pedido) {Pedido.create!(
+          producto: producto,
+          cantidad: 2,
+          tipo_chocolate: 'Blanco',
+          precio_total: 300.0,
+          nombre_cliente: 'Belen Amat',
+          email_cliente: 'belu@gmail.com',
+          telefono_cliente: '1159963746',
+          lugar_retiro: 'Pedriel 74 - CABA'
+      )}
+
+
+      let(:params) do
+        {
+            id: pedido.id,
+            estado: Pedido::EN_PREPARACION
+        }
+
+      end
+      it 'se puede modificar su estado' do
+        put '/estadoPedidos', params
+        expect(response).to have_http_status :ok
+        expect(Pedido.find_by(id: params[:id]).estado).to eq(Pedido::EN_PREPARACION)
+        expect(JSON.parse(response.body)['estado']).to eq(Pedido::EN_PREPARACION)
       end
     end
   end

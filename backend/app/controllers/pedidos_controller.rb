@@ -18,17 +18,24 @@ class PedidosController < ApplicationController
     render json: @pedido, status: :created, nothing: true
   end
 
+  def modificar_estado
+    @pedido = Pedido.find_by(id: params[:id])
+    @pedido.update(estado: params[:estado])
+    render json: @pedido, status: :ok, nothing: true
+  end
+
   def index
     @pedidos = Pedido.all
     @renderred_pedidos = @pedidos.map do |pedido|
       producto_de_pedido = Producto.find_by(id: pedido.producto_id)
-      pedido.as_json.merge!({ 'nombre_producto' => producto_de_pedido.nombre, 'peso_en_gramos' => producto_de_pedido.peso_en_gramos} )
+      pedido.as_json.merge!({'nombre_producto' => producto_de_pedido.nombre, 'peso_en_gramos' => producto_de_pedido.peso_en_gramos})
     end
 
     render json: @renderred_pedidos, status: :ok, nothing: true
   end
 
   private
+
   def pedido_params
     begin
       params.require(:pedido_parcial)

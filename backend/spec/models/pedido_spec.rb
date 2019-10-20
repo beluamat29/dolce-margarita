@@ -23,8 +23,9 @@ RSpec.describe Pedido, type: :model do
           lugar_retiro: 'Berazategui'
       }
     end
-    it 'es valido' do
+    it 'es valido y tiene estado EN ESPERA' do
       expect(pedido).to be_valid
+      expect(pedido.estado).to eq(Pedido::EN_ESPERA)
     end
   end
 
