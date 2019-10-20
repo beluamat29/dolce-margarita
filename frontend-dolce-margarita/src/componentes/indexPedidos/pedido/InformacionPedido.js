@@ -15,6 +15,9 @@ export default class InformacionPedido extends React.Component {
         this.setState({mostrarInformacion: !this.state.mostrarInformacion})
     }
 
+    sePuedeCancelarPedido = () => {
+        return (this.props.pedido.estado === 'EN ESPERA' || this.props.pedido.estado === 'EN PREPARACION')
+    }
     render() {
         return (
           <div className='row'>
@@ -60,6 +63,9 @@ export default class InformacionPedido extends React.Component {
                 </div>
                 <div className='tipo-chocolate'>
                     <p>{'Punto de retiro: ' + this.props.pedido.lugar_retiro}</p>
+                </div>
+                <div className='tipo-chocolate' style={{padding: '15px'}}>
+                    {this.sePuedeCancelarPedido() && <a className='button'>Cancelar</a>}
                 </div>
             </div>}
           </div>
