@@ -4,13 +4,20 @@ import servicioPedidos from "../../servicios/ServicioPedidos";
 import InformacionPedido from "./pedido/InformacionPedido";
 import Select from "react-select";
 
-const estados = [
-    {value: 'EN ESPERA', label: 'En espera'},
-    {value: 'EN PREPARACIÓN', label: 'En preparación'},
-    {value: 'ENTREGADO', label: 'Entregado'},
-    {value: 'FINALIZADO', label: 'Finalizado'},
-    {value: 'CANCELADO', label: 'Cancelado'},
-];
+const estados = ['EN ESPERA', 'EN PREPARACION', 'FINALIZADO', 'ENTREGADO', 'CANCELADO'];
+
+const estiloEstados = [
+    {estado: "ENTREGADO", estilo: "is-success"},
+    {estado: "EN ESPERA", estilo: "is-light"},
+    {estado: "EN PREPARACION", estilo: "is-warning"},
+    {estado: "FINALIZADO", estilo: "is-info"},
+    {estado: "CANCELADO", estilo: "is-danger"},
+]
+
+const estiloParaEstado = (nombreEstado) => {
+    const estadoYEstilo = estiloEstados.find(estiloEstado => estiloEstado.estado === nombreEstado)
+    return estadoYEstilo.estilo;
+}
 
 export default class IndexPedidos extends React.Component {
     constructor(props) {
@@ -19,6 +26,7 @@ export default class IndexPedidos extends React.Component {
         this.state = {
             pedidosTodos: [],
             pedidosAMostrar: [],
+            estadosSeleccionados: []
         }
     }
 
@@ -48,9 +56,54 @@ export default class IndexPedidos extends React.Component {
     }
 
     filtrarPorEstado = (estado) => {
-        const pedidosFiltrados = this.state.pedidosTodos.filter((pedido) => pedido.estado === estado.value);
+        return this.state.pedidosTodos.filter((pedido) => pedido.estado === estado);
+    }
 
-        this.actualizarPedidosAMostrar(pedidosFiltrados);
+    filtrarPorEstados = () => {
+        const {
+            estadosSeleccionados,
+            pedidosTodos
+        } = this.state
+        let pedidosFiltrados = [];
+
+        estadosSeleccionados.length === 0
+          ? this.setState({pedidosAMostrar: pedidosTodos})
+          : estadosSeleccionados.map(estadoSeleccionado => {
+              pedidosFiltrados = pedidosFiltrados.concat(this.filtrarPorEstado(estadoSeleccionado))
+              this.actualizarPedidosAMostrar(pedidosFiltrados);
+          })
+    }
+
+    estadoSeleccionado = (estado) => {
+        return this.state.estadosSeleccionados.includes(estado)
+    }
+
+    actualizarEstadosSeleccionados = (estado) => {
+        const nuevosEstados = this.estadoSeleccionado(estado) ? this.eliminarFiltroDeEstadoPedido(estado) : this.agregarFiltroDeEstadoPedido(estado)
+
+        this.setState({estadosSeleccionados: nuevosEstados}, () => this.filtrarPorEstados())
+    }
+
+    agregarFiltroDeEstadoPedido = (estado) => {
+        const estados = this.state.estadosSeleccionados
+        estados.push(estado)
+        return estados
+    }
+
+    eliminarFiltroDeEstadoPedido = (estado) => {
+        return this.state.estadosSeleccionados.filter((estadoSeleccionado) => estadoSeleccionado !== estado)
+    }
+
+    renderEstado = (estado) => {
+        return (
+          <div className="filtro-estado">
+              <input
+                type="checkbox"
+                checked={this.estadoSeleccionado(estado)}
+                onChange={() => this.actualizarEstadosSeleccionados(estado)} />
+              <label className={`tag ${estiloParaEstado(estado)} is-medium`}> {estado} </label>
+          </div>
+        )
     }
 
     render() {
@@ -58,12 +111,12 @@ export default class IndexPedidos extends React.Component {
             <div className="index-pedidos-home">
                 <p className="title is-1 is-spaced">Pedidos</p>
                 <div className="container-filtrado">
-                    <input className="pedidos-filtrar" type="text" name="filter" placeholder="Buscar por cliente" onChange={ (event) => this.filtrarPorNombreCliente(event)}/>
-                    <Select className="selector-estado"
-                            placeholder="Buscar por Estado"
-                            onChange={(estado) => this.filtrarPorEstado(estado)}
-                            options={estados}
-                    />
+                    <input className="filtro-nombre-cliente" type="text" name="filter" placeholder="Buscar por cliente" onChange={ (event) => this.filtrarPorNombreCliente(event)}/>
+                    <div className="filtro-estado-container">
+                        {
+                            estados.map((estado) => this.renderEstado(estado))
+                        }
+                    </div>
                 </div>
                 <div className="rows">
                     {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido pedido={informacionPedido}/>)}
