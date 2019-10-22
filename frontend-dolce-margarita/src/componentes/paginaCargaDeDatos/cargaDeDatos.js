@@ -77,6 +77,7 @@ export default class CargaDeDatos extends React.Component {
         data.append('precio', this.state.precio)
         data.append('descripcion', this.state.descripcion)
         data.append('peso_en_gramos', this.state.peso)
+        data.append('tamanio', this.state.tamaño)
         data.append('molde', this.state.formatoSeleccionado.value)
         servicioCarga.cargarProducto(data)
     }
@@ -139,7 +140,6 @@ export default class CargaDeDatos extends React.Component {
                 </div>
 
                 {
-                    this.state.formatoSeleccionado.value !== 'huevo' &&
                     this.renderCampo("Peso en gramos", this.agregarPeso)
                 }
 
