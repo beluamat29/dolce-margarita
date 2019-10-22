@@ -118,4 +118,46 @@ RSpec.describe PedidosController, type: :request do
       end
     end
   end
+
+  describe '#pedidos_a_relizar' do
+
+    let(:params) do
+      {
+          nombre: 'Conejito',
+          tipo_chocolate: 'blanco'
+      }
+    end
+
+    context 'cuando no hay pedidos' do
+      it 'devuelve una lista vacia' do
+        get '/pedidosARealizar', params
+        expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body)).to eq([])
+      end
+    end
+
+    context 'cuando hay pedidos' do
+      let(:producto) {Producto.create!(nombre: 'Conejito', precio: 150.0, peso_en_gramos: 230, molde: 'figura', descripcion: 'paleta conejo')}
+      before do
+        Pedido.create!(
+            producto: producto,
+            cantidad: 2,
+            tipo_chocolate: 'Blanco',
+            precio_total: 300.0,
+            nombre_cliente: 'Belen Amat',
+            email_cliente: 'belu@gmail.com',
+            telefono_cliente: '1159963746',
+            lugar_retiro: 'Pedriel 74 - CABA'
+        )
+      end
+
+      context 'y se busca por un nombre' do
+        it 'se obtiene la lista de pedidos cuyo producto tiene ese nombre' do
+          get '/pedidosARealizar', params
+          expect(response).to have_http_status :ok
+          expect(JSON.parse(response.body)).to eq([])
+        end
+      end
+    end
+  end
 end

@@ -34,6 +34,10 @@ class PedidosController < ApplicationController
     render json: @renderred_pedidos, status: :ok, nothing: true
   end
 
+  def pedidos_a_realizar
+    @pedidos_a_realizar = Producto.joins(:pedido)
+    render json: [], status: :ok, nothing: true
+  end
   private
 
   def pedido_params
