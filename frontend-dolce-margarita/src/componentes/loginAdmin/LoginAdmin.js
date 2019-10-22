@@ -38,7 +38,7 @@ export default class LoginAdmin extends React.Component {
                     <div className="field">
                         <div className="control">
                             <input className="input is-primary"
-                                   type="text"
+                                   type="password"
                                    placeholder="Contraseña"
                                    value={this.state.contraseña}
                                    onChange={(event) => this.setState({contraseña: event.target.value})}
