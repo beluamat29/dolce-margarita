@@ -9,8 +9,8 @@ const estados = ['EN ESPERA', 'EN PREPARACION', 'FINALIZADO', 'ENTREGADO', 'CANC
 
 const estiloEstados = [
     {estado: "ENTREGADO", estilo: "is-success"},
-    {estado: "EN ESPERA", estilo: "is-light"},
-    {estado: "EN PREPARACION", estilo: "is-warning"},
+    {estado: "EN ESPERA", estilo: "is-warning"},
+    {estado: "EN PREPARACION", estilo: "is-primary"},
     {estado: "FINALIZADO", estilo: "is-info"},
     {estado: "CANCELADO", estilo: "is-danger"},
 ]
