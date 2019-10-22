@@ -13,12 +13,30 @@ $info: black;
   justify-content: center;
   align-items: center;
 
-  .pedidos-filtrar {
+  .container-filtrado {
+    display: flex;
+    flex-direction: column;
     width: 800px;
-    height: 45px;
-    border-radius: 7px;
-    padding-left: 10px;
-    font-size: inherit;
+    height: 100px;
+    justify-content: space-between;
+
+    .filtro-nombre-cliente {
+      height: 45px;
+      width: 100%;
+      border-radius: 7px;
+      padding-left: 10px;
+      font-size: inherit;
+    }
+
+    .filtro-estado-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      label {
+        margin-left: 10px;
+      }
+    }
   }
 
   .row {
@@ -83,7 +101,7 @@ $info: black;
       .nombre-cliente {
         font-size: 32px;
         padding: 15px;
-        font: bold;
+        font-weight: bold;
       }
 
       .tipo-chocolate {
