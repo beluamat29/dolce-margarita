@@ -2,6 +2,7 @@ import React from 'react';
 import './indexPedidos.scss';
 import servicioPedidos from "../../servicios/ServicioPedidos";
 import InformacionPedido from "./pedido/InformacionPedido";
+
 import Select from "react-select";
 
 const estados = ['EN ESPERA', 'EN PREPARACION', 'FINALIZADO', 'ENTREGADO', 'CANCELADO'];
@@ -119,7 +120,7 @@ export default class IndexPedidos extends React.Component {
                     </div>
                 </div>
                 <div className="rows">
-                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido pedido={informacionPedido}/>)}
+                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido actualizarPedidos={this.reloadPageWith} pedido={informacionPedido}/>)}
                 </div>
             </div>
         )

@@ -56,7 +56,7 @@ $info: black;
       justify-content: center;
       width: 100%;
 
-      .line{
+      .line {
         margin: 15px 5px 15px 5px;
         width: 40%;
         border-bottom: 1px solid black;
@@ -74,15 +74,16 @@ $info: black;
         padding: 10px 0 10px 15px;
         font-size: 20px;
       }
+
     }
 
     .datos-generales {
-      display:flex;
+      display: flex;
       justify-content: space-between;
       width: 100%;
 
       .nombre-y-estado {
-        display:flex;
+        display: flex;
         align-items: center;
       }
 
@@ -106,9 +107,14 @@ $info: black;
       .tipo-chocolate {
         padding: 15px;
         font-size: 20px;
+
+        a {
+          margin-right: 15px !important;
+          background-color: #ffa5cd;
+          border-color: #ffa5cd;
+        }
       }
     }
-
 
     .pedido {
       font-size: 23px;

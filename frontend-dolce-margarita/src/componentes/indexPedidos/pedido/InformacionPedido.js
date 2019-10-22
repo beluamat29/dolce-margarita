@@ -1,5 +1,8 @@
 import React from 'react';
 import '../indexPedidos.scss';
+import LabelEstadoPedido from "./LabelEstadoPedido";
+import servicioPedidos from "../../../servicios/ServicioPedidos";
+
 
 const estiloEstados = [
     {estado: "ENTREGADO", estilo: "is-success"},
@@ -27,6 +30,15 @@ export default class InformacionPedido extends React.Component {
         this.setState({mostrarInformacion: !this.state.mostrarInformacion})
     }
 
+    sePuedeCancelarPedido = () => {
+        return (this.props.pedido.estado === 'EN ESPERA' || this.props.pedido.estado === 'EN PREPARACION')
+    }
+
+    cancelarPedido = () => {
+        return servicioPedidos.cancelarPedido(this.props.pedido)
+            .then(response => this.props.actualizarPedidos())
+    }
+
     render() {
         const {pedido} = this.props
 
@@ -38,7 +50,7 @@ export default class InformacionPedido extends React.Component {
                         <p className="nombre-cliente">{pedido.nombre_cliente}</p>
                     </div>
                     <div>
-                        <span className={`tag ${estiloParaEstado(pedido.estado)} is-medium`}>{pedido.estado}</span>
+                        <LabelEstadoPedido estadoPedido={this.props.pedido.estado}/>
                     </div>
                 </div>
                 <div className='nombre-y-boton'>
@@ -74,6 +86,9 @@ export default class InformacionPedido extends React.Component {
                 </div>
                 <div className='tipo-chocolate'>
                     <p>{'Punto de retiro: ' + pedido.lugar_retiro}</p>
+                </div>
+                <div className='tipo-chocolate' style={{padding: '15px'}}>
+                    {this.sePuedeCancelarPedido() && <a className='button' onClick={this.cancelarPedido}>Cancelar</a>}
                 </div>
             </div>}
           </div>
