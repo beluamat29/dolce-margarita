@@ -42,13 +42,19 @@ class ListadoDeProductos extends React.Component {
         });
     };
 
+    renderImage = (producto) => {
+        return producto.picture.url
+          ? <img src={require(`../../../../backend/public${producto.picture.url}`)} />
+          : <img src={require('../../assets/bombones.jpg')} />
+    }
+
     renderCarta = (producto, index) => {
         return (
             <div className="flip-card" key={index}>
                 <div className="flip-card-inner">
                     <div className="flip-card-front">
                         <div className="flip-card-content">
-                            <img src={require('../../assets/bombones.jpg')} />
+                            { this.renderImage(producto) }
                         </div>
                         <div className="flip-card-footer">
                             <p>{producto.nombre}</p>
@@ -65,6 +71,7 @@ class ListadoDeProductos extends React.Component {
             </div>
         )
     }
+
     render() {
         return (
             <div className="home-listado-productos">
