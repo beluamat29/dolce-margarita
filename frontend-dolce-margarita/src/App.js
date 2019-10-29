@@ -8,6 +8,7 @@ import ListadoDeProductos from "./componentes/listadoDeProductos/ListadoDeProduc
 import ConfirmacionDePedido from "./componentes/confirmacionDePedido/ConfirmacionDePedido";
 import IndexPedidos from "./componentes/indexPedidos/IndexPedidos";
 import PedidosOCargaDeDatos from "./componentes/loginAdmin/PedidosOCargaDeDatos";
+import ProductosARealizar from "./productosARealizar/ProductosARealizar";
 
 class App extends React.Component{
 
@@ -57,6 +58,13 @@ class App extends React.Component{
                         path="/adminindex"
                         component={PedidosOCargaDeDatos}
                     />
+
+                    <Route
+                        exact
+                        path="/productosarealizar"
+                        component={ProductosARealizar}
+                    />
+
                     <Route
                         exact
                         path="/confirmacion"
