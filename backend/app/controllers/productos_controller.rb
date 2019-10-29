@@ -23,6 +23,14 @@ class ProductosController < ApplicationController
     render json: Producto.where(molde: "huevo"), status: :ok
   end
 
+  def nombres
+    @productos = Producto.all
+    @productos.map do |producto|
+      producto[:nombre]
+    end
+    render json: @productos, status: :ok, nothing: true
+  end
+
   private
 
   def producto_params
