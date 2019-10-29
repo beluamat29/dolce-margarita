@@ -16,6 +16,11 @@ export default class Servicio {
         })()
     }
 
+    static nombresProductos(actualizarNombres) {
+        return axios.get(`${SERVICE_URL}/productos/nombres`)
+            .then(response => {actualizarNombres(response.data)})
+    }
+
     static listadoFiguras(actualizarProductos) {
         return axios.get(`${SERVICE_URL}/productos/figuras`)
             .then(response => {actualizarProductos(response.data)})
