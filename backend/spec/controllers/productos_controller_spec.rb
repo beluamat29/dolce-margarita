@@ -144,4 +144,29 @@ RSpec.describe ProductosController, type: :request do
       end
     end
   end
+
+  describe '#nombres' do
+    context 'cuando no hay pedidos' do
+      it 'devuelve una lista vacia' do
+        get '/productos/nombres'
+        expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body)).to eq([])
+      end
+    end
+
+    context 'cuando hay productos' do
+      before do
+        Producto.create!(nombre: 'Conejito', precio: 150.0, peso_en_gramos: 230, molde: 'figura', descripcion: 'paleta conejo')
+        Producto.create!(nombre: 'Gallina', precio: 150.0, peso_en_gramos: 230, molde: 'figura', descripcion: 'paleta gallina')
+      end
+
+      it 'retorna la lista de los nombres de los productos' do
+        get '/productos/nombres'
+        expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body).length).to eq(2)
+        expect(JSON.parse(response.body)[0]['nombre']).to eq('Conejito')
+        expect(JSON.parse(response.body)[1]['nombre']).to eq('Gallina')
+      end
+    end
+  end
 end
