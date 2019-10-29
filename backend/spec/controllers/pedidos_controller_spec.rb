@@ -137,25 +137,39 @@ RSpec.describe PedidosController, type: :request do
     end
 
     context 'cuando hay pedidos' do
-      let(:producto) {Producto.create!(nombre: 'Conejito', precio: 150.0, peso_en_gramos: 230, molde: 'figura', descripcion: 'paleta conejo')}
-      before do
-        Pedido.create!(
-            producto: producto,
-            cantidad: 2,
-            tipo_chocolate: 'Blanco',
-            precio_total: 300.0,
-            nombre_cliente: 'Belen Amat',
-            email_cliente: 'belu@gmail.com',
-            telefono_cliente: '1159963746',
-            lugar_retiro: 'Pedriel 74 - CABA'
-        )
-      end
+      let(:producto_1) {Producto.create!(nombre: 'Conejito', precio: 150.0, peso_en_gramos: 230, molde: 'figura', descripcion: 'paleta conejo')}
+      let(:pedido_1) {Pedido.create!(
+          producto: producto_1,
+          cantidad: 2,
+          tipo_chocolate: 'blanco',
+          precio_total: 300.0,
+          nombre_cliente: 'Belen Amat',
+          email_cliente: 'belu@gmail.com',
+          telefono_cliente: '1159963746',
+          lugar_retiro: 'Pedriel 74 - CABA'
+      )}
 
-      context 'y se busca por un nombre' do
-        it 'se obtiene la lista de pedidos cuyo producto tiene ese nombre' do
+      let(:pedido_2) {Pedido.create!(
+          producto: producto_1,
+          cantidad: 3,
+          tipo_chocolate: 'semi amargo',
+          precio_total: 300.0,
+          nombre_cliente: 'Belen Amat',
+          email_cliente: 'belu@gmail.com',
+          telefono_cliente: '1159963746',
+          lugar_retiro: 'Pedriel 74 - CABA'
+      )}
+
+      context 'y se busca por un nombre y tipo de chocolate' do
+        before do
+          pedido_1
+          pedido_2
+        end
+        it 'se obtiene la lista de pedidos cuyo producto tiene ese nombre y tipo de chocolate' do
           get '/pedidosARealizar', params
           expect(response).to have_http_status :ok
-          expect(JSON.parse(response.body)).to eq([])
+          expect(JSON.parse(response.body).length).to eq(1)
+          expect(JSON.parse(response.body)[0]['id']).to eq(pedido_1.id)
         end
       end
     end

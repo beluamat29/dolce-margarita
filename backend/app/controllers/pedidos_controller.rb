@@ -35,8 +35,8 @@ class PedidosController < ApplicationController
   end
 
   def pedidos_a_realizar
-    @pedidos_a_realizar = Pedido.joins(:producto).where(productos: {nombre: params[:nombre]})
-    render json: [], status: :ok, nothing: true
+    @pedidos_a_realizar = Pedido.joins(:producto).where(productos: {nombre: params[:nombre]}).where(tipo_chocolate: params[:tipo_chocolate])
+    render json: @pedidos_a_realizar, status: :ok, nothing: true
   end
   private
 
