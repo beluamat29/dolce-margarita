@@ -14,4 +14,14 @@ export default class ServicioPedidos {
             estado: 'CANCELADO'
         })
     }
+
+    static pedidosARealizar(nombreProducto, tipoChocolate, actualizarCantidadARealizar) {
+        return axios.get(`${SERVICE_URL}/pedidosARealizar`, {
+            params: {
+                nombre: nombreProducto,
+                tipo_chocolate: tipoChocolate
+            }
+        })
+            .then(response => {actualizarCantidadARealizar(response.data)})
+    }
 }
