@@ -24,6 +24,7 @@ class ListadoDeProductos extends React.Component {
     }
 
     reloadPageWith = (molde) => {
+        this.props.onCambioMolde(molde)
         servicio.productosConMolde(molde, this.actualizarProductos);
     }
 

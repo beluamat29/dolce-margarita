@@ -57,6 +57,7 @@ class App extends React.Component{
                             adminLogeado={this.state.adminLogeado}
                             moldeSeleccionado={this.state.moldeSeleccionado}
                             onConfirm={(pedido)=>this.setState({pedidoActual: pedido})}
+                            onCambioMolde={(molde) => this.setState({moldeSeleccionado: molde})}
                             />}
                     />
                     <Route
