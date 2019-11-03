@@ -47,7 +47,7 @@ class ProductosController < ApplicationController
   private
 
   def edicion_params
-    params.permit(:nombre, :precio, :peso_en_gramos, :descripcion)
+    params.permit(:nombre, :precio, :peso_en_gramos, :descripcion, :tamanio)
   end
 
   def producto_params
