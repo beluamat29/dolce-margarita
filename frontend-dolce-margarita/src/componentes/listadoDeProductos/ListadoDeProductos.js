@@ -32,6 +32,11 @@ class ListadoDeProductos extends React.Component {
         this.props.history.push("/confirmacion")
     }
 
+    actualizarProductosPostEdicion = () => {
+        this.setState({mostrarModalDeEdicion: false})
+        this.reloadPageWith(this.props.moldeSeleccionado)
+    }
+
     actualizarProductos = (productos) => {
         this.setState({productos});
     }
@@ -104,10 +109,10 @@ class ListadoDeProductos extends React.Component {
 
                 {this.state.mostrarModalDeEdicion &&
                 <ModalEdicionProducto
-                    onConfirm={this.irAPaginaConfirmacionDePedido}
                     producto={this.state.producto}
                     onClose={()=>this.setState({mostrarModalDeEdicion: false})}
                     esHuevo={this.props.moldeSeleccionado === 'huevos'}
+                    onEdit={this.actualizarProductosPostEdicion}
                 />}
             </div>
         )
