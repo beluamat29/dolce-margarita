@@ -14,7 +14,10 @@ export default class LoginAdmin extends React.Component {
 
     validarDatos= () => {
         servicioLogin.validarAdmin(this.state.email, this.state.contraseña)
-            .then(response => this.props.history.push("/adminindex"))
+            .then(response => {
+                this.props.onLogin()
+                this.props.history.push("/adminindex")
+            })
             .catch(e => alert("tu usuario o contraseña son incorrectos"))
     }
 

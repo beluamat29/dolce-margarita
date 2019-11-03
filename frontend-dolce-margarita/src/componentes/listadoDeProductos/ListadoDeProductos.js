@@ -41,6 +41,10 @@ class ListadoDeProductos extends React.Component {
         });
     };
 
+    editarProducto = (producto) => {
+        alert('vamos a editar!')
+    }
+
     renderImage = (producto) => {
         return producto.picture.url
           ? <img src={require(`../../../../backend/public${producto.picture.url}`)} />
@@ -62,9 +66,15 @@ class ListadoDeProductos extends React.Component {
                     <div className="flip-card-back">
                         <p className="datos">{producto.descripcion}</p>
                         <p className="datos">${producto.precio}</p>
+                        {!this.props.adminLogeado &&
                         <a className="button is-danger is-outlined datos" onClick={() => this.showModal(producto)}>
                             Comprar
-                        </a>
+                        </a>}
+
+                        {this.props.adminLogeado &&
+                        <a className="button is-danger is-outlined datos" onClick={() => this.editarProducto(producto)}>
+                            Editar producto
+                        </a>}
                     </div>
                 </div>
             </div>
