@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'pedidosARealizar', to: 'pedidos#pedidos_a_realizar'
   post '/pedidos/crear', to: 'pedidos#create'
   put '/estadoPedidos', to: 'pedidos#modificar_estado'
+  post '/pedidos/pagar', to: 'pedidos#pagar'
 
   #Usuarios
   post '/usuarios', to: 'user#agregar_usuario'

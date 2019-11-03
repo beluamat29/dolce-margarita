@@ -46,6 +46,7 @@ group :development, :test do
   gem 'mini_magick'
   gem 'pry-byebug'
   gem 'pry'
+  gem 'mercadopago-sdk'
 
 
 end

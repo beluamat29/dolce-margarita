@@ -46,4 +46,15 @@ export default class Servicio {
         })
           .then(response => alert("Tu pedido se ha realizado con exito!"))
     }
+
+    static pagarPedido(pedido, nombreCliente, emailCliente, telefonoCliente, puntoDeRetiro) {
+        return axios.post(`${SERVICE_URL}pedidos/pagar`, {
+            pedido_parcial: pedido,
+            nombre_cliente: nombreCliente,
+            email_cliente: emailCliente,
+            telefono_cliente: telefonoCliente,
+            lugar_retiro: puntoDeRetiro
+        })
+          .then(response => {return response.data})
+    }
 }
