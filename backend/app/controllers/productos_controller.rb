@@ -1,6 +1,14 @@
 class ProductosController < ApplicationController
   before_action :producto_params, only: [:agregar_producto]
+  before_action :edicion_params, only: [:editar_producto]
+
   #protect_from_forgery with: :null_session
+
+  rescue_from ActiveRecord::RecordNotFound,
+              :with => :render_producto_no_encontrado
+
+  rescue_from ActionController::ParameterMissing,
+              :with => :render_bad_request
 
   def agregar_producto
     @producto = Producto.agregar_producto(params)
@@ -31,19 +39,32 @@ class ProductosController < ApplicationController
     render json: @productos, status: :ok, nothing: true
   end
 
+  def editar_producto
+    @producto = Producto.update(params[:id], edicion_params )
+    render json: @producto, status: :ok ,nothing: true
+  end
+
   private
 
+  def edicion_params
+    params.permit(:nombre, :precio, :peso_en_gramos, :descripcion)
+  end
+
   def producto_params
-    begin
       params.require(:nombre)
       params.require(:precio)
       params.require(:peso_en_gramos)
       params.require(:descripcion)
       params.require(:molde)
 
-
       params.permit(:nombre, :precio, :peso_en_gramos, :descripcion, :molde, :imagen)
-    rescue
-      render status: :bad_request, nothing: true
-    end  end
+  end
+
+  def render_producto_no_encontrado
+    render status: :not_found ,nothing: true
+  end
+
+  def render_bad_request
+    render status: :bad_request, nothing: true
+  end
 end

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   #Productos
   post '/productos', to: 'productos#agregar_producto'
 
+  put '/productos/editar_producto', to: 'productos#editar_producto'
+
   get '/productos/nombres', to: 'productos#nombres'
 
   get '/productos/figuras', to: 'productos#show_figuras'
