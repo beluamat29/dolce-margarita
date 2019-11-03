@@ -5,7 +5,7 @@ import Navbar from "../navbar/Navbar";
 import servicio from "../../servicios/servicio";
 import {withRouter} from "react-router-dom";
 import ModalEdicionProducto from "../edicionProducto/ModalEdicionProducto";
-
+import servicioEliminar from "../../servicios/ServicioEliminarProducto";
 
 class ListadoDeProductos extends React.Component {
     constructor(props) {
@@ -50,6 +50,10 @@ class ListadoDeProductos extends React.Component {
         });
     }
 
+    eliminarProducto = (producto) => {
+        servicioEliminar.eliminarProducto(producto.id)
+    }
+
     renderImage = (producto) => {
         return producto.picture.url
           ? <img src={require(`../../../../backend/public${producto.picture.url}`)} />
@@ -77,8 +81,13 @@ class ListadoDeProductos extends React.Component {
                         </a>}
 
                         {this.props.adminLogeado &&
-                        <a className="button is-danger is-outlined datos" onClick={() => this.editarProducto(producto)}>
+                        <a className="button is-success datos" onClick={() => this.editarProducto(producto)}>
                             Editar producto
+                        </a>}
+
+                        {this.props.adminLogeado &&
+                        <a className="button is-danger datos" onClick={() => this.eliminarProducto(producto)}>
+                            Eliminar producto
                         </a>}
                     </div>
                 </div>
