@@ -31,6 +31,11 @@ class ProductosController < ApplicationController
     render json: @productos, status: :ok, nothing: true
   end
 
+  def eliminar_producto
+    @producto = Producto.destroy(params[:id])
+    render status: :ok, nothing: :true
+  end
+
   private
 
   def producto_params
