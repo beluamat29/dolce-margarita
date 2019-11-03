@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect, withRouter} from "react-router-dom";
 import LoginAdmin from "./componentes/loginAdmin/LoginAdmin";
 import Home from "./componentes/home/Home";
 import CargaDeDatos from "./componentes/paginaCargaDeDatos/cargaDeDatos";
@@ -14,11 +14,16 @@ class App extends React.Component{
 
     state = {
         moldeSeleccionado: "figuras",
-        pedidoActual: {}
+        pedidoActual: {},
+        adminLogeado: false
     }
 
     seleccionarMolde = (moldeSeleccionado) => {
         this.setState({moldeSeleccionado})
+    }
+
+    adminHasLogged = () => {
+        this.setState({adminLogeado: true})
     }
 
     render() {
@@ -33,7 +38,7 @@ class App extends React.Component{
                     <Route
                         exact
                         path="/adminlogin"
-                        component={LoginAdmin}
+                        render={props => <LoginAdmin {...props} onLogin={this.adminHasLogged}/>}
                     />
                     <Route
                         exact
@@ -49,6 +54,7 @@ class App extends React.Component{
                         exact
                         path="/listado"
                         render={props => <ListadoDeProductos
+                            adminLogeado={this.state.adminLogeado}
                             moldeSeleccionado={this.state.moldeSeleccionado}
                             onConfirm={(pedido)=>this.setState({pedidoActual: pedido})}
                             />}
