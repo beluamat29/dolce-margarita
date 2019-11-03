@@ -86,11 +86,6 @@ export default class CargaDeDatos extends React.Component {
         this.setState({imagen: event.target.files[0]})
     }
 
-    agregarImagen = event => {
-        this.setState({imagen: event.target.files[0]})
-        console.log(event.target.files[0])
-    }
-
     render() {
         return (
             <div className="home-carga-de-datos ">

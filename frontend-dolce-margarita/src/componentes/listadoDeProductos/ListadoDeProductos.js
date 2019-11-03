@@ -4,6 +4,7 @@ import ModalArmadoDePedido from "../armadoDePedido/ModalArmadoDePedido";
 import Navbar from "../navbar/Navbar";
 import servicio from "../../servicios/servicio";
 import {withRouter} from "react-router-dom";
+import ModalEdicionProducto from "../edicionProducto/ModalEdicionProducto";
 
 
 class ListadoDeProductos extends React.Component {
@@ -12,6 +13,7 @@ class ListadoDeProductos extends React.Component {
 
         this.state = {
             mostrarModalDeCompra: false,
+            mostrarModalDeEdicion: false,
             producto: null,
             productos: []
         }
@@ -42,7 +44,10 @@ class ListadoDeProductos extends React.Component {
     };
 
     editarProducto = (producto) => {
-        alert('vamos a editar!')
+        this.setState({
+            producto,
+            mostrarModalDeEdicion: true
+        });
     }
 
     renderImage = (producto) => {
@@ -94,6 +99,14 @@ class ListadoDeProductos extends React.Component {
                     onConfirm={this.irAPaginaConfirmacionDePedido}
                     producto={this.state.producto}
                     onClose={()=>this.setState({mostrarModalDeCompra: false})}
+                    esHuevo={this.props.moldeSeleccionado === 'huevos'}
+                />}
+
+                {this.state.mostrarModalDeEdicion &&
+                <ModalEdicionProducto
+                    onConfirm={this.irAPaginaConfirmacionDePedido}
+                    producto={this.state.producto}
+                    onClose={()=>this.setState({mostrarModalDeEdicion: false})}
                     esHuevo={this.props.moldeSeleccionado === 'huevos'}
                 />}
             </div>
