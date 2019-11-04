@@ -2,12 +2,7 @@ import React from 'react';
 import './confirmacion-de-pedido.scss';
 import Select from "react-select";
 import servicio from "../../servicios/servicio";
-
-const puntosDeRetiro = [
-    { value: '1', label: 'Calle 6 5047 - Berazategui' },
-    { value: '2', label: 'Calle 13 4826 - Berazategui'},
-    { value: '3', label: 'Perdriel 74 - CABA' },
-];
+import {puntosDeRetiro} from '../../constantes';
 
 export default class ConfirmacionDePedido extends React.Component {
     constructor(props) {

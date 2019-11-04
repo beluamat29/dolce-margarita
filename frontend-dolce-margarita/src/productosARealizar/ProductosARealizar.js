@@ -4,16 +4,6 @@ import Select from 'react-select';
 import servicio from "../servicios/servicio";
 import servicioPedidos from "../servicios/ServicioPedidos";
 
-const options = [
-    { value: 1, label: 'Gallina rellena x230grs' },
-    { value: 2, label: 'Paleta de conejo x45grs' },
-    { value: 3, label: 'Huevo Dinosaurio x340grs' },
-    { value: 4, label: 'Gallina rellena x230grs' },
-    { value: 5, label: 'Paleta de conejo x45grs' },
-    { value: 6, label: 'Gallina rellena x230grs' },
-    { value: 7, label: 'Paleta de conejo x45grs' }
-];
-
 export default class ProductosARealizar extends React.Component {
     constructor(props) {
         super(props);

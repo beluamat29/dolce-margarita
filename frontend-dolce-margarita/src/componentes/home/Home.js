@@ -1,5 +1,5 @@
 import React from 'react';
-import {moldes} from "./moldes";
+import {moldes} from "../../constantes";
 import './homepage.scss';
 
 import {withRouter} from "react-router-dom";

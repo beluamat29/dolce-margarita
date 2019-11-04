@@ -2,18 +2,7 @@ import React from 'react';
 import './indexPedidos.scss';
 import servicioPedidos from "../../servicios/ServicioPedidos";
 import InformacionPedido from "./pedido/InformacionPedido";
-
-import Select from "react-select";
-
-const estados = ['EN ESPERA', 'EN PREPARACION', 'FINALIZADO', 'ENTREGADO', 'CANCELADO'];
-
-const estiloEstados = [
-    {estado: "ENTREGADO", estilo: "is-success"},
-    {estado: "EN ESPERA", estilo: "is-warning"},
-    {estado: "EN PREPARACION", estilo: "is-primary"},
-    {estado: "FINALIZADO", estilo: "is-info"},
-    {estado: "CANCELADO", estilo: "is-danger"},
-]
+import {estiloEstados, estados} from "../../../constantes";
 
 const estiloParaEstado = (nombreEstado) => {
     const estadoYEstilo = estiloEstados.find(estiloEstado => estiloEstado.estado === nombreEstado)
