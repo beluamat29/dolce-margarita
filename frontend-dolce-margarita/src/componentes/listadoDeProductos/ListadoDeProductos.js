@@ -24,12 +24,18 @@ class ListadoDeProductos extends React.Component {
     }
 
     reloadPageWith = (molde) => {
+        this.props.onCambioMolde(molde)
         servicio.productosConMolde(molde, this.actualizarProductos);
     }
 
     irAPaginaConfirmacionDePedido = (pedido) => {
         this.props.onConfirm(pedido)
         this.props.history.push("/confirmacion")
+    }
+
+    actualizarProductosPostEdicion = () => {
+        this.setState({mostrarModalDeEdicion: false})
+        this.reloadPageWith(this.props.moldeSeleccionado)
     }
 
     actualizarProductos = (productos) => {
@@ -113,10 +119,10 @@ class ListadoDeProductos extends React.Component {
 
                 {this.state.mostrarModalDeEdicion &&
                 <ModalEdicionProducto
-                    onConfirm={this.irAPaginaConfirmacionDePedido}
                     producto={this.state.producto}
                     onClose={()=>this.setState({mostrarModalDeEdicion: false})}
                     esHuevo={this.props.moldeSeleccionado === 'huevos'}
+                    onEdit={this.actualizarProductosPostEdicion}
                 />}
             </div>
         )

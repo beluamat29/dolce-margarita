@@ -2,12 +2,15 @@ import React from "react";
 import './modalArmadoDePedido.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUpload} from "@fortawesome/free-solid-svg-icons";
+import servicioEdicionProducto from "../../servicios/ServicioEdicionProducto";
+
 
 export default class ModalEdicionProducto extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            id_producto: this.props.producto.id,
             nombreProducto: this.props.producto.nombre,
             pesoEnGramos: this.props.producto.peso_en_gramos,
             precio: this.props.producto.precio,
@@ -23,6 +26,19 @@ export default class ModalEdicionProducto extends React.Component {
 
     agregarImagen = event => {
         this.setState({imagen: event.target.files[0]})
+    }
+
+    continuar = () => {
+        let producto = {
+            id: this.state.id_producto,
+            nombre: this.state.nombreProducto,
+            precio: this.state.precio,
+            peso_en_gramos: this.state.pesoEnGramos,
+            tamanio: this.state.tamanio,
+            descripcion: this.state.descripcion
+        }
+
+        servicioEdicionProducto.editarProducto(producto, this.props.onEdit)
     }
 
     render() {

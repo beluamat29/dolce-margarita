@@ -170,6 +170,7 @@ RSpec.describe ProductosController, type: :request do
     end
   end
 
+
   describe '#eliminar_producto' do
 =begin
     context 'cuando el producto no existe' do
@@ -190,6 +191,40 @@ RSpec.describe ProductosController, type: :request do
         delete "/productos/#{producto.id}"
         expect(Producto.exists?(producto.id)).to be_falsey
         expect(response).to have_http_status :ok
+
+  describe '#editar_producto' do
+    context 'cuando el producto no existe' do
+      let(:params) do
+        {
+            id: 34,
+            precio: 450
+        }
+      end
+
+      it 'el estado de la respuesta es not found' do
+        put '/productos/editar_producto', params
+        expect(response).to have_http_status :not_found
+      end
+    end
+
+    context 'cuando el producto existe' do
+      let(:producto) {Producto.create!(nombre: 'Conejito', precio: 150.0, peso_en_gramos: 230, molde: 'figura', descripcion: 'paleta conejo')}
+      let(:params) do
+        {
+            id: producto.id,
+            precio: 450,
+            peso_en_gramos: 532,
+            descripcion: 'una nueva descripcion'
+        }
+      end
+
+      it 'actualiza los campos del producto y devuelve el producto actualizado y un estado ok' do
+        put '/productos/editar_producto', params
+        expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body)['id']).to eq producto.id
+        expect(JSON.parse(response.body)['precio']).to eq params[:precio]
+        expect(JSON.parse(response.body)['peso_en_gramos']).to eq params[:peso_en_gramos]
+        expect(JSON.parse(response.body)['descripcion']).to eq params[:descripcion]
       end
     end
   end
