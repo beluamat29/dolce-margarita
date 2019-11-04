@@ -2,7 +2,7 @@ import React from 'react';
 import './indexPedidos.scss';
 import servicioPedidos from "../../servicios/ServicioPedidos";
 import InformacionPedido from "./pedido/InformacionPedido";
-import {estiloEstados, estados} from "../../../constantes";
+import {estiloEstados, estados} from "../../constantes";
 
 const estiloParaEstado = (nombreEstado) => {
     const estadoYEstilo = estiloEstados.find(estiloEstado => estiloEstado.estado === nombreEstado)
