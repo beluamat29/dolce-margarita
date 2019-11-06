@@ -43,7 +43,7 @@ class ProductosController < ApplicationController
   def eliminar_producto
     @producto = Producto.destroy(params[:id])
     render status: :ok, nothing: :true
-
+  end
   def editar_producto
     @producto = Producto.update(params[:id], edicion_params )
     render json: @producto, status: :ok ,nothing: true
