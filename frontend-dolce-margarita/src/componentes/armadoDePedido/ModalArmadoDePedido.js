@@ -2,17 +2,7 @@ import React from "react";
 import './modalArmadoDePedido.scss';
 import Select from 'react-select';
 import DatosDeHuevoParaPedido from "./DatosDeHuevoParaPedido";
-
-const tiposDeChocolate = [
-    { value: 'semiamargo', label: 'Chocolate semi amargo' },
-    { value: 'conLeche', label: 'Chocolate con leche' },
-    { value: 'blanco', label: 'Chocolate blanco' },
-];
-
-const chocolateNulo = {
-    //Se usa como valor default para cuando arranca el dropdown
-    value: 'chocolatenulo', label: ''
-}
+import {tiposDeChocolate, chocolateNulo} from '../../constantes';
 
 const moldeSeleccionadoDesdeHome = 'huevo';
 
