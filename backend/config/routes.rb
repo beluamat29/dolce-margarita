@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get '/productos/huevos', to: 'productos#show_huevos'
 
+  delete 'productos/:id', to: 'productos#eliminar_producto'
+
   #Pedidos
   get 'pedidos', to: 'pedidos#index'
   get 'pedidosARealizar', to: 'pedidos#pedidos_a_realizar'
