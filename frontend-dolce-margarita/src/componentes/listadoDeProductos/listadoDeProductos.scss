@@ -1,4 +1,5 @@
-
+$button-color: #daddcb;
+@import "~bulma/bulma.sass";
 .home-listado-productos {
   background-color: #ffd8dd;
   width: 100%;
@@ -6,65 +7,64 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
 
   .cartas {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    .flip-card {
-      background-size: cover;
-      width: 280px;
-      height: 280px;
-      margin: 15px;
-    }
+  }
 
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
+  .precio{
+    justify-content: flex-end;
+  }
 
-    .flip-card:hover .flip-card-inner {
-      transform: rotateY(180deg);
-    }
+  .botonera {
+    width: 100%;
+    display: flex;
 
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .flip-card-front {
-      background-color: #bbb;
-      color: black;
-    }
-
-    .flip-card-back {
-      height: 100%;
-      width: 100%;
-      background-color: #e1a0c2;
+    .button {
+      margin: 7px 10px 7px 10px;
+      text-transform: uppercase;
       color: white;
-      transform: rotateY(180deg);
-      justify-content: center;
-      align-items: center;
-
-      a {
-        margin-bottom: 10px;
-      }
-
-      .datos {
-        padding: 15px;
-      }
+      font-weight: 300;
     }
 
-    .flip-card-footer {
-      height: 60px;
+    .editar-button, .comprar-button{
+      border-color: #e297a6;
+      background-color: #e297a6;
     }
+  }
+
+  .card-footer {
+    height: 60px;
+    align-items: center;
+  }
+
+  .card-content {
+    padding: 0px;
+    margin: 0px;
+    .content-descripcion {
+      padding: 5px;
+      text-align: center;
+    }
+
+    .content{
+      margin: 0px;
+      height: 200px;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+    }
+  }
+
+  .card {
+    width: 330px;
+    margin: 15px;
+    background-color: #fff1f8;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 7px;
   }
 }
