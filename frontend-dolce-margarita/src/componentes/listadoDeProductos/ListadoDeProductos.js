@@ -6,6 +6,7 @@ import servicio from "../../servicios/servicio";
 import {withRouter} from "react-router-dom";
 import ModalEdicionProducto from "../edicionProducto/ModalEdicionProducto";
 import servicioEliminar from "../../servicios/ServicioEliminarProducto";
+import ModalEliminarProducto from "../borradoDeProducto/ModalEliminarProducto";
 
 class ListadoDeProductos extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class ListadoDeProductos extends React.Component {
         this.state = {
             mostrarModalDeCompra: false,
             mostrarModalDeEdicion: false,
+            mostrarModalAdvertenciaBorrado: false,
             producto: null,
             productos: []
         }
@@ -49,6 +51,10 @@ class ListadoDeProductos extends React.Component {
         });
     };
 
+    mostrarModalAdvertencia = (producto) => {
+        this.setState({mostrarModalAdvertenciaBorrado: true, producto: producto})
+    }
+
     editarProducto = (producto) => {
         this.setState({
             producto,
@@ -56,8 +62,9 @@ class ListadoDeProductos extends React.Component {
         });
     }
 
-    eliminarProducto = (producto) => {
-        servicioEliminar.eliminarProducto(producto.id)
+    eliminarProducto = () => {
+        this.setState({mostrarModalAdvertenciaBorrado: false})
+        servicioEliminar.eliminarProducto(this.state.producto.id, this.actualizarProductosPostEdicion)
     }
 
     renderImage = (producto) => {
@@ -89,7 +96,7 @@ class ListadoDeProductos extends React.Component {
                     </a>}
 
                     {this.props.adminLogeado &&
-                         <a className="card-footer-item button is-danger" onClick={() => this.eliminarProducto(producto)}>
+                         <a className="card-footer-item button is-danger" onClick={() => this.mostrarModalAdvertencia(producto)}>
                         Eliminar
                      </a>}
 
@@ -125,6 +132,12 @@ class ListadoDeProductos extends React.Component {
             onClose={() => this.setState({mostrarModalDeEdicion: false})}
             esHuevo={this.props.moldeSeleccionado === 'huevos'}
             onEdit={this.actualizarProductosPostEdicion}
+        />}
+
+        {this.state.mostrarModalAdvertenciaBorrado &&
+        <ModalEliminarProducto
+            onClose={() => this.setState({mostrarModalAdvertenciaBorrado: false})}
+            onEliminar={() => this.eliminarProducto()}
         />}
         </div>
         )

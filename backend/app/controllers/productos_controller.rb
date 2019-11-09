@@ -20,15 +20,15 @@ class ProductosController < ApplicationController
   end
 
   def show_figuras
-    render json: Producto.where(molde: "figura"), status: :ok
+    render json: Producto.where(molde: "figura", activo: true), status: :ok
   end
 
   def show_bombones
-    render json: Producto.where(molde: "bomboneria"), status: :ok
+    render json: Producto.where(molde: "bomboneria", activo: true), status: :ok
   end
 
   def show_huevos
-    render json: Producto.where(molde: "huevo"), status: :ok
+    render json: Producto.where(molde: "huevo", activo: true), status: :ok
   end
 
   def nombres
@@ -41,9 +41,10 @@ class ProductosController < ApplicationController
 
 
   def eliminar_producto
-    @producto = Producto.destroy(params[:id])
+    @producto = Producto.update(params[:id], :activo => false)
     render status: :ok, nothing: :true
   end
+
   def editar_producto
     @producto = Producto.update(params[:id], edicion_params )
     render json: @producto, status: :ok ,nothing: true

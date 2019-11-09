@@ -173,15 +173,15 @@ RSpec.describe ProductosController, type: :request do
 
   describe '#eliminar_producto' do
 
-=begin
-context 'cuando el producto no existe' do
-  let(:producto_id) {SecureRandom.uuid}
-  it 'retorna not found' do
-    delete "/productos/#{producto_id}"
-    expect(response).to have_http_status :not_found
-  end
-end
-=end
+
+    context 'cuando el producto no existe' do
+      let(:producto_id) {SecureRandom.uuid}
+      it 'retorna not found' do
+        delete "/productos/#{producto_id}"
+        expect(response).to have_http_status :not_found
+      end
+    end
+
     context 'cuando el producto existe' do
       let(:producto) do
         Producto.create!(nombre: 'Gallina', precio: 150.0, peso_en_gramos: 230, molde: 'figura', descripcion: 'paleta gallina')
@@ -189,7 +189,7 @@ end
 
       it 'se elimina el producto y retorna ok' do
         delete "/productos/#{producto.id}"
-        expect(Producto.exists?(producto.id)).to be_falsey
+        expect(Producto.find(producto.id).activo).to be_falsey
         expect(response).to have_http_status :ok
       end
     end
