@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191019215253) do
+ActiveRecord::Schema.define(version: 20191109175012) do
 
   create_table "pedidos", force: :cascade do |t|
     t.datetime "created_at",                             null: false
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20191019215253) do
   end
 
   create_table "productos", force: :cascade do |t|
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "nombre"
     t.integer  "precio"
     t.integer  "peso_en_gramos"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20191019215253) do
     t.string   "picture"
     t.string   "molde"
     t.integer  "tamanio"
+    t.boolean  "activo",         default: true
   end
 
   create_table "users", force: :cascade do |t|
