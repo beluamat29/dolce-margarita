@@ -7,82 +7,92 @@ import {tiposDeChocolate, chocolateNulo} from '../../constantes';
 const moldeSeleccionadoDesdeHome = 'huevo';
 
 export default class ModalArmadoDePedido extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            cantidadALlevar: 1,
-            tipoDeChocolateALlevar: chocolateNulo,
-            paredesRellenas: false
-        }
+    this.state = {
+      cantidadALlevar: 1,
+      tipoDeChocolateALlevar: chocolateNulo,
+      paredesRellenas: false
+    }
+  }
+
+  esHuevo = () => {
+    return this.props.esHuevo
+  }
+
+  camposCompletos = () => {
+    const {
+      tipoDeChocolateALlevar,
+      cantidadALlevar
+    } = this.state;
+
+    return this.state.tipoDeChocolateALlevar === chocolateNulo || cantidadALlevar <= 0;
+  }
+
+  continuar = () => {
+    let pedido = {
+      producto: this.props.producto,
+      cantidad: this.state.cantidadALlevar,
+      precio_total: this.props.producto.precio * this.state.cantidadALlevar,
+      tipo_chocolate: this.state.tipoDeChocolateALlevar.value,
     }
 
-    esHuevo = () => {
-        return this.props.esHuevo
-    }
+    this.props.onConfirm(pedido)
+  }
 
-    continuar = () => {
-        let pedido = {
-            producto: this.props.producto,
-            cantidad: this.state.cantidadALlevar,
-            precio_total: this.props.producto.precio * this.state.cantidadALlevar,
-            tipo_chocolate: this.state.tipoDeChocolateALlevar.value,
-        }
+  render() {
+    const {producto} = this.props;
 
-        this.props.onConfirm(pedido)
-    }
+    return (
+      <div className="modal is-active">
+        <div className="modal-background"/>
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title title">Arma tu pedido!</p>
+            <button className="delete" aria-label="close" onClick={this.props.onClose}/>
+          </header>
 
-    render() {
-        const { producto } = this.props;
+          <section className="modal-card-body">
+            <p className="titulo-producto">{`${producto.nombre} de ${producto.peso_en_gramos}grs`} </p>
+            <div className="datos-pedido">
+              <p className="subtitle">¿Cuántos vas a llevar?</p>
+              <div className="input-cantidad">
+                <input
+                  min={1}
+                  className="input"
+                  type="number"
+                  value={this.state.cantidadALlevar}
+                  onChange={(event) => this.setState({cantidadALlevar: event.target.value})}/>
+              </div>
 
-        return (
-            <div className="modal is-active">
-                <div className="modal-background"/>
-                <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title title">Arma tu pedido!</p>
-                        <button className="delete" aria-label="close" onClick={this.props.onClose}/>
-                    </header>
+              <p className="subtitle">¡Elegí el chocolate que más te guste!</p>
+              <div className="input-tipo-chocolate">
+                <Select
+                  value={this.state.tipoDeChocolateALlevar}
+                  onChange={(tipo) => this.setState({tipoDeChocolateALlevar: tipo})}
+                  options={tiposDeChocolate}
+                />
+              </div>
 
-                    <section className="modal-card-body">
-                        <p className="titulo-producto">{`${producto.nombre} de ${producto.peso_en_gramos}grs`} </p>
-                        <div className="datos-pedido">
-                            <p className="subtitle">¿Cuántos vas a llevar?</p>
-                            <div className="input-cantidad">
-                                <input
-                                    min={1}
-                                    className="input"
-                                    type="number"
-                                    value={this.state.cantidadALlevar}
-                                    onChange={(event) => this.setState({cantidadALlevar: event.target.value})}/>
-                            </div>
-
-                            <p className="subtitle">¡Elegí el chocolate que más te guste!</p>
-                            <div className="input-tipo-chocolate">
-                                <Select
-                                    value={this.state.tipoDeChocolateALlevar}
-                                    onChange={(tipo) => this.setState({tipoDeChocolateALlevar: tipo})}
-                                    options={tiposDeChocolate}
-                                />
-                            </div>
-
-                            <div>
-                                {
-                                    this.esHuevo() && <DatosDeHuevoParaPedido
-                                        moldeSeleccionado={moldeSeleccionadoDesdeHome}
-                                        onChange={(paredes) => this.setState({paredesRellenas: paredes})}/>
-                                }
-                            </div>
-                        </div>
-                    </section>
-
-                    <footer className="modal-card-foot">
-                        <button className="button is-success" onClick={this.continuar}>Continuar</button>
-                        <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
-                    </footer>
-                </div>
+              <div>
+                {
+                  this.esHuevo() && <DatosDeHuevoParaPedido
+                    moldeSeleccionado={moldeSeleccionadoDesdeHome}
+                    onChange={(paredes) => this.setState({paredesRellenas: paredes})}/>
+                }
+              </div>
             </div>
+          </section>
 
-        )
-    }
+          <footer className="modal-card-foot">
+            <button className="button is-success" disabled={this.camposCompletos()} onClick={this.continuar}>Continuar
+            </button>
+            <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
+          </footer>
+        </div>
+      </div>
+
+    )
+  }
 }
