@@ -21,13 +21,13 @@ export default class ModalArmadoDePedido extends React.Component {
     return this.props.esHuevo
   }
 
-  camposCompletos = () => {
+  deshabilitar = () => {
     const {
       tipoDeChocolateALlevar,
       cantidadALlevar
     } = this.state;
 
-    return this.state.tipoDeChocolateALlevar === chocolateNulo || cantidadALlevar <= 0;
+    return tipoDeChocolateALlevar === chocolateNulo || cantidadALlevar <= 0;
   }
 
   continuar = () => {
@@ -86,7 +86,7 @@ export default class ModalArmadoDePedido extends React.Component {
           </section>
 
           <footer className="modal-card-foot">
-            <button className="button is-success" disabled={this.camposCompletos()} onClick={this.continuar}>Continuar
+            <button className="button is-success" disabled={this.deshabilitar()} onClick={this.continuar}>Continuar
             </button>
             <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
           </footer>

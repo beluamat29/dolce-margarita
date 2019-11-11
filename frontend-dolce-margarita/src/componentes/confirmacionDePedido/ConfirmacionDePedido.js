@@ -16,6 +16,17 @@ export default class ConfirmacionDePedido extends React.Component {
         }
     }
 
+    deshabilitar = () => {
+        const {
+            nombreClienteDelPedido,
+            emailClientePedido,
+            telefonoClientePedido,
+            puntoDeRetiro
+        } = this.state;
+
+        return nombreClienteDelPedido === '' || emailClientePedido === '' || telefonoClientePedido === '' || puntoDeRetiro === ''
+    }
+
     calcularTotal = () => {
         const {pedido} = this.props;
 
@@ -95,7 +106,7 @@ export default class ConfirmacionDePedido extends React.Component {
 
                                 <input
                                     className="input field nombre-cliente"
-                                    type="text"
+                                    type="number"
                                     value={this.state.telefonoClientePedido}
                                     onChange={(event) => this.setState({telefonoClientePedido: event.target.value})}/>
                             </div>
@@ -112,7 +123,7 @@ export default class ConfirmacionDePedido extends React.Component {
                         </div>
                     </div>
                     <footer className="card-footer">
-                        <button className="button is-success" onClick={this.confirmarPedido}>Continuar</button>
+                        <button className="button is-success" disabled={this.deshabilitar()} onClick={this.confirmarPedido}>Continuar</button>
                         <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
                     </footer>
                 </div>
