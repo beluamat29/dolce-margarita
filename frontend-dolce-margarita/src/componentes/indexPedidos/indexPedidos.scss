@@ -122,4 +122,16 @@ $info: black;
 
     }
   }
+
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .button {
+    border-color: #ffa5cd;
+    background-color: #ffa5cd;
+    color: white;
+  }
 }

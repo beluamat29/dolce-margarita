@@ -104,12 +104,12 @@ export default class IndexPedidos extends React.Component {
                     <input className="filtro-nombre-cliente" type="text" name="filter" placeholder="Buscar por cliente" onChange={ (event) => this.filtrarPorNombreCliente(event)}/>
                     <div className="filtro-estado-container">
                         {
-                            estados.map((estado) => this.renderEstado(estado))
+                            estados.map((estado) => this.renderEstado(estado.actual))
                         }
                     </div>
                 </div>
                 <div className="rows">
-                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido actualizarPedidos={this.reloadPageWith} pedido={informacionPedido}/>)}
+                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido pedido={informacionPedido}/>)}
                 </div>
             </div>
         )

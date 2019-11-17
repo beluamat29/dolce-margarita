@@ -21,7 +21,7 @@ class PedidosController < ApplicationController
   def modificar_estado
     @pedido = Pedido.find_by(id: params[:id])
     @pedido.update(estado: params[:estado])
-    render json: @pedido, status: :ok, nothing: true
+    render json: @pedido.estado, status: :ok, nothing: true
   end
 
   def index
