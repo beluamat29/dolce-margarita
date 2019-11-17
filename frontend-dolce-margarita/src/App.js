@@ -11,6 +11,14 @@ import PedidosOCargaDeDatos from "./componentes/loginAdmin/PedidosOCargaDeDatos"
 import ProductosARealizar from "./productosARealizar/ProductosARealizar";
 
 class App extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            adminLogeado: JSON.parse(localStorage.getItem('adminLogeado')) || false,
+            moldeSeleccionado: "figuras",
+            pedidoActual: {}
+        }
+    }
 
     state = {
         moldeSeleccionado: "figuras",
@@ -24,6 +32,13 @@ class App extends React.Component{
 
     adminHasLogged = () => {
         this.setState({adminLogeado: true})
+        localStorage.setItem('adminLogeado', true)
+    }
+
+    deslogearAdmin = () => {
+        console.log('avnanfcoanonsaioca')
+        this.setState({adminLogeado: false})
+        localStorage.setItem('adminLogeado', false)
     }
 
     render() {
@@ -54,6 +69,7 @@ class App extends React.Component{
                         exact
                         path="/listado"
                         render={props => <ListadoDeProductos
+                            onSignOut={this.deslogearAdmin}
                             adminLogeado={this.state.adminLogeado}
                             moldeSeleccionado={this.state.moldeSeleccionado}
                             onConfirm={(pedido)=>this.setState({pedidoActual: pedido})}
