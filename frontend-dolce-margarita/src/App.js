@@ -35,6 +35,12 @@ class App extends React.Component{
         localStorage.setItem('adminLogeado', true)
     }
 
+    deslogearAdmin = () => {
+        console.log('avnanfcoanonsaioca')
+        this.setState({adminLogeado: false})
+        localStorage.setItem('adminLogeado', false)
+    }
+
     render() {
         return (
             <BrowserRouter>
@@ -63,6 +69,7 @@ class App extends React.Component{
                         exact
                         path="/listado"
                         render={props => <ListadoDeProductos
+                            onSignOut={this.deslogearAdmin}
                             adminLogeado={this.state.adminLogeado}
                             moldeSeleccionado={this.state.moldeSeleccionado}
                             onConfirm={(pedido)=>this.setState({pedidoActual: pedido})}

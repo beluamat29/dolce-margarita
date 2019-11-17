@@ -1,11 +1,11 @@
 import React from "react";
 import {figuras, bombones, huevos} from '../../moldes'
 import './navbar.scss'
-import {faUser} from '@fortawesome/free-solid-svg-icons'
+import {faUser, faDoorOpen} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {withRouter} from "react-router-dom";
 
-const Navbar = ({itemClick, adminLogeado, history}) => {
+const Navbar = ({itemClick, adminLogeado, history, deslogearAdmin}) => {
 
   const logearOIrAIndexAdmin = () => {
       if(adminLogeado) {
@@ -13,6 +13,11 @@ const Navbar = ({itemClick, adminLogeado, history}) => {
       } else {
           history.push('/adminlogin')
       }
+  }
+
+  const deslogearAdminEIrAHome = () => {
+      deslogearAdmin()
+      history.push('/')
   }
 
   return (
@@ -38,6 +43,9 @@ const Navbar = ({itemClick, adminLogeado, history}) => {
         <div className='admin-icon' onClick={()=> logearOIrAIndexAdmin()}>
             <FontAwesomeIcon icon={faUser}/>
         </div>
+          <div className='admin-icon' onClick={()=> deslogearAdminEIrAHome()}>
+              {adminLogeado && <FontAwesomeIcon icon={faDoorOpen}/>}
+          </div>
       </div>
     </nav>
   )
