@@ -18,31 +18,25 @@ class Home extends React.Component {
 
     renderCarta = (titulo, molde) => {
         return (
-            <div className="card" key={molde} onClick={() => this.irAPaginaDeListados(molde)}>
-                <div className={"card-content " + molde}/>
-                <div className="card-footer">
-                    <p className="subtitle">{titulo}</p>
-                </div>
+            <div className='molde' key={molde} onClick={() => this.irAPaginaDeListados(molde)}>
+                <p></p>
             </div>
         )
     }
+    // moldes.map((molde) => this.renderCarta(molde.tituloCarta, molde.nombreCategoria))
 
     render() {
         return (
             <div className="home-usuario">
-                <div className="title">
-                    <p className="title is-1 is-spaced">¿Qué vas a llevar hoy?</p>
+                <div className='molde fondo-figuras'>
+                    <h2>Figuras</h2>
                 </div>
-
-                <div className="cartas">
-                    {
-                        moldes.map((molde) => this.renderCarta(molde.tituloCarta, molde.nombreCategoria))
-                    }
+                <div className='molde fondo-bombones'>
+                    <h2>Bombonería</h2>
                 </div>
-
-                <button className="logeo-admin button is-danger datos" onClick={()=>this.irALoginAdmin()}>
-                    Logearme como Admin
-                </button>
+                <div  className='molde fondo-huevos'>
+                    <h2>Huevos</h2>
+                </div>
             </div>
         )
     }

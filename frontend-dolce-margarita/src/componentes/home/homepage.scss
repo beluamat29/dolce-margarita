@@ -12,49 +12,51 @@
     margin-top: 50px;
   }
 
-  .cartas {
+  .boton-admin {
+    border-color: #e297a6;
+    background-color: #e297a6;
+    color: white;
+  }
+
+  .molde {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
     display: flex;
-    flex-direction: row;
 
-    .card {
-      width: 300px;
-      height: 300px;
-      margin: 15px;
-      box-shadow: 4px 3px 4px;
-      font-family: "Helvetica Neue", "Arial", sans-serif;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
 
-      .card-content {
-        height: 240px;
+    div:hover {
+      filter: blur(3px);
+    }
 
-        &.bombones {
-          background-image: url("../../assets/bombones.jpg");
-          background-size: cover;
-        }
-
-        &.huevos {
-          background-image: url("../../assets/huevos1.jpg");
-          background-size: cover;
-        }
-
-        &.figuras {
-          background-image: url("../../assets/gallinas.jpg");
-          background-size: cover;
-        }
-      }
-
-      .card-footer {
-        background-color: #e1a0c2;
-        height: 60px;
-        justify-content: center;
-        align-items: center;
-      }
+    h2 {
+      font-size: 40px;
     }
   }
 
-  .title {
-    margin: 15px 0 30px;
-    display: inline-block;
-    padding: 15px;
+  .fondo-bombones {
+    background-image: url("../../assets/bombones.png");
+    background-size: cover;
+  }
+
+  .fondo-huevos {
+    background-image: url("../../assets/huevos1.png");
+    background-size: cover;
+  }
+
+  .fondo-figuras {
+    background-image: url("../../assets/gallinas.png");
+    background-size: cover;
+  }
+
+  .texto-blurred {
+
   }
 }
 
