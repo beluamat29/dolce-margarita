@@ -7,16 +7,25 @@ class PedidosController < ApplicationController
     # Agrega credenciales
     $mp = MercadoPago.new('TEST-2872476240587920-110820-05f82c909be025c282ace8c337dcfa22-77626432')
 
+    pedido_parcial = params[:pedido_parcial]
+    producto = Producto.find_by(id: pedido_parcial[:producto][:id])
+
     # Crea un objeto de preferencia
     preference_data = {
         "items": [
             {
-                "title": "Mi producto",
-                "unit_price": 100,
-                "quantity": 1,
+                "title": producto.nombre,
+                "unit_price": producto.precio,
+                "quantity": pedido_parcial[:cantidad],
                 "currency_id": "ARS"
             }
-        ]
+        ],
+        "back_urls": {
+            success: "http://localhost:3001/confirmacion",
+            failure: "http://localhost:3001/confirmacion",
+            pending: "http://localhost:3001/confirmacion"
+        },
+        "auto_return": "all"
     }
     preference = $mp.create_preference(preference_data)
 

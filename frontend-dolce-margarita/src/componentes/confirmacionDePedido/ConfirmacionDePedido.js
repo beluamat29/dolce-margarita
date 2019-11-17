@@ -143,7 +143,7 @@ export default class ConfirmacionDePedido extends React.Component {
           </div>
 
           <footer className="card-footer">
-            {this.state.pagar && <a href={this.state.init_point} target="_blank">Pagar</a>}
+            { this.state.pagar && <a href={this.state.init_point}>Pagar</a> }
             <button className="button is-danger" onClick={this.mercadoPago}>Aceptar</button>
             {/*<button className="button is-success" onClick={this.confirmarPedido}>Continuar</button>*/}
             <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
