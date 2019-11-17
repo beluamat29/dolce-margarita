@@ -11,6 +11,14 @@ import PedidosOCargaDeDatos from "./componentes/loginAdmin/PedidosOCargaDeDatos"
 import ProductosARealizar from "./productosARealizar/ProductosARealizar";
 
 class App extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            adminLogeado: JSON.parse(localStorage.getItem('adminLogeado')) || false,
+            moldeSeleccionado: "figuras",
+            pedidoActual: {}
+        }
+    }
 
     state = {
         moldeSeleccionado: "figuras",
@@ -24,6 +32,7 @@ class App extends React.Component{
 
     adminHasLogged = () => {
         this.setState({adminLogeado: true})
+        localStorage.setItem('adminLogeado', true)
     }
 
     render() {
