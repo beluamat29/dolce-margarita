@@ -113,7 +113,7 @@ class ListadoDeProductos extends React.Component {
     render() {
         return (
         <div className="home-listado-productos">
-        <Navbar itemClick={this.reloadPageWith}/>
+        <Navbar itemClick={this.reloadPageWith} adminLogeado={this.props.adminLogeado} history={this.props.history}/>
         <div className="cartas">
         {this.state.productos.map(this.renderCarta)}
         </div>
