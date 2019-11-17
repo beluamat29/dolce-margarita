@@ -1,6 +1,6 @@
 import React from "react";
 import './modalEliminarProducto.scss'
-import servicioEliminarProducto from "../../servicios/ServicioEliminarProducto";
+import '../../styles/modal-footer.scss'
 
 export default class ModalEliminarProducto extends React.Component {
 
@@ -20,8 +20,8 @@ export default class ModalEliminarProducto extends React.Component {
                         </p>
                     </section>
                     <footer className="modal-card-foot">
-                        <button className="button boton-eliminar" onClick={this.props.onEliminar}>Eliminar</button>
-                        <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
+                        <button className="button" onClick={this.props.onClose}>Cancelar</button>
+                        <button className="button" onClick={this.props.onEliminar}>Eliminar</button>
                     </footer>
                 </div>
             </div>

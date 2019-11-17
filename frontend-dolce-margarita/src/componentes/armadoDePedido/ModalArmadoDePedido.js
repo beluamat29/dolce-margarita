@@ -1,5 +1,6 @@
 import React from "react";
 import './modalArmadoDePedido.scss';
+import '../../styles/modal-footer.scss'
 import Select from 'react-select';
 import DatosDeHuevoParaPedido from "./DatosDeHuevoParaPedido";
 import {tiposDeChocolate, chocolateNulo} from '../../constantes';
@@ -86,9 +87,10 @@ export default class ModalArmadoDePedido extends React.Component {
           </section>
 
           <footer className="modal-card-foot">
-            <button className="button is-success" disabled={this.deshabilitar()} onClick={this.continuar}>Continuar
+            <button className="button dolce-button" onClick={this.props.onClose}>Cancelar</button>
+            <button className="button dolce-button" disabled={this.deshabilitar()} onClick={this.continuar}>
+              Continuar
             </button>
-            <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
           </footer>
         </div>
       </div>
