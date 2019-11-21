@@ -8,8 +8,7 @@ import {withRouter} from "react-router-dom";
 const Navbar = ({seleccionarMolde, adminLogeado, history, deslogearAdmin}) => {
 
   const irAListado = (molde) => {
-    seleccionarMolde(molde)
-    history.push('/productos')
+    seleccionarMolde(molde, () => history.push('/productos'))
   }
 
   const logearOIrAIndexAdmin = () => {

@@ -21,14 +21,10 @@ class App extends React.Component {
     }
   }
 
-  state = {
-    moldeSeleccionado: "figuras",
-    pedidoActual: {},
-    adminLogeado: false
-  }
-
-  seleccionarMolde = (moldeSeleccionado) => {
-    this.setState({moldeSeleccionado})
+  deslogearAdmin = () => {
+    console.log('avnanfcoanonsaioca')
+    this.setState({adminLogeado: false})
+    localStorage.setItem('adminLogeado', false)
   }
 
   adminHasLogged = () => {
@@ -36,11 +32,9 @@ class App extends React.Component {
     localStorage.setItem('adminLogeado', true)
   }
 
-  deslogearAdmin = () => {
-    console.log('avnanfcoanonsaioca')
-    this.setState({adminLogeado: false})
-    localStorage.setItem('adminLogeado', false)
-  }
+    seleccionarMolde = (moldeSeleccionado, irAListado) => {
+        this.setState({moldeSeleccionado}, irAListado)
+    }
 
   render() {
     return (
