@@ -36,11 +36,9 @@ class App extends React.Component {
     localStorage.setItem('adminLogeado', true)
   }
 
-  deslogearAdmin = () => {
-    console.log('avnanfcoanonsaioca')
-    this.setState({adminLogeado: false})
-    localStorage.setItem('adminLogeado', false)
-  }
+    seleccionarMolde = (moldeSeleccionado, irAListado) => {
+        this.setState({moldeSeleccionado}, irAListado)
+    }
 
   render() {
     return (

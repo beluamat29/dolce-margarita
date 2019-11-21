@@ -18,10 +18,14 @@ class ListadoDeProductos extends React.Component {
       producto: null,
       productos: []
     }
+
+    this.reloadPageWith(this.props.moldeSeleccionado);
   }
 
-  componentDidMount() {
-    this.reloadPageWith(this.props.moldeSeleccionado, this.actualizarProductos);
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.moldeSeleccionado !== prevProps.moldeSeleccionado) {
+      this.reloadPageWith(this.props.moldeSeleccionado);
+    }
   }
 
   reloadPageWith = (molde) => {
