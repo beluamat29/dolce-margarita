@@ -5,7 +5,7 @@ import {faUser, faDoorOpen} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {withRouter} from "react-router-dom";
 
-const Navbar = ({seleccionarMolde, adminLogeado, history, deslogearAdmin}) => {
+const Navbar = ({seleccionarMolde, adminLogeado, history, onSignOut}) => {
 
   const irAListado = (molde) => {
     seleccionarMolde(molde, () => history.push('/productos'))
@@ -20,7 +20,7 @@ const Navbar = ({seleccionarMolde, adminLogeado, history, deslogearAdmin}) => {
   }
 
   const deslogearAdminEIrAHome = () => {
-      deslogearAdmin()
+      onSignOut()
       history.push('/')
   }
 
