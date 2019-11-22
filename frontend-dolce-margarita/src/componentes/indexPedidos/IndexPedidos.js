@@ -3,6 +3,7 @@ import './indexPedidos.scss';
 import servicioPedidos from "../../servicios/ServicioPedidos";
 import InformacionPedido from "./pedido/InformacionPedido";
 import {estiloEstados, estados} from "../../constantes";
+import DatePicker from 'react-date-picker';
 
 const estiloParaEstado = (nombreEstado) => {
     const estadoYEstilo = estiloEstados.find(estiloEstado => estiloEstado.estado === nombreEstado)
@@ -16,7 +17,9 @@ export default class IndexPedidos extends React.Component {
         this.state = {
             pedidosTodos: [],
             pedidosAMostrar: [],
-            estadosSeleccionados: []
+            estadosSeleccionados: [],
+            fechaInicio: null,
+            fechaFin: null
         }
     }
 
@@ -84,6 +87,15 @@ export default class IndexPedidos extends React.Component {
         return this.state.estadosSeleccionados.filter((estadoSeleccionado) => estadoSeleccionado !== estado)
     }
 
+    cambiarFechaInicio = (fecha) => {
+        debugger
+        this.setState({fechaInicio: fecha})
+    }
+
+    cambiarFechaFin = (fecha) => {
+        this.setState({fechaFin: fecha})
+    }
+
     renderEstado = (estado) => {
         return (
           <div className="filtro-estado">
@@ -101,6 +113,18 @@ export default class IndexPedidos extends React.Component {
             <div className="index-pedidos-home">
                 <p className="title is-1 is-spaced">Pedidos</p>
                 <div className="container-filtrado">
+                    <div className='filtrado-por-fechas'>
+                        <DatePicker
+                            onChange={this.cambiarFechaInicio}
+                            value={this.state.fechaInicio}
+                        />
+
+                        <DatePicker
+                            onChange={this.cambiarFechaFin}
+                            value={this.state.fechaFin}
+                        />
+                    </div>
+
                     <input className="filtro-nombre-cliente" type="text" name="filter" placeholder="Buscar por cliente" onChange={ (event) => this.filtrarPorNombreCliente(event)}/>
                     <div className="filtro-estado-container">
                         {
