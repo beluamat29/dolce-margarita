@@ -3,7 +3,13 @@ import './indexPedidos.scss';
 import servicioPedidos from "../../servicios/ServicioPedidos";
 import InformacionPedido from "./pedido/InformacionPedido";
 import {estiloEstados, estados} from "../../constantes";
+import DatePicker from "react-datepicker";
+import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import es from 'date-fns/locale/es';
+import moment from "moment";
 
+registerLocale('es', es)
 const estiloParaEstado = (nombreEstado) => {
     const estadoYEstilo = estiloEstados.find(estiloEstado => estiloEstado.estado === nombreEstado)
     return estadoYEstilo.estilo;
@@ -16,7 +22,9 @@ export default class IndexPedidos extends React.Component {
         this.state = {
             pedidosTodos: [],
             pedidosAMostrar: [],
-            estadosSeleccionados: []
+            estadosSeleccionados: [],
+            fechaInicio: null,
+            fechaFin: null
         }
     }
 
@@ -41,7 +49,6 @@ export default class IndexPedidos extends React.Component {
 
     filtrarPorNombreCliente = (event) => {
         const pedidosFiltrados = this.state.pedidosTodos.filter((pedido) => pedido.nombre_cliente.includes(event.target.value))
-
         this.actualizarPedidosAMostrar(pedidosFiltrados);
     }
 
@@ -84,6 +91,20 @@ export default class IndexPedidos extends React.Component {
         return this.state.estadosSeleccionados.filter((estadoSeleccionado) => estadoSeleccionado !== estado)
     }
 
+    setearFechaInicio = (date) => {
+        this.setState({fechaInicio: date})
+        const pedidosPostFecha = this.state.pedidosTodos.filter(pedido => this.esFechaPosterior(pedido.created_at, date))
+        this.setState({pedidosAMostrar: pedidosPostFecha})
+    }
+
+    esFechaPosterior = (fecha_pedido, fechaSeleccionada) => {
+        return moment(fecha_pedido).isAfter(fechaSeleccionada);
+    }
+
+    setearFechaFin = (date) => {
+        this.setState({fechaFin: date})
+    }
+
     renderEstado = (estado) => {
         return (
           <div className="filtro-estado">
@@ -100,6 +121,22 @@ export default class IndexPedidos extends React.Component {
         return (
             <div className="index-pedidos-home">
                 <p className="title is-1 is-spaced">Pedidos</p>
+                <div className='filtro-por-fechas'>
+                    <p className='h2'>Filtrar por fecha</p>
+                    <DatePicker
+                        locale={'es'}
+                        selected={this.state.fechaInicio}
+                        onChange={this.setearFechaInicio}
+                    />
+                    <DatePicker
+                        locale={'es'}
+                        selected={this.state.fechaFin}
+                        onChange={this.setearFechaFin}
+                    />
+
+                    <a className='button'> filtrar </a>
+                </div>
+
                 <div className="container-filtrado">
                     <input className="filtro-nombre-cliente" type="text" name="filter" placeholder="Buscar por cliente" onChange={ (event) => this.filtrarPorNombreCliente(event)}/>
                     <div className="filtro-estado-container">

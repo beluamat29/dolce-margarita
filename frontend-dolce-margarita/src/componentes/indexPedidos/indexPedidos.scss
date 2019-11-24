@@ -13,6 +13,11 @@ $info: black;
   justify-content: center;
   align-items: center;
 
+  .filtro-por-fechas {
+    width: 800px;
+    margin: 10px;
+  }
+
   .container-filtrado {
     display: flex;
     flex-direction: column;
