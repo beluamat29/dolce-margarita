@@ -8,6 +8,11 @@ export default class ServicioPedidos {
             .then(response => {actualizarPedidos(response.data)})
     }
 
+    static pedidosPorEstado(estado, actualizarPedidos) {
+        return axios.get(`${SERVICE_URL}/pedidos/filtrar-estado?estado=${estado}`)
+          .then(response => {actualizarPedidos(response.data)})
+    }
+
     static cancelarPedido(pedido) {
         return axios.put(`${SERVICE_URL}/estadoPedidos`, {
             id: pedido.id,
