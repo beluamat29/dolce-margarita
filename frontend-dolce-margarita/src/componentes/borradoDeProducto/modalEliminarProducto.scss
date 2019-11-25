@@ -13,7 +13,7 @@ $primary: #ffa5cd;
     }
   }
 
-  .modal-card-body{
+  .modal-card-body {
     p {
       margin: 0 0 5px 3px;
     }
@@ -22,19 +22,8 @@ $primary: #ffa5cd;
       margin: 0 0 10px 0;
     }
 
-    .titulo-producto{
+    .titulo-producto {
       font-size: 28px;
-    }
-
-  }
-
-  .modal-card-foot {
-    justify-content: flex-end;
-
-    .boton-eliminar {
-      border-color: #e297a6;
-      background-color: #e297a6;
-      color: white;
     }
   }
 }

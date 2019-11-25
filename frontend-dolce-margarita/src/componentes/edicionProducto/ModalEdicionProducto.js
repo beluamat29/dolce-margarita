@@ -1,5 +1,6 @@
 import React from "react";
 import './modalArmadoDePedido.scss';
+import '../../styles/modal-footer.scss'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUpload} from "@fortawesome/free-solid-svg-icons";
 import servicioEdicionProducto from "../../servicios/ServicioEdicionProducto";
@@ -109,8 +110,8 @@ export default class ModalEdicionProducto extends React.Component {
                     </section>
 
                     <footer className="modal-card-foot">
-                        <button className="button is-success" onClick={this.continuar}>Editar</button>
-                        <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
+                        <button className="button" onClick={this.props.onClose}>Cancelar</button>
+                        <button className="button" onClick={this.continuar}>Editar</button>
                     </footer>
                 </div>
             </div>

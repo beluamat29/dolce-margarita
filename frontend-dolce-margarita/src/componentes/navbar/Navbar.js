@@ -5,18 +5,22 @@ import {faUser, faDoorOpen} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {withRouter} from "react-router-dom";
 
-const Navbar = ({itemClick, adminLogeado, history, deslogearAdmin}) => {
+const Navbar = ({seleccionarMolde, adminLogeado, history, onSignOut}) => {
+
+  const irAListado = (molde) => {
+    seleccionarMolde(molde, () => history.push('/productos'))
+  }
 
   const logearOIrAIndexAdmin = () => {
       if(adminLogeado) {
-          history.push('/adminindex')
+          history.push('/admin-index')
       } else {
-          history.push('/adminlogin')
+          history.push('/admin-login')
       }
   }
 
   const deslogearAdminEIrAHome = () => {
-      deslogearAdmin()
+      onSignOut()
       history.push('/')
   }
 
@@ -28,17 +32,33 @@ const Navbar = ({itemClick, adminLogeado, history, deslogearAdmin}) => {
 
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="categoria" onClick={() => itemClick(figuras)}>
+          <a className="categoria" onClick={() => irAListado(figuras)}>
             Figuras
           </a>
 
-          <a className="categoria" onClick={() => itemClick(bombones)}>
+          <a className="categoria" onClick={() => irAListado(bombones)}>
             Bombonería
           </a>
 
-          <a className="categoria" onClick={() => itemClick(huevos)}>
+          <a className="categoria" onClick={() => irAListado(huevos)}>
             Huevos
           </a>
+          {
+            adminLogeado && (
+              <div>
+                <a className="categoria" onClick={() => history.push('/pedidos')}>
+                  Pedidos
+                </a>
+                <a className="categoria" onClick={() => history.push('/productos-a-realizar')}>
+                  A realizar
+                </a>
+                <a className="categoria" onClick={() => history.push('/carga-datos')}>
+                  Cargar producto
+                </a>
+              </div>
+            )
+          }
+
         </div>
         <div className='admin-icon' onClick={()=> logearOIrAIndexAdmin()}>
             <FontAwesomeIcon icon={faUser}/>
@@ -51,4 +71,4 @@ const Navbar = ({itemClick, adminLogeado, history, deslogearAdmin}) => {
   )
 }
 
-export default Navbar;
+export default withRouter(Navbar);
