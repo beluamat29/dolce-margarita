@@ -51,7 +51,7 @@ pedido_3 = Pedido.create(producto: producto_2,
 pedido_3.created_at = Date.parse('3rd Nov 2019')
 pedido_3.save
 
-Pedido.create(producto: producto_3,
+pedido_4 = Pedido.create(producto: producto_3,
               cantidad: 1,
               tipo_chocolate: 'semi amargo',
               precio_total: 70.0,
@@ -61,6 +61,9 @@ Pedido.create(producto: producto_3,
               lugar_retiro: 'Calle 6 5047 - Berazategui',
 
               estado: Pedido::FINALIZADO)
+
+pedido_4.created_at = Date.parse('29th Nov 2019')
+pedido_4.save
 
 Pedido.create(producto: producto_4,
               cantidad: 1,

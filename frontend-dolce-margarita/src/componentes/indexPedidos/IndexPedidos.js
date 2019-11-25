@@ -23,8 +23,8 @@ export default class IndexPedidos extends React.Component {
             pedidosTodos: [],
             pedidosAMostrar: [],
             estadosSeleccionados: [],
-            fechaInicio: null,
-            fechaFin: null
+            fechaFin: null,
+            fechaInicio: null
         }
     }
 
@@ -93,8 +93,14 @@ export default class IndexPedidos extends React.Component {
 
     setearFechaInicio = (date) => {
         this.setState({fechaInicio: date})
-        const pedidosPostFecha = this.state.pedidosTodos.filter(pedido => this.esFechaPosterior(pedido.created_at, date))
-        this.setState({pedidosAMostrar: pedidosPostFecha})
+        if(this.state.fechaFin) {
+            const pedidosPostFecha = this.state.pedidosTodos.filter(pedido => this.esFechaPosterior(pedido.created_at, date) && !this.esFechaPosterior(pedido.created_at, this.state.fechaFin))
+            this.setState({pedidosAMostrar: pedidosPostFecha})
+        } else {
+            const pedidosPostFecha = this.state.pedidosTodos.filter(pedido => this.esFechaPosterior(pedido.created_at, date))
+            this.setState({pedidosAMostrar: pedidosPostFecha})
+        }
+
     }
 
     esFechaPosterior = (fecha_pedido, fechaSeleccionada) => {
@@ -103,6 +109,13 @@ export default class IndexPedidos extends React.Component {
 
     setearFechaFin = (date) => {
         this.setState({fechaFin: date})
+        if(this.state.fechaInicio){
+            const pedidosPreFecha = this.state.pedidosTodos.filter(pedido => this.esFechaPosterior(pedido.created_at, this.state.fechaInicio) && !(this.esFechaPosterior(pedido.created_at, date)))
+            this.setState({pedidosAMostrar: pedidosPreFecha})
+        } else {
+            const pedidosPreFecha = this.state.pedidosTodos.filter(pedido => !(this.esFechaPosterior(pedido.created_at, date)))
+            this.setState({pedidosAMostrar: pedidosPreFecha})
+        }
     }
 
     renderEstado = (estado) => {
@@ -126,11 +139,13 @@ export default class IndexPedidos extends React.Component {
                     <DatePicker
                         locale={'es'}
                         selected={this.state.fechaInicio}
+                        onSelect={this.setearFechaInicio}
                         onChange={this.setearFechaInicio}
                     />
                     <DatePicker
                         locale={'es'}
                         selected={this.state.fechaFin}
+                        onSelect={this.setearFechaFin}
                         onChange={this.setearFechaFin}
                     />
 
