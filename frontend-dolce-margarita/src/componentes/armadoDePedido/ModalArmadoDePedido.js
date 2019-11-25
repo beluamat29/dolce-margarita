@@ -69,7 +69,7 @@ export default class ModalArmadoDePedido extends React.Component {
 
               <p className="subtitle">¡Elegí el chocolate que más te guste!</p>
               <div className="input-tipo-chocolate">
-                <Select
+                <Select className='fafafa'
                   value={this.state.tipoDeChocolateALlevar}
                   onChange={(tipo) => this.setState({tipoDeChocolateALlevar: tipo})}
                   options={tiposDeChocolate}
@@ -87,8 +87,8 @@ export default class ModalArmadoDePedido extends React.Component {
           </section>
 
           <footer className="modal-card-foot">
-            <button className="button dolce-button" onClick={this.props.onClose}>Cancelar</button>
-            <button className="button dolce-button" disabled={this.deshabilitar()} onClick={this.continuar}>
+            <button className="button" onClick={this.props.onClose}>Cancelar</button>
+            <button className="button" disabled={this.deshabilitar()} onClick={this.continuar}>
               Continuar
             </button>
           </footer>
