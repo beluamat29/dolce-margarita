@@ -8,12 +8,9 @@ import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
 import moment from "moment";
+import Select from "react-select";
 
 registerLocale('es', es)
-const estiloParaEstado = (nombreEstado) => {
-    const estadoYEstilo = estiloEstados.find(estiloEstado => estiloEstado.estado === nombreEstado)
-    return estadoYEstilo.estilo;
-}
 
 export default class IndexPedidos extends React.Component {
     constructor(props) {
@@ -22,7 +19,7 @@ export default class IndexPedidos extends React.Component {
         this.state = {
             pedidosTodos: [],
             pedidosAMostrar: [],
-            estadosSeleccionados: [],
+            estadoSeleccionado: null,
             fechaFin: null,
             fechaInicio: null
         }
@@ -53,42 +50,8 @@ export default class IndexPedidos extends React.Component {
     }
 
     filtrarPorEstado = (estado) => {
-        return this.state.pedidosTodos.filter((pedido) => pedido.estado === estado);
-    }
-
-    filtrarPorEstados = () => {
-        const {
-            estadosSeleccionados,
-            pedidosTodos
-        } = this.state
-        let pedidosFiltrados = [];
-
-        estadosSeleccionados.length === 0
-          ? this.setState({pedidosAMostrar: pedidosTodos})
-          : estadosSeleccionados.map(estadoSeleccionado => {
-              pedidosFiltrados = pedidosFiltrados.concat(this.filtrarPorEstado(estadoSeleccionado))
-              this.actualizarPedidosAMostrar(pedidosFiltrados);
-          })
-    }
-
-    estadoSeleccionado = (estado) => {
-        return this.state.estadosSeleccionados.includes(estado)
-    }
-
-    actualizarEstadosSeleccionados = (estado) => {
-        const nuevosEstados = this.estadoSeleccionado(estado) ? this.eliminarFiltroDeEstadoPedido(estado) : this.agregarFiltroDeEstadoPedido(estado)
-
-        this.setState({estadosSeleccionados: nuevosEstados}, () => this.filtrarPorEstados())
-    }
-
-    agregarFiltroDeEstadoPedido = (estado) => {
-        const estados = this.state.estadosSeleccionados
-        estados.push(estado)
-        return estados
-    }
-
-    eliminarFiltroDeEstadoPedido = (estado) => {
-        return this.state.estadosSeleccionados.filter((estadoSeleccionado) => estadoSeleccionado !== estado)
+        servicioPedidos.pedidosPorEstado(estado.value, this.actualizarPedidos)
+          .then(() => this.setState({estadoSeleccionado: estado}));
     }
 
     setearFechaInicio = (date) => {
@@ -118,63 +81,61 @@ export default class IndexPedidos extends React.Component {
         }
     }
 
-    renderEstado = (estado) => {
-        return (
-          <div className="filtro-estado">
-              <input
-                type="checkbox"
-                checked={this.estadoSeleccionado(estado)}
-                onChange={() => this.actualizarEstadosSeleccionados(estado)} />
-              <label className={`tag ${estiloParaEstado(estado)} is-medium`}> {estado} </label>
-          </div>
-        )
-    }
-
     render() {
         return (
             <div className="index-pedidos-home">
                 <p className="title is-1 is-spaced">Pedidos</p>
-                <div className='filtro-por-fechas'>
-                    <div>
-                        <p className='titulo-fechas'>Filtrar por fecha</p>
-                    </div>
-
-                    <div className='filtros'>
-                        <label className='etiqueta-filtro'>Desde:</label>
-                        <div className='filtro'>
-                            <DatePicker
-                                locale={'es'}
-                                selected={this.state.fechaInicio}
-                                onSelect={this.setearFechaInicio}
-                                onChange={this.setearFechaInicio}
-                            />
-                        </div>
-
-                        <label className='etiqueta-filtro'>Hasta:</label>
-                        <div className='filtro'>
-                            <DatePicker
-                                className={'filtro'}
-                                locale={'es'}
-                                selected={this.state.fechaFin}
-                                onSelect={this.setearFechaFin}
-                                onChange={this.setearFechaFin}
-                            />
-                        </div>
-                    </div>
-
-
-                </div>
-
                 <div className="container-filtrado">
-                    <input className="filtro-nombre-cliente" type="text" name="filter" placeholder="Buscar por cliente" onChange={ (event) => this.filtrarPorNombreCliente(event)}/>
-                    <div className="filtro-estado-container">
-                        {
-                            estados.map((estado) => this.renderEstado(estado))
-                        }
+                    <div className='filtro-container'>
+                        <div>
+                            <p className='titulo'>Filtrar por fecha</p>
+                        </div>
+
+                        <div className='filtros-fecha'>
+                            <label className='etiqueta-filtro'>Desde:</label>
+                            <div className='filtro'>
+                                <DatePicker
+                                  locale={'es'}
+                                  selected={this.state.fechaInicio}
+                                  onSelect={this.setearFechaInicio}
+                                  onChange={this.setearFechaInicio}
+                                />
+                            </div>
+
+                            <label className='etiqueta-filtro'>Hasta:</label>
+                            <div className='filtro'>
+                                <DatePicker
+                                  className={'filtro'}
+                                  locale={'es'}
+                                  selected={this.state.fechaFin}
+                                  onSelect={this.setearFechaFin}
+                                  onChange={this.setearFechaFin}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="filtro-container">
+                        <div>
+                            <p className='titulo'>Filtrar por Cliente</p>
+                        </div>
+                        <input className="filtro-nombre-cliente" type="text" name="filter" placeholder="Nombre del cliente" onChange={ (event) => this.filtrarPorNombreCliente(event)}/>
+                    </div>
+                    <div className="filtro-container">
+                        <div>
+                            <p className='titulo'>Filtrar por estado</p>
+                        </div>
+                        <div className="filtrado-por-estado">
+                            <Select
+                              placeholder={this.state.estadoSeleccionado || "Seleccioná un estado"}
+                              value={this.state.estadoSeleccionado}
+                              onChange={(estadoSeleccionado) => this.filtrarPorEstado(estadoSeleccionado)}
+                              options={estados}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="rows">
-                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido actualizarPedidos={this.reloadPageWith} pedido={informacionPedido}/>)}
+                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido actualizarPedidos={this.actualizarPedidos} pedido={informacionPedido}/>)}
                 </div>
             </div>
         )
