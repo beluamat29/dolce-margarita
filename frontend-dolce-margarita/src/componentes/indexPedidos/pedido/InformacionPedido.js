@@ -14,7 +14,8 @@ export default class InformacionPedido extends React.Component {
         super(props);
 
         this.state = {
-            mostrarInformacion: false
+            mostrarInformacion: false,
+            estado: props.pedido.estado
         }
     }
 
@@ -23,12 +24,12 @@ export default class InformacionPedido extends React.Component {
     }
 
     sePuedeCancelarPedido = () => {
-        return (this.props.pedido.estado === 'EN ESPERA' || this.props.pedido.estado === 'EN PREPARACION')
+        return (this.state.estado === 'EN ESPERA' || this.state.estado === 'EN PREPARACION')
     }
 
     cancelarPedido = () => {
-        return servicioPedidos.cancelarPedido(this.props.pedido)
-            .then(response => this.props.actualizarPedidos())
+        return servicioPedidos.cancelarPedido(this.props.pedido, 'CANCELADO')
+            .then(response => {this.setState({estado: response.data.estado})})
     }
 
     render() {
@@ -42,7 +43,7 @@ export default class InformacionPedido extends React.Component {
                         <p className="nombre-cliente">{pedido.nombre_cliente}</p>
                     </div>
                     <div>
-                        <LabelEstadoPedido estadoPedido={this.props.pedido.estado}/>
+                        <LabelEstadoPedido estadoPedido={this.state.estado}/>
                     </div>
                 </div>
                 <div className='nombre-y-boton'>

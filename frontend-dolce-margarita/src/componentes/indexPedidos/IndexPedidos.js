@@ -135,7 +135,7 @@ export default class IndexPedidos extends React.Component {
                     </div>
                 </div>
                 <div className="rows">
-                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido actualizarPedidos={this.reloadPageWith} pedido={informacionPedido}/>)}
+                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido actualizarPedidos={this.actualizarPedidos} pedido={informacionPedido}/>)}
                 </div>
             </div>
         )
