@@ -63,7 +63,7 @@ export default class CargaDeDatos extends React.Component {
             <div className="field">
                 <p className="subtitle is-4 is-spaced"> {campo} </p>
                 <div className="control">
-                    <input className="input is-primary" type="text" onChange={actualizarCampo}/>
+                    <input className="input" type="text" onChange={actualizarCampo}/>
                 </div>
             </div>
         )
@@ -148,7 +148,7 @@ export default class CargaDeDatos extends React.Component {
                 <div className="field">
                     <p className="subtitle is-4 is-spaced">Descripción</p>
                     <div className="control">
-                        <textarea className="textarea is-primary" type="text" onChange={this.agregarDescripcion}/>
+                        <textarea className="textarea" type="text" onChange={this.agregarDescripcion}/>
                     </div>
                 </div>
 
