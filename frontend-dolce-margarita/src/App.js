@@ -69,8 +69,9 @@ class App extends React.Component {
             exact
             path="/productos"
             render={props => <ListadoDeProductos
-              moldeSeleccionado={this.state.moldeSeleccionado}
-              onConfirm={(pedido) => this.setState({pedidoActual: pedido})}
+                adminLogeado={this.state.adminLogeado}
+                moldeSeleccionado={this.state.moldeSeleccionado}
+                onConfirm={(pedido) => this.setState({pedidoActual: pedido})}
             />}
           />
           <Route

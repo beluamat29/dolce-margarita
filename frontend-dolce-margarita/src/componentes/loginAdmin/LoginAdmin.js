@@ -49,9 +49,9 @@ export default class LoginAdmin extends React.Component {
                         </div>
                     </div>
 
-                    <button className="button is-danger datos" onClick={()=>this.validarDatos()}>
+                    <a className="button" onClick={()=>this.validarDatos()}>
                         Ingresar
-                    </button>
+                    </a>
                 </div>
             </div>
         )

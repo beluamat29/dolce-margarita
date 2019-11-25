@@ -36,7 +36,7 @@ export default class PedidosOCargaDeDatos extends React.Component {
                             <p>Chequea los pedidos hechos por tus clientes</p>
                         </div>
                         <div>
-                            <a className="button is-danger" onClick={() => this.irAIndexPedidos()}>Ver pedidos</a>
+                            <a className="button" onClick={() => this.irAIndexPedidos()}>Ver pedidos</a>
                         </div>
                     </div>
                     <div className="pedido-o-carga">
@@ -47,7 +47,7 @@ export default class PedidosOCargaDeDatos extends React.Component {
                             <p>Carga un nuevo producto a la lista de productos</p>
                         </div>
                         <div>
-                            <a className="button is-danger" onClick={() => this.irACargaDeProductos()}>Cargar</a>
+                            <a className="button" onClick={() => this.irACargaDeProductos()}>Cargar</a>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ export default class PedidosOCargaDeDatos extends React.Component {
                             <p>Conoce cuántos productos te faltan realizar</p>
                         </div>
                         <div>
-                            <a className="button is-danger" onClick={() => this.irAProductosARealizar()}>Ir</a>
+                            <a className="button" onClick={() => this.irAProductosARealizar()}>Ir</a>
                         </div>
                     </div>
                     <div className="pedido-o-carga">
@@ -71,7 +71,7 @@ export default class PedidosOCargaDeDatos extends React.Component {
                             <p>Conoce la lista de productos disponibles</p>
                         </div>
                         <div>
-                            <a className="button is-danger" onClick={() => this.irAIndexProductos()}>Ver productos</a>
+                            <a className="button" onClick={() => this.irAIndexProductos()}>Ver productos</a>
                         </div>
                     </div>
                 </div>

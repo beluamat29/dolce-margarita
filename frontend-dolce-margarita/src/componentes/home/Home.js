@@ -38,10 +38,6 @@ class Home extends React.Component {
                         moldes.map((molde) => this.renderCarta(molde.tituloCarta, molde.nombreCategoria))
                     }
                 </div>
-
-                <button className="logeo-admin button is-danger datos" onClick={()=>this.irALoginAdmin()}>
-                    Logearme como Admin
-                </button>
             </div>
         )
     }
