@@ -31,7 +31,7 @@ export default class LoginAdmin extends React.Component {
                 <div className="fields-container">
                     <div className="field">
                         <div className="control">
-                            <input className="input is-primary"
+                            <input className="input"
                                    type="text"
                                    placeholder="Usuario administrador"
                                    value={this.state.email}
@@ -40,7 +40,7 @@ export default class LoginAdmin extends React.Component {
                     </div>
                     <div className="field">
                         <div className="control">
-                            <input className="input is-primary"
+                            <input className="input"
                                    type="password"
                                    placeholder="Contraseña"
                                    value={this.state.contraseña}
@@ -49,7 +49,7 @@ export default class LoginAdmin extends React.Component {
                         </div>
                     </div>
 
-                    <button className="button is-danger datos" onClick={()=>this.validarDatos()}>
+                    <button className="button" onClick={()=>this.validarDatos()}>
                         Ingresar
                     </button>
                 </div>
