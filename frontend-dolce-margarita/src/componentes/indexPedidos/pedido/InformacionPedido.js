@@ -2,12 +2,8 @@ import React from 'react';
 import '../indexPedidos.scss';
 import LabelEstadoPedido from "./LabelEstadoPedido";
 import servicioPedidos from "../../../servicios/ServicioPedidos";
-import {estiloEstados} from "../../../constantes";
-
-const estiloParaEstado = (nombreEstado) => {
-    const estadoYEstilo = estiloEstados.find(estiloEstado => estiloEstado.estado === nombreEstado)
-    return estadoYEstilo.estilo;
-}
+import {estados} from "../../../constantes";
+import Select from "react-select";
 
 export default class InformacionPedido extends React.Component {
     constructor(props) {
@@ -30,6 +26,11 @@ export default class InformacionPedido extends React.Component {
     cancelarPedido = () => {
         return servicioPedidos.cancelarPedido(this.props.pedido, 'CANCELADO')
             .then(response => {this.setState({estado: response.data.estado})})
+    }
+
+    cambiarEstado = (estado) => {
+        return servicioPedidos.cancelarPedido(this.props.pedido, estado.value)
+          .then(response => {this.setState({estado: estado.label})})
     }
 
     render() {
@@ -80,8 +81,18 @@ export default class InformacionPedido extends React.Component {
                 <div className='tipo-chocolate'>
                     <p>{'Punto de retiro: ' + pedido.lugar_retiro}</p>
                 </div>
-                <div className='tipo-chocolate' style={{padding: '15px'}}>
-                    {this.sePuedeCancelarPedido() && <a className='button' onClick={this.cancelarPedido}>Cancelar</a>}
+                <div className="bottom-row">
+                    <div className='tipo-chocolate' style={{padding: '15px'}}>
+                        {this.sePuedeCancelarPedido() && <a className='button' onClick={this.cancelarPedido}>Cancelar</a>}
+                    </div>
+                    <div className="selector-estados">
+                        <Select
+                          placeholder={this.state.estado}
+                          value={this.state.estado}
+                          onChange={(estadoSeleccionado) => this.cambiarEstado(estadoSeleccionado)}
+                          options={estados}
+                        />
+                    </div>
                 </div>
             </div>}
           </div>

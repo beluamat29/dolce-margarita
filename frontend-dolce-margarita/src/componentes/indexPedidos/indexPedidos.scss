@@ -145,3 +145,14 @@ $info: black;
     }
   }
 }
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .selector-estados {
+    padding: 15px;
+    width: 250px;
+  }
+}
