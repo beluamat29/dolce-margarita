@@ -38,7 +38,7 @@ Pedido.create(producto: producto_5,
               lugar_retiro: 'Calle 6 5047 - Berazategui',
               estado: Pedido::ENTREGADO)
 
-Pedido.create(producto: producto_2,
+pedido_3 = Pedido.create(producto: producto_2,
               cantidad: 2,
               tipo_chocolate: 'con leche',
               precio_total: 1000.0,
@@ -48,7 +48,10 @@ Pedido.create(producto: producto_2,
               lugar_retiro: 'Calle 6 5047 - Berazategui',
               estado: Pedido::CANCELADO)
 
-Pedido.create(producto: producto_3,
+pedido_3.created_at = Date.parse('3rd Nov 2019')
+pedido_3.save
+
+pedido_4 = Pedido.create(producto: producto_3,
               cantidad: 1,
               tipo_chocolate: 'semi amargo',
               precio_total: 70.0,
@@ -58,6 +61,9 @@ Pedido.create(producto: producto_3,
               lugar_retiro: 'Calle 6 5047 - Berazategui',
 
               estado: Pedido::FINALIZADO)
+
+pedido_4.created_at = Date.parse('29th Nov 2019')
+pedido_4.save
 
 Pedido.create(producto: producto_4,
               cantidad: 1,
@@ -69,6 +75,26 @@ Pedido.create(producto: producto_4,
               lugar_retiro: 'Calle 6 5047 - Berazategui',
               estado: Pedido::ENTREGADO)
 
+
+Pedido.create(producto: producto_3,
+              cantidad: 4,
+              tipo_chocolate: 'semi amargo',
+              precio_total: 175.0,
+              nombre_cliente: 'Leonardo Conelly',
+              email_cliente: 'leo@gmail.com',
+              telefono_cliente: '1146763345',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::ENTREGADO)
+
+Pedido.create(producto: producto_2,
+              cantidad: 2,
+              tipo_chocolate: 'semi amargo',
+              precio_total: 1340.0,
+              nombre_cliente: 'Leonardo Conelly',
+              email_cliente: 'leo@gmail.com',
+              telefono_cliente: '1146763345',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::FINALIZADO)
 
 #Creando Usuarios Admin
 User.create(nombre: 'Elisabet', apellido: 'Tassiello', email: 'eliadmin@gmail.com', password: '123456', admin: true)

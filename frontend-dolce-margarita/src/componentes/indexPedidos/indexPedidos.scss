@@ -13,6 +13,26 @@ $info: black;
   justify-content: center;
   align-items: center;
 
+  .filtro-por-fechas {
+    width: 800px;
+    margin: 20px;
+
+    .titulo-fechas {
+      font-size: 18px;
+    }
+
+    .filtros {
+      display: flex;
+    }
+    .filtro {
+      margin-right: 10px;
+    }
+
+    .etiqueta-filtro {
+      margin-right: 5px;
+    }
+  }
+
   .container-filtrado {
     display: flex;
     flex-direction: column;
