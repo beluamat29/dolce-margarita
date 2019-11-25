@@ -25,7 +25,7 @@ class PedidosController < ApplicationController
   end
 
   def index
-    @pedidos = Pedido.all
+    @pedidos =  Pedido.where(estado: [Pedido::EN_ESPERA, Pedido::EN_PREPARACION])
     @renderred_pedidos = @pedidos.map do |pedido|
       producto_de_pedido = Producto.find_by(id: pedido.producto_id)
       pedido.as_json.merge!({'nombre_producto' => producto_de_pedido.nombre, 'peso_en_gramos' => producto_de_pedido.peso_en_gramos})
