@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   #Pedidos
   get 'pedidos', to: 'pedidos#index'
   get 'pedidosARealizar', to: 'pedidos#pedidos_a_realizar'
+  get 'pedidos/filtrar-estado', to: 'pedidos#filtrar_por_estado'
   post '/pedidos/crear', to: 'pedidos#create'
   put '/estadoPedidos', to: 'pedidos#modificar_estado'
   post '/pedidos/pagar', to: 'pedidos#pagar'

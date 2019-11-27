@@ -29,4 +29,10 @@ export const estiloEstados = [
     {estado: "CANCELADO", estilo: "is-danger"},
 ];
 
-export const estados = ['EN ESPERA', 'EN PREPARACION', 'FINALIZADO', 'ENTREGADO', 'CANCELADO'];
+export const estados = [
+    { value: 'EN ESPERA', label: 'En espera' },
+    { value: 'EN PREPARACION', label: 'En preparación' },
+    { value: 'FINALIZADO', label: 'Finalizado' },
+    { value: 'ENTREGADO', label: 'Entregado' },
+    { value: 'CANCELADO', label: 'Cancelado' },
+];

@@ -80,6 +80,8 @@ export default class CargaDeDatos extends React.Component {
         data.append('tamanio', this.state.tamaño)
         data.append('molde', this.state.formatoSeleccionado.value)
         servicioCarga.cargarProducto(data)
+            .then(response => this.props.history.push("/productos"))
+            .catch(e => alert("la carga fallo, por favor revisa los campos e intenta de nuevo"))
     }
 
     agregarImagen = event => {

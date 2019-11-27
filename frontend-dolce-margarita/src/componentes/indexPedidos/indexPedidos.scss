@@ -16,25 +16,47 @@ $info: black;
   .container-filtrado {
     display: flex;
     flex-direction: column;
-    width: 800px;
-    height: 100px;
     justify-content: space-between;
+    width:800px;
 
-    .filtro-nombre-cliente {
-      height: 45px;
-      width: 100%;
-      border-radius: 7px;
-      padding-left: 10px;
-      font-size: inherit;
-    }
-
-    .filtro-estado-container {
+    .filtro-container {
       display: flex;
-      justify-content: space-between;
-      width: 100%;
+      flex-direction: column;
+      margin-bottom: 20px;
 
-      label {
-        margin-left: 10px;
+      .titulo {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .filtros-fecha {
+        display: flex;
+
+        .filtro {
+          margin-right: 10px;
+        }
+
+        .etiqueta-filtro {
+          margin-right: 5px;
+        }
+      }
+
+      .filtro-nombre-cliente {
+        height: 37px;
+        width: 100%;
+        border-radius: 3px;
+        border: none;
+        padding-left: 10px;
+        font-size: inherit;
+      }
+
+      .filtro-estado-container {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          margin-left: 10px;
+        }
       }
     }
   }
@@ -121,5 +143,16 @@ $info: black;
       padding: 15px;
 
     }
+  }
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .selector-estados {
+    padding: 15px;
+    width: 250px;
   }
 }

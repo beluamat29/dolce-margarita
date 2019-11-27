@@ -59,13 +59,17 @@ class PedidosController < ApplicationController
   end
 
   def index
-    @pedidos = Pedido.all
+    @pedidos =  Pedido.where(estado: [Pedido::EN_ESPERA, Pedido::EN_PREPARACION])
     @renderred_pedidos = @pedidos.map do |pedido|
       producto_de_pedido = Producto.find_by(id: pedido.producto_id)
       pedido.as_json.merge!({'nombre_producto' => producto_de_pedido.nombre, 'peso_en_gramos' => producto_de_pedido.peso_en_gramos})
     end
 
     render json: @renderred_pedidos, status: :ok, nothing: true
+  end
+
+  def filtrar_por_estado
+    render json: pedido_to_json(Pedido.where(estado: params[:estado])), status: :ok, nothing: true
   end
 
   def pedidos_a_realizar
@@ -88,6 +92,13 @@ class PedidosController < ApplicationController
       params.permit(:pedido_parcial, :nombre_cliente, :email_cliente, :telefono_cliente, :lugar_retiro)
     rescue
       render status: :bad_request, nothing: true
+    end
+  end
+
+  def pedido_to_json(pedidos)
+    pedidos.map do |pedido|
+      producto_de_pedido = Producto.find_by(id: pedido.producto_id)
+      pedido.as_json.merge!({'nombre_producto' => producto_de_pedido.nombre, 'peso_en_gramos' => producto_de_pedido.peso_en_gramos})
     end
   end
 end

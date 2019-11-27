@@ -2,18 +2,39 @@
 
 .navbar{
   width: 100%;
-  background: #ffbfe0;;
-}
+  background-color: #f1bac4 !important;
 
-.navbar-start {
-  a:hover {
-    background: #e1a0c2;
-    font-weight: bold;
-    color: darkslategray;
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+
+    .admin-icon {
+      margin: 0 10px;
+    }
   }
 }
 
+.navbar-start {
+
+  div {
+    display: flex;
+  }
+
+  .categoria {
+    color: black;
+    margin: 15px;
+  }
+
+  a:hover {
+    font-weight: bold;
+    color: black;
+  }
+}
+
+
+
 .navbar-brand {
+  margin-left: 10px;
   img {
     height: 50px;
     width: 50px;

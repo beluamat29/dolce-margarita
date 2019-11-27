@@ -7,7 +7,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 export default class PedidosOCargaDeDatos extends React.Component {
 
     irACargaDeProductos = () => {
-        this.props.history.push("/cargaDatos")
+        this.props.history.push("/carga-datos")
     }
 
     irAIndexPedidos = () => {
@@ -16,12 +16,12 @@ export default class PedidosOCargaDeDatos extends React.Component {
     }
 
     irAProductosARealizar = () => {
-        this.props.history.push("/productosarealizar")
+        this.props.history.push("/productos-a-realizar")
 
     }
 
     irAIndexProductos = () => {
-        this.props.history.push("/listado")
+        this.props.history.push("/productos")
     }
 
     render() {

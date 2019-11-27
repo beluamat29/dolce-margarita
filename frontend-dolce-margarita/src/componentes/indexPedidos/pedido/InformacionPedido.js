@@ -2,19 +2,16 @@ import React from 'react';
 import '../indexPedidos.scss';
 import LabelEstadoPedido from "./LabelEstadoPedido";
 import servicioPedidos from "../../../servicios/ServicioPedidos";
-import {estiloEstados} from "../../../constantes";
-
-const estiloParaEstado = (nombreEstado) => {
-    const estadoYEstilo = estiloEstados.find(estiloEstado => estiloEstado.estado === nombreEstado)
-    return estadoYEstilo.estilo;
-}
+import {estados} from "../../../constantes";
+import Select from "react-select";
 
 export default class InformacionPedido extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            mostrarInformacion: false
+            mostrarInformacion: false,
+            estado: props.pedido.estado
         }
     }
 
@@ -23,12 +20,17 @@ export default class InformacionPedido extends React.Component {
     }
 
     sePuedeCancelarPedido = () => {
-        return (this.props.pedido.estado === 'EN ESPERA' || this.props.pedido.estado === 'EN PREPARACION')
+        return (this.state.estado === 'EN ESPERA' || this.state.estado === 'EN PREPARACION')
     }
 
     cancelarPedido = () => {
-        return servicioPedidos.cancelarPedido(this.props.pedido)
-            .then(response => this.props.actualizarPedidos())
+        return servicioPedidos.cancelarPedido(this.props.pedido, 'CANCELADO')
+            .then(response => {this.setState({estado: response.data.estado})})
+    }
+
+    cambiarEstado = (estado) => {
+        return servicioPedidos.cancelarPedido(this.props.pedido, estado.value)
+          .then(response => {this.setState({estado: estado.label})})
     }
 
     render() {
@@ -42,7 +44,7 @@ export default class InformacionPedido extends React.Component {
                         <p className="nombre-cliente">{pedido.nombre_cliente}</p>
                     </div>
                     <div>
-                        <LabelEstadoPedido estadoPedido={this.props.pedido.estado}/>
+                        <LabelEstadoPedido estadoPedido={this.state.estado}/>
                     </div>
                 </div>
                 <div className='nombre-y-boton'>
@@ -79,8 +81,18 @@ export default class InformacionPedido extends React.Component {
                 <div className='tipo-chocolate'>
                     <p>{'Punto de retiro: ' + pedido.lugar_retiro}</p>
                 </div>
-                <div className='tipo-chocolate' style={{padding: '15px'}}>
-                    {this.sePuedeCancelarPedido() && <a className='button' onClick={this.cancelarPedido}>Cancelar</a>}
+                <div className="bottom-row">
+                    <div className='tipo-chocolate' style={{padding: '15px'}}>
+                        {this.sePuedeCancelarPedido() && <a className='button' onClick={this.cancelarPedido}>Cancelar</a>}
+                    </div>
+                    <div className="selector-estados">
+                        <Select
+                          placeholder={this.state.estado}
+                          value={this.state.estado}
+                          onChange={(estadoSeleccionado) => this.cambiarEstado(estadoSeleccionado)}
+                          options={estados}
+                        />
+                    </div>
                 </div>
             </div>}
           </div>

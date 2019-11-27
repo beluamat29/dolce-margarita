@@ -7,12 +7,11 @@ import {withRouter} from "react-router-dom";
 class Home extends React.Component {
 
     irAPaginaDeListados = (molde) => {
-        this.props.seleccionarMolde(molde)
-        this.props.history.push("/listado")
+        this.props.seleccionarMolde(molde, () => this.props.history.push("/productos"))
     }
 
     irALoginAdmin = () => {
-        this.props.history.push("/adminLogin")
+        this.props.history.push("/admin-login")
 
     }
 
