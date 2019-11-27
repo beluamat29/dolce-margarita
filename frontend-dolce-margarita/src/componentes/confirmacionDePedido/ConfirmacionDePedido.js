@@ -47,6 +47,9 @@ export default class ConfirmacionDePedido extends React.Component {
     if(medioPago === 'efectivo') {
       servicio.confirmarPedido(this.props.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label, medioPago, false)
         .then(data => this.props.history.push('/pedido-creado'))
+    } else {
+      servicio.pagarPedido(this.props.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label)
+        .then(init_point => window.location = init_point)
     }
 
   }

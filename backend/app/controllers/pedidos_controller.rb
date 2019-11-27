@@ -21,7 +21,7 @@ class PedidosController < ApplicationController
             }
         ],
         "back_urls": {
-            success: "http://localhost:3001/confirmacion",
+            success: "http://localhost:3001/pedido-creado",
             failure: "http://localhost:3001/confirmacion",
             pending: "http://localhost:3001/confirmacion"
         },
