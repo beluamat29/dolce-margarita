@@ -14,6 +14,8 @@ export default class ConfirmacionDePedido extends React.Component {
       telefonoClientePedido: '',
       puntoDeRetiro: '',
       medioPago: '',
+      pedido: props.pedido || JSON.parse(localStorage.getItem('pedido')),
+
     }
   }
 
@@ -45,36 +47,39 @@ export default class ConfirmacionDePedido extends React.Component {
     } = this.state;
 
     if(medioPago === 'efectivo') {
-      servicio.confirmarPedido(this.props.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label, medioPago, false)
+      servicio.confirmarPedido(this.state.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label, medioPago, false)
         .then(data => this.props.history.push('/pedido-creado'))
     } else {
-      servicio.pagarPedido(this.props.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label)
-        .then(init_point => window.location = init_point)
-    }
-
-  }
-
-  mercadoPago = () => {
-    const {
-      nombreClienteDelPedido,
-      emailClientePedido,
-      telefonoClientePedido,
-      puntoDeRetiro
-    } = this.state;
-
-    servicio.pagarPedido(this.props.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label)
-      .then(init_point => {
-        this.setState({
-          init_point,
-          pagar: true
+      servicio.pagarPedido(this.state.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label)
+        .then(init_point => {
+          window.location = init_point
         })
-      })
-
-      .catch(e => console.log(e))
+    }
   }
 
   elegirMedioPago = (event) => {
+    localStorage.setItem('medioPago', JSON.stringify(event.target.value))
     this.setState({medioPago: event.target.value})
+  }
+
+  setEmailCliente = (emailCliente) => {
+    localStorage.setItem('emailClientePedido', JSON.stringify(emailCliente))
+    this.setState({emailClientePedido: emailCliente})
+  }
+
+  setNombreCliente = (nombreCliente) => {
+    localStorage.setItem('nombreClienteDelPedido', JSON.stringify(nombreCliente))
+    this.setState({nombreClienteDelPedido: nombreCliente})
+  }
+
+  setTelefonoCliente = (telefonoCliente) => {
+    localStorage.setItem('telefonoClientePedido', JSON.stringify(telefonoCliente))
+    this.setState({telefonoClientePedido: telefonoCliente})
+  }
+
+  setPuntoRetiro = (puntosDeRetiro) => {
+    localStorage.setItem('puntoDeRetiro', JSON.stringify(puntosDeRetiro))
+    this.setState({puntoDeRetiro: puntosDeRetiro})
   }
 
   render() {
@@ -101,7 +106,7 @@ export default class ConfirmacionDePedido extends React.Component {
                   className="input field nombre-cliente"
                   type="text"
                   value={this.state.nombreClienteDelPedido}
-                  onChange={(event) => this.setState({nombreClienteDelPedido: event.target.value})}
+                  onChange={(event) => this.setNombreCliente(event.target.value)}
                 />
               </div>
 
@@ -111,7 +116,7 @@ export default class ConfirmacionDePedido extends React.Component {
                   placeholder={''}
                   className="field nombre-cliente"
                   value={this.state.puntoDeRetiro}
-                  onChange={(tipo) => this.setState({puntoDeRetiro: tipo})}
+                  onChange={(puntoRetiro) => this.setPuntoRetiro(puntoRetiro)}
                   options={puntosDeRetiro}
                 />
               </div>
@@ -124,7 +129,7 @@ export default class ConfirmacionDePedido extends React.Component {
                   className="input field nombre-cliente"
                   type="text"
                   value={this.state.emailClientePedido}
-                  onChange={(event) => this.setState({emailClientePedido: event.target.value})}
+                  onChange={(event) => this.setEmailCliente(event.target.value)}
                 />
               </div>
 
@@ -142,7 +147,7 @@ export default class ConfirmacionDePedido extends React.Component {
                   className="input field nombre-cliente"
                   type="number"
                   value={this.state.telefonoClientePedido}
-                  onChange={(event) => this.setState({telefonoClientePedido: event.target.value})}/>
+                  onChange={(event) => this.setTelefonoCliente(event.target.value)}/>
               </div>
 
               <div className="field">

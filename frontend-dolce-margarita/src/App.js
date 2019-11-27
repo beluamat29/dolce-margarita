@@ -32,9 +32,14 @@ class App extends React.Component {
     localStorage.setItem('adminLogeado', true)
   }
 
-    seleccionarMolde = (moldeSeleccionado, irAListado) => {
-        this.setState({moldeSeleccionado}, irAListado)
-    }
+  seleccionarMolde = (moldeSeleccionado, irAListado) => {
+    this.setState({moldeSeleccionado}, irAListado)
+  }
+
+  confirmarPedidoParcial = (pedido) => {
+    this.setState({pedidoActual: pedido})
+    localStorage.setItem('pedido', JSON.stringify(pedido))
+  }
 
   render() {
     return (
@@ -71,7 +76,7 @@ class App extends React.Component {
             path="/productos"
             render={props => <ListadoDeProductos
               moldeSeleccionado={this.state.moldeSeleccionado}
-              onConfirm={(pedido) => this.setState({pedidoActual: pedido})}
+              onConfirm={(pedido) => this.confirmarPedidoParcial(pedido)}
             />}
           />
           <Route
