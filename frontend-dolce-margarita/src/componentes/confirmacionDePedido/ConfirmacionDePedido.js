@@ -12,7 +12,8 @@ export default class ConfirmacionDePedido extends React.Component {
       nombreClienteDelPedido: '',
       emailClientePedido: '',
       telefonoClientePedido: '',
-      puntoDeRetiro: ''
+      puntoDeRetiro: '',
+      medioPago: '',
     }
   }
 
@@ -21,10 +22,11 @@ export default class ConfirmacionDePedido extends React.Component {
       nombreClienteDelPedido,
       emailClientePedido,
       telefonoClientePedido,
-      puntoDeRetiro
+      puntoDeRetiro,
+      medioPago
     } = this.state;
 
-    return nombreClienteDelPedido === '' || emailClientePedido === '' || telefonoClientePedido === '' || puntoDeRetiro === ''
+    return nombreClienteDelPedido === '' || emailClientePedido === '' || telefonoClientePedido === '' || puntoDeRetiro === '' || medioPago === ''
   }
 
   calcularTotal = () => {
@@ -61,6 +63,10 @@ export default class ConfirmacionDePedido extends React.Component {
       })
 
       .catch(e => console.log(e))
+  }
+
+  elegirMedioPago = (event) => {
+    this.setState({medioPago: event.target.value})
   }
 
   render() {
@@ -126,7 +132,7 @@ export default class ConfirmacionDePedido extends React.Component {
 
                 <input
                   className="input field nombre-cliente"
-                  type="text"
+                  type="number"
                   value={this.state.telefonoClientePedido}
                   onChange={(event) => this.setState({telefonoClientePedido: event.target.value})}/>
               </div>
@@ -137,14 +143,27 @@ export default class ConfirmacionDePedido extends React.Component {
                 </p>
               </div>
             </div>
+
+            <div className="forma-pago">
+              <p className="subtitle">Elegí tu forma de pago</p>
+              <label>
+                <input type="radio" value="efectivo" checked={this.state.medioPago === 'efectivo'} onChange={this.elegirMedioPago}/>
+                Efectivo
+              </label>
+              <label>
+                <input type="radio" value="tarjeta" checked={this.state.medioPago === 'tarjeta'} onChange={this.elegirMedioPago}/>
+                Tarjeta
+              </label>
+            </div>
+
             <div className="field-row total-row">
               <p>Total: {`$ ${pedido.precio_total}`}</p>
             </div>
           </div>
 
           <footer className="card-footer">
-            { this.state.pagar && <a href={this.state.init_point}>Pagar</a> }
-            <button className="button is-danger" onClick={this.mercadoPago}>Aceptar</button>
+            {/*{ this.state.pagar && <a href={this.state.init_point}>Pagar</a> }*/}
+            <button className="button is-danger" disabled={this.deshabilitar()} onClick={this.mercadoPago}>Aceptar</button>
             {/*<button className="button is-success" onClick={this.confirmarPedido}>Continuar</button>*/}
             <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
           </footer>
