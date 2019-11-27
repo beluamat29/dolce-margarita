@@ -9,7 +9,6 @@ import ConfirmacionDePedido from "./componentes/confirmacionDePedido/Confirmacio
 import IndexPedidos from "./componentes/indexPedidos/IndexPedidos";
 import PedidosOCargaDeDatos from "./componentes/loginAdmin/PedidosOCargaDeDatos";
 import ProductosARealizar from "./productosARealizar/ProductosARealizar";
-import Pagar from "./componentes/pagar/Pagar";
 
 class App extends React.Component{
 
@@ -17,7 +16,6 @@ class App extends React.Component{
         moldeSeleccionado: "figuras",
         pedidoActual: {},
         adminLogeado: false,
-        mp_id: ''
     }
 
     seleccionarMolde = (moldeSeleccionado) => {
@@ -26,10 +24,6 @@ class App extends React.Component{
 
     adminHasLogged = () => {
         this.setState({adminLogeado: true})
-    }
-
-    mP = (mp_id, redirect) => {
-        this.setState({mp_id}, redirect)
     }
 
     render() {
@@ -82,15 +76,8 @@ class App extends React.Component{
                         exact
                         path="/confirmacion"
                         render={props => <ConfirmacionDePedido
-                            pedido={this.state.pedidoActual} irAMP={this.mP} {...props}
+                            pedido={this.state.pedidoActual} {...props}
                         />}
-                    />
-                    <Route
-                      exact
-                      path="/pagar"
-                      render={props => <Pagar
-                        preference_id={this.state.mp_id} {...props}
-                      />}
                     />
                 </Switch>
             </BrowserRouter>
