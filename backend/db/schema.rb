@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191109175012) do
+ActiveRecord::Schema.define(version: 20191127213533) do
 
   create_table "pedidos", force: :cascade do |t|
     t.datetime "created_at",                             null: false
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20191109175012) do
     t.string   "lugar_retiro"
     t.float    "precio_total"
     t.string   "estado",           default: "EN ESPERA"
+    t.string   "medio_de_pago"
+    t.string   "pagado"
   end
 
   create_table "productos", force: :cascade do |t|
