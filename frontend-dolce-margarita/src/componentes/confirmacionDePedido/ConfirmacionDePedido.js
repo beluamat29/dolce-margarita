@@ -40,10 +40,15 @@ export default class ConfirmacionDePedido extends React.Component {
       nombreClienteDelPedido,
       emailClientePedido,
       telefonoClientePedido,
-      puntoDeRetiro
+      puntoDeRetiro,
+      medioPago
     } = this.state;
 
-    servicio.confirmarPedido(this.props.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label)
+    if(medioPago === 'efectivo') {
+      servicio.confirmarPedido(this.props.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label, medioPago, false)
+        .then(data => this.props.history.push('/pedido-creado'))
+    }
+
   }
 
   mercadoPago = () => {
@@ -163,7 +168,7 @@ export default class ConfirmacionDePedido extends React.Component {
 
           <footer className="card-footer">
             {/*{ this.state.pagar && <a href={this.state.init_point}>Pagar</a> }*/}
-            <button className="button is-danger" disabled={this.deshabilitar()} onClick={this.mercadoPago}>Aceptar</button>
+            <button className="button is-danger" disabled={this.deshabilitar()} onClick={this.confirmarPedido}>Aceptar</button>
             {/*<button className="button is-success" onClick={this.confirmarPedido}>Continuar</button>*/}
             <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
           </footer>

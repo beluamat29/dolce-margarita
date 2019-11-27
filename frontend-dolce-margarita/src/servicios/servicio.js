@@ -36,15 +36,17 @@ export default class Servicio {
             .then(response => {actualizarProductos(response.data)})
     }
 
-    static confirmarPedido(pedido, nombreCliente, emailCliente, telefonoCliente, puntoDeRetiro) {
+    static confirmarPedido(pedido, nombreCliente, emailCliente, telefonoCliente, puntoDeRetiro, medioPago, pagado) {
         return axios.post(`${SERVICE_URL}pedidos/crear`, {
             pedido_parcial: pedido,
             nombre_cliente: nombreCliente,
             email_cliente: emailCliente,
             telefono_cliente: telefonoCliente,
-            lugar_retiro: puntoDeRetiro
+            lugar_retiro: puntoDeRetiro,
+            medio_de_pago: medioPago,
+            pagado: pagado
         })
-          .then(response => alert("Tu pedido se ha realizado con exito!"))
+          .then(response => { return response })
     }
 
     static pagarPedido(pedido, nombreCliente, emailCliente, telefonoCliente, puntoDeRetiro) {

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20191127213533) do
     t.float    "precio_total"
     t.string   "estado",           default: "EN ESPERA"
     t.string   "medio_de_pago"
-    t.string   "pagado"
+    t.boolean  "pagado"
   end
 
   create_table "productos", force: :cascade do |t|

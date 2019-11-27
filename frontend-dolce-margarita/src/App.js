@@ -10,6 +10,7 @@ import IndexPedidos from "./componentes/indexPedidos/IndexPedidos";
 import PedidosOCargaDeDatos from "./componentes/loginAdmin/PedidosOCargaDeDatos";
 import ProductosARealizar from "./productosARealizar/ProductosARealizar";
 import Navbar from "./componentes/navbar/Navbar";
+import {PedidoCreadoExito} from "./componentes/pedidoCreado/PedidoCreadoExito";
 
 class App extends React.Component {
   constructor(props) {
@@ -89,6 +90,14 @@ class App extends React.Component {
             exact
             path="/confirmacion"
             render={props => <ConfirmacionDePedido
+              pedido={this.state.pedidoActual} {...props}
+            />}
+          />
+
+          <Route
+            exact
+            path="/pedido-creado"
+            render={props => <PedidoCreadoExito
               pedido={this.state.pedidoActual} {...props}
             />}
           />

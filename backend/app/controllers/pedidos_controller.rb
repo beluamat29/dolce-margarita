@@ -47,6 +47,8 @@ class PedidosController < ApplicationController
         email_cliente: params[:email_cliente],
         telefono_cliente: params[:telefono_cliente],
         lugar_retiro: params[:lugar_retiro],
+        medio_de_pago: params[:medio_de_pago],
+        pagado: params[:pagado]
     )
 
     render json: @pedido, status: :created, nothing: true
