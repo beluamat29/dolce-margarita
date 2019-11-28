@@ -31,12 +31,6 @@ export default class ConfirmacionDePedido extends React.Component {
     return nombreClienteDelPedido === '' || emailClientePedido === '' || telefonoClientePedido === '' || puntoDeRetiro === '' || medioPago === ''
   }
 
-  calcularTotal = () => {
-    const {pedido} = this.props;
-
-    return pedido.producto.precio * pedido.cantidad
-  }
-
   confirmarPedido = () => {
     const {
       nombreClienteDelPedido,
@@ -47,8 +41,7 @@ export default class ConfirmacionDePedido extends React.Component {
     } = this.state;
 
     if(medioPago === 'efectivo') {
-      servicio.confirmarPedido(this.state.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label, medioPago, false)
-        .then(data => this.props.history.push('/pedido-creado'))
+      this.props.history.push('/creado')
     } else {
       servicio.pagarPedido(this.state.pedido, nombreClienteDelPedido, emailClientePedido, telefonoClientePedido, puntoDeRetiro.label)
         .then(init_point => {
@@ -83,7 +76,7 @@ export default class ConfirmacionDePedido extends React.Component {
   }
 
   render() {
-    const {pedido} = this.props;
+    const {pedido} = this.state;
 
     return (
       <div className="confirmacion-pedido">

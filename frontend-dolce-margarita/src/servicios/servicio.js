@@ -46,7 +46,7 @@ export default class Servicio {
             medio_de_pago: medioPago,
             pagado: pagado
         })
-          .then(response => { return response })
+          .then(response => { return response.data })
     }
 
     static pagarPedido(pedido, nombreCliente, emailCliente, telefonoCliente, puntoDeRetiro) {

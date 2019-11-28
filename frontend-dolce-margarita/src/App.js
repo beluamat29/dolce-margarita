@@ -10,7 +10,8 @@ import IndexPedidos from "./componentes/indexPedidos/IndexPedidos";
 import PedidosOCargaDeDatos from "./componentes/loginAdmin/PedidosOCargaDeDatos";
 import ProductosARealizar from "./productosARealizar/ProductosARealizar";
 import Navbar from "./componentes/navbar/Navbar";
-import {PedidoCreadoExito} from "./componentes/pedidoCreado/PedidoCreadoExito";
+import PedidoCreado from "./componentes/pedidoCreado/PedidoCreado";
+import {Error} from "./componentes/error/Error";
 
 class App extends React.Component {
   constructor(props) {
@@ -101,9 +102,32 @@ class App extends React.Component {
 
           <Route
             exact
-            path="/pedido-creado"
-            render={props => <PedidoCreadoExito
-              pedido={this.state.pedidoActual} {...props}
+            path="/creado"
+            render={props => <PedidoCreado
+              pedido={this.state.pedidoActual} pagado={false} estadoDelPago="No pagado" {...props}
+            />}
+          />
+
+          <Route
+            exact
+            path="/creado-pagado"
+            render={props => <PedidoCreado
+              pedido={this.state.pedidoActual} pagado={true} estadoDelPago="Pagado" {...props}
+            />}
+          />
+
+          <Route
+            exact
+            path="/creado-pendiente"
+            render={props => <PedidoCreado
+              pedido={this.state.pedidoActual} pagado={false} estadoDelPago="Pendiente de aprobación" {...props}
+            />}
+          />
+
+          <Route
+            exact
+            path="/error"
+            render={props => <Error {...props}
             />}
           />
         </Switch>
