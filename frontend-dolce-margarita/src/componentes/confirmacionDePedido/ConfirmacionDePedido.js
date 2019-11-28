@@ -161,11 +161,11 @@ export default class ConfirmacionDePedido extends React.Component {
               <p className="subtitle">Elegí tu forma de pago</p>
               <label>
                 <input type="radio" value="efectivo" checked={this.state.medioPago === 'efectivo'} onChange={this.elegirMedioPago}/>
-                Efectivo
+                Efectivo (al momento de entrega)
               </label>
               <label>
                 <input type="radio" value="tarjeta" checked={this.state.medioPago === 'tarjeta'} onChange={this.elegirMedioPago}/>
-                Tarjeta
+                Mercado Pago
               </label>
             </div>
 
@@ -175,9 +175,7 @@ export default class ConfirmacionDePedido extends React.Component {
           </div>
 
           <footer className="card-footer">
-            {/*{ this.state.pagar && <a href={this.state.init_point}>Pagar</a> }*/}
             <button className="button is-danger" disabled={this.deshabilitar()} onClick={this.confirmarPedido}>Aceptar</button>
-            {/*<button className="button is-success" onClick={this.confirmarPedido}>Continuar</button>*/}
             <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
           </footer>
         </div>
