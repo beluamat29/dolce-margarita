@@ -1,5 +1,4 @@
-$card-background-color: #FCC7EB;
-
+$input-focus-border-color: #e297a6;
 @import "../../../node_modules/bulma/bulma.sass";
 @import "../../../node_modules/bulma/sass/components/card";
 .home-page-login {
@@ -26,6 +25,14 @@ $card-background-color: #FCC7EB;
 
     .button {
       widht: 85px;
+      border-color: #e297a6;
+      background-color: #e297a6;
+      color: white;
     }
+  }
+
+  .input:focus {
+    border-color: #e297a6;
+    box-shadow: 1px 1px #e297a6;
   }
 }

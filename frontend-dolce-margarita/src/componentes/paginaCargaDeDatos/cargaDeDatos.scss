@@ -50,12 +50,16 @@ $info: black;
        margin-bottom: 10px;
     }
 
-    .textarea {
-      border-color: black;
+    .control {
+      .textarea :active{
+        border-color: #e297a6;
+        box-shadow: 1px 1px #e297a6;
+      }
     }
 
-    .input {
-      border-color: black;
+    .input:focus {
+      border-color: #e297a6;
+      box-shadow: 1px 1px #e297a6;
     }
 
     .control {

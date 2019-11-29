@@ -24,6 +24,10 @@ $primary: #ffa5cd;
       .input-cantidad {
         width: 80px;
         margin-bottom: 15px;
+        .input:focus {
+          border-color: #e297a6;
+          box-shadow: 1px 1px #e297a6;
+        }
       }
 
       .input-tipo-chocolate {
@@ -33,6 +37,14 @@ $primary: #ffa5cd;
       .subtitle {
         margin-bottom: 10px;
       }
+    }
+  }
+
+  .modal-card-foot {
+    .button {
+      border-color: #e297a6;
+      background-color: #e297a6;
+      color: white;
     }
   }
 }

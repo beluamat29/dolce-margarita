@@ -168,8 +168,8 @@ export default class ConfirmacionDePedido extends React.Component {
           </div>
 
           <footer className="card-footer">
-            <button className="button is-danger" disabled={this.deshabilitar()} onClick={this.confirmarPedido}>Aceptar</button>
-            <button className="button is-danger" onClick={this.props.onClose}>Cancelar</button>
+            <a className="button button-confirmar" disabled={this.deshabilitar()} onClick={this.confirmarPedido}>Aceptar</a>
+            <a className="button button-confirmar" onClick={this.props.onClose}>Cancelar</a>
           </footer>
         </div>
       </div>

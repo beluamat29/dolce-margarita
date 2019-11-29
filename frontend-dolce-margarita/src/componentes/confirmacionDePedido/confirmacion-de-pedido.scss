@@ -14,6 +14,7 @@
 
   .pedido {
     width: 653px;
+    margin-bottom: 35px;
     height: 60%;
 
     .card-header {
@@ -51,6 +52,11 @@
         margin-bottom: 10px;
         text-align: left;
         margin-right: 27px;
+
+        .input:focus {
+          border-color: #e297a6;
+          box-shadow: 1px 1px #e297a6;
+        }
 
         .retiro-text {
           margin-top: 13px;
@@ -105,8 +111,15 @@
       height: 60px;
       justify-content: flex-end;
 
-      button {
-        margin: 27px 14px 5px;
+      .button-confirmar {
+        margin: 10px 14px 5px;
+        border-color: #e297a6;
+        background-color: #e297a6;
+        color: white;
+      }
+
+      .button {
+        margin: 10px 14px 5px;
       }
     }
     .titulos {
