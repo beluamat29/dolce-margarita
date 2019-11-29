@@ -64,7 +64,7 @@ export default class ModalArmadoDePedido extends React.Component {
                   className="input"
                   type="number"
                   value={this.state.cantidadALlevar}
-                  onChange={(event) => this.setState({cantidadALlevar: event.target.value})}/>
+                  onChange={(event) => this.setState({cantidadALlevar: Number(event.target.value)})}/>
               </div>
 
               <p className="subtitle">¡Elegí el chocolate que más te guste!</p>

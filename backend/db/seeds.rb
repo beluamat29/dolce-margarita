@@ -26,7 +26,9 @@ Pedido.create(producto: producto_1,
               email_cliente: 'lulialonso@gmail.com',
               telefono_cliente: '1144553345',
               lugar_retiro: 'Calle 6 5047 - Berazategui',
-              estado: Pedido::EN_ESPERA)
+              estado: Pedido::EN_ESPERA,
+              medio_de_pago: 'efectivo',
+              pagado: false)
 
 Pedido.create(producto: producto_5,
               cantidad: 2,
@@ -36,7 +38,9 @@ Pedido.create(producto: producto_5,
               email_cliente: 'lulialonso@gmail.com',
               telefono_cliente: '1144553345',
               lugar_retiro: 'Calle 6 5047 - Berazategui',
-              estado: Pedido::ENTREGADO)
+              estado: Pedido::ENTREGADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
 
 pedido_3 = Pedido.create(producto: producto_2,
               cantidad: 2,
@@ -46,7 +50,9 @@ pedido_3 = Pedido.create(producto: producto_2,
               email_cliente: 'eli@gmail.com',
               telefono_cliente: '1147853345',
               lugar_retiro: 'Calle 6 5047 - Berazategui',
-              estado: Pedido::CANCELADO)
+              estado: Pedido::CANCELADO,
+              medio_de_pago: 'efectivo',
+              pagado: false)
 
 pedido_3.created_at = Date.parse('3rd Nov 2019')
 pedido_3.save
@@ -59,8 +65,9 @@ pedido_4 = Pedido.create(producto: producto_3,
               email_cliente: 'eltumba@gmail.com',
               telefono_cliente: '1147853345',
               lugar_retiro: 'Calle 6 5047 - Berazategui',
-
-              estado: Pedido::FINALIZADO)
+              estado: Pedido::FINALIZADO,
+              medio_de_pago: 'tarjeta',
+              pagado: true)
 
 pedido_4.created_at = Date.parse('29th Nov 2019')
 pedido_4.save
@@ -73,7 +80,9 @@ Pedido.create(producto: producto_4,
               email_cliente: 'micaalonso@gmail.com',
               telefono_cliente: '1143963345',
               lugar_retiro: 'Calle 6 5047 - Berazategui',
-              estado: Pedido::ENTREGADO)
+              estado: Pedido::ENTREGADO,
+              medio_de_pago: 'tarjeta',
+              pagado: true)
 
 
 Pedido.create(producto: producto_3,
@@ -84,7 +93,9 @@ Pedido.create(producto: producto_3,
               email_cliente: 'leo@gmail.com',
               telefono_cliente: '1146763345',
               lugar_retiro: 'Calle 6 5047 - Berazategui',
-              estado: Pedido::ENTREGADO)
+              estado: Pedido::ENTREGADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
 
 Pedido.create(producto: producto_2,
               cantidad: 2,
@@ -94,7 +105,9 @@ Pedido.create(producto: producto_2,
               email_cliente: 'leo@gmail.com',
               telefono_cliente: '1146763345',
               lugar_retiro: 'Calle 6 5047 - Berazategui',
-              estado: Pedido::FINALIZADO)
+              estado: Pedido::FINALIZADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
 
 #Creando Usuarios Admin
 User.create(nombre: 'Elisabet', apellido: 'Tassiello', email: 'eliadmin@gmail.com', password: '123456', admin: true)

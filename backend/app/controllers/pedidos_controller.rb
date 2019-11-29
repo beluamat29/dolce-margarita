@@ -1,9 +1,43 @@
+require 'mercadopago.rb'
+
 class PedidosController < ApplicationController
   before_action :pedido_params, only: [:create]
+
+  def pagar
+    # Agrega credenciales
+    $mp = MercadoPago.new('TEST-2872476240587920-110820-05f82c909be025c282ace8c337dcfa22-77626432')
+
+    pedido_parcial = params[:pedido_parcial]
+    producto = Producto.find_by(id: pedido_parcial[:producto][:id])
+
+    # Crea un objeto de preferencia
+    preference_data = {
+        "items": [
+            {
+                "title": producto.nombre,
+                "unit_price": producto.precio,
+                "quantity": pedido_parcial[:cantidad],
+                "currency_id": "ARS"
+            }
+        ],
+        "back_urls": {
+            success: "http://localhost:3001/creado-pagado",
+            failure: "http://localhost:3001/confirmacion",
+            pending: "http://localhost:3001/creado-pendiente"
+        },
+        "auto_return": "all"
+    }
+    preference = $mp.create_preference(preference_data)
+
+    @init_point = preference["response"]["sandbox_init_point"]
+
+    render json: @init_point, status: :created, nothing: true
+  end
 
   def create
     pedido_parcial = params[:pedido_parcial]
     producto = Producto.find_by(id: pedido_parcial[:producto][:id])
+
     @pedido = Pedido.create!(
         producto: producto,
         cantidad: pedido_parcial[:cantidad],
@@ -13,6 +47,8 @@ class PedidosController < ApplicationController
         email_cliente: params[:email_cliente],
         telefono_cliente: params[:telefono_cliente],
         lugar_retiro: params[:lugar_retiro],
+        medio_de_pago: params[:medio_de_pago],
+        pagado: params[:pagado]
     )
 
     render json: @pedido, status: :created, nothing: true
@@ -43,6 +79,7 @@ class PedidosController < ApplicationController
                               .where(tipo_chocolate: params[:tipo_chocolate], estado: Pedido::EN_ESPERA)
     render json: @pedidos_a_realizar, status: :ok, nothing: true
   end
+
   private
 
   def pedido_params

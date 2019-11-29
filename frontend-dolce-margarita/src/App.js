@@ -10,6 +10,8 @@ import IndexPedidos from "./componentes/indexPedidos/IndexPedidos";
 import PedidosOCargaDeDatos from "./componentes/loginAdmin/PedidosOCargaDeDatos";
 import ProductosARealizar from "./productosARealizar/ProductosARealizar";
 import Navbar from "./componentes/navbar/Navbar";
+import PedidoCreado from "./componentes/pedidoCreado/PedidoCreado";
+import {Error} from "./componentes/error/Error";
 
 class App extends React.Component {
   constructor(props) {
@@ -31,9 +33,14 @@ class App extends React.Component {
     localStorage.setItem('adminLogeado', true)
   }
 
-    seleccionarMolde = (moldeSeleccionado, irAListado) => {
-        this.setState({moldeSeleccionado}, irAListado)
-    }
+  seleccionarMolde = (moldeSeleccionado, irAListado) => {
+    this.setState({moldeSeleccionado}, irAListado)
+  }
+
+  confirmarPedidoParcial = (pedido) => {
+    localStorage.setItem('pedido', JSON.stringify(pedido))
+    this.setState({pedidoActual: pedido})
+  }
 
   render() {
     return (
@@ -70,7 +77,7 @@ class App extends React.Component {
             path="/productos"
             render={props => <ListadoDeProductos
               moldeSeleccionado={this.state.moldeSeleccionado}
-              onConfirm={(pedido) => this.setState({pedidoActual: pedido})}
+              onConfirm={(pedido) => this.confirmarPedidoParcial(pedido)}
             />}
           />
           <Route
@@ -89,8 +96,38 @@ class App extends React.Component {
             exact
             path="/confirmacion"
             render={props => <ConfirmacionDePedido
-              pedido={this.state.pedidoActual}
+              pedido={this.state.pedidoActual} {...props}
             />}
+          />
+
+          <Route
+            exact
+            path="/creado"
+            render={props => <PedidoCreado
+              pedido={this.state.pedidoActual} pagado={false} estadoDelPago="No pagado" {...props}
+            />}
+          />
+
+          <Route
+            exact
+            path="/creado-pagado"
+            render={props => <PedidoCreado
+              pedido={this.state.pedidoActual} pagado={true} estadoDelPago="Pagado" {...props}
+            />}
+          />
+
+          <Route
+            exact
+            path="/creado-pendiente"
+            render={props => <PedidoCreado
+              pedido={this.state.pedidoActual} pagado={false} estadoDelPago="Pendiente de aprobación" {...props}
+            />}
+          />
+
+          <Route
+            exact
+            path="/error"
+            render={props => <Error {...props}/>}
           />
         </Switch>
       </BrowserRouter>

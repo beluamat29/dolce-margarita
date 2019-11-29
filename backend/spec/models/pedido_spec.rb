@@ -20,7 +20,9 @@ RSpec.describe Pedido, type: :model do
           tipo_chocolate: 'blanco',
           cantidad: 3,
           precio_total: 300,
-          lugar_retiro: 'Berazategui'
+          lugar_retiro: 'Berazategui',
+          medio_de_pago: 'efectivo',
+          pagado: false
       }
     end
     it 'es valido y tiene estado EN ESPERA' do

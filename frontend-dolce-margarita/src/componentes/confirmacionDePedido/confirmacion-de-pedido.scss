@@ -6,14 +6,22 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding-bottom: 2rem;
 
   .title {
-    margin: 35px;
+    margin: 12px 0 auto;
   }
 
   .pedido {
     width: 653px;
     height: 60%;
+
+    .card-header {
+      .card-header-title {
+        padding: 2rem;
+        font-size: 1.5rem;
+      }
+    }
 
     .card-content {
       height: 70%;
@@ -22,7 +30,6 @@
       flex-direction: column;
 
       .subtitle {
-        margin-left: 15px;
         margin-bottom: 3px;
 
         .cantidad {
@@ -58,9 +65,28 @@
         }
 
         .nombre-cliente {
-          margin-left: 15px;
           width: 250px;
           margin-bottom: 3px;
+        }
+      }
+
+      .forma-pago {
+        display: flex;
+        flex-direction: column;
+        padding-top: 15px;
+
+        p {
+          display: flex;
+        }
+
+        input {
+          margin-right: 10px;
+        }
+
+        label {
+          display: flex;
+          align-items: center;
+          padding: 0 0 3px 15px;
         }
       }
     }
@@ -80,7 +106,7 @@
       justify-content: flex-end;
 
       button {
-        margin: 10px 14px 5px;
+        margin: 27px 14px 5px;
       }
     }
     .titulos {

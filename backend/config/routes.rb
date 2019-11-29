@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'pedidos/filtrar-estado', to: 'pedidos#filtrar_por_estado'
   post '/pedidos/crear', to: 'pedidos#create'
   put '/estadoPedidos', to: 'pedidos#modificar_estado'
+  post '/pedidos/pagar', to: 'pedidos#pagar'
 
   #Usuarios
   post '/usuarios', to: 'user#agregar_usuario'
