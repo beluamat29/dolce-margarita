@@ -119,7 +119,7 @@ export default class PedidoCreado extends React.Component {
 
               <div className="field">
                 <p className="subtitle is-5 producto-y-cantidad-text">
-                  {`${pedido.producto.nombre} ${pedido.producto.peso_en_gramos}gr x ${pedido.cantidad} u.`}
+                  {`${pedido.producto.nombre} ${pedido.producto.peso_en_gramos}gr $${pedido.producto.precio} x ${pedido.cantidad} u.`}
                 </p>
               </div>
             </div>
