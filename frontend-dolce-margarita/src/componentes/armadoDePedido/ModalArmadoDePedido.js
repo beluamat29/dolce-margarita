@@ -69,7 +69,7 @@ export default class ModalArmadoDePedido extends React.Component {
 
               <p className="subtitle">¡Elegí el chocolate que más te guste!</p>
               <div className="input-tipo-chocolate">
-                <Select className='fafafa'
+                <Select
                   value={this.state.tipoDeChocolateALlevar}
                   onChange={(tipo) => this.setState({tipoDeChocolateALlevar: tipo})}
                   options={tiposDeChocolate}

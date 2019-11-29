@@ -25,7 +25,7 @@ export default class LoginAdmin extends React.Component {
         return (
             <div className="home-page-login">
                 <div className="home-title-container">
-                    <p className="title">Logeate como administrador</p>
+                    <p className="title">Logueate como administrador</p>
                 </div>
 
                 <div className="fields-container">
