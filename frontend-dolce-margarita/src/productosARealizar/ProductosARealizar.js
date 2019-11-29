@@ -96,6 +96,33 @@ export default class ProductosARealizar extends React.Component {
                         {this.state.renderCantidad && <h3>Cantidad a Realizar: {this.state.cantidadARealizar}</h3>}
                     </div>
                 </div>
+
+                <div className='tabla-contenedor'>
+                    <table className='tabla'>
+                        <thead>
+                            <tr>
+                                <th className='columna-producto' rowspan="2">Producto</th>
+                                <th className='columna-hacer' colspan="3">Te faltan hacer</th>
+                            </tr>
+                        </thead>
+
+                        <tbody className='cuerpo-tabla'>
+                            <tr>
+                                <th></th>
+                                <th>Semi amargo</th>
+                                <th>Con leche</th>
+                                <th>Blanco</th>
+                            </tr>
+                            <tr>
+                                <th className='borde-rosa'></th>
+                                <th>X</th>
+                                <th></th>
+                                <th>X</th>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
         )
     }
