@@ -52,7 +52,9 @@ RSpec.describe PedidosController, type: :request do
             nombre_cliente: "Micaela Alonso",
             email_cliente: "mica@gmail.com",
             telefono_cliente: "12345678",
-            lugar_retiro: "Calle Falsa 123"
+            lugar_retiro: "Calle Falsa 123",
+            medio_de_pago: "efectivo",
+            pagado: false
         }
       end
 
@@ -99,7 +101,9 @@ RSpec.describe PedidosController, type: :request do
           nombre_cliente: 'Belen Amat',
           email_cliente: 'belu@gmail.com',
           telefono_cliente: '1159963746',
-          lugar_retiro: 'Pedriel 74 - CABA'
+          lugar_retiro: 'Pedriel 74 - CABA',
+          medio_de_pago: 'tarjeta',
+          pagado: true
       )}
 
 
@@ -146,7 +150,9 @@ RSpec.describe PedidosController, type: :request do
           nombre_cliente: 'Belen Amat',
           email_cliente: 'belu@gmail.com',
           telefono_cliente: '1159963746',
-          lugar_retiro: 'Pedriel 74 - CABA'
+          lugar_retiro: 'Pedriel 74 - CABA',
+          medio_de_pago: 'tarjeta',
+          pagado: true
       )}
 
       let(:pedido_2) {Pedido.create!(
@@ -157,7 +163,9 @@ RSpec.describe PedidosController, type: :request do
           nombre_cliente: 'Belen Amat',
           email_cliente: 'belu@gmail.com',
           telefono_cliente: '1159963746',
-          lugar_retiro: 'Pedriel 74 - CABA'
+          lugar_retiro: 'Pedriel 74 - CABA',
+          medio_de_pago: 'efectivo',
+          pagado: false
       )}
 
       context 'y se busca por un nombre y tipo de chocolate' do
