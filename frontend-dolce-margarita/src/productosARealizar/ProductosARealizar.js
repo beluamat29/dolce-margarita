@@ -14,87 +14,104 @@ export default class ProductosARealizar extends React.Component {
             mostrarErrorPoducto: false,
             productos: [],
             cantidadARealizar: null,
-            renderCantidad: false
-        }
-    }
+            renderCantidad: false,
+            productoSeleccionado: '',
+            pedidosBlancos: [],
+            pedidosSemi: [],
+            pedidosLeche: []
 
-    componentDidMount() {
-        this.reloadPageWith(this.actualizarNombres);
+        }
+
+        this.reloadPageWith()
     }
 
     reloadPageWith = () => {
-        servicio.nombresProductos(this.actualizarNombres);
+        servicioPedidos.pedidosARealizar(this.actualizarListadoProductos)
+        servicio.productos(this.actualizarProductos);
+
     }
 
-    actualizarNombres = (productos) => {
-        const nombresProductos = productos.map(producto =>  ({value: producto.nombre , label: producto.nombre}))
-        this.setState({productos: nombresProductos});
+    actualizarProductos = (productos) => {
+        this.setState({productos: productos});
     }
 
-    actualizarCantidadARealizar = (cantidad) => {
-        let cantidadARealizar = 0;
-        cantidad.map(pedido => cantidadARealizar =+ pedido.cantidad);
-        this.setState({cantidadARealizar: cantidadARealizar, renderCantidad: true})
+    actualizarListadoProductos = (productos) => {
+        this.setState({pedidosBlancos: productos.pedidos_blancos,
+                             pedidosSemi: productos.pedidos_semi_amargo,
+                             pedidosLeche: productos.pedidos_con_leche})
     }
 
-    calcularPedido = () => {
-       if(!this.state.productoACalcular){
-          this.setState({mostrarErrorPoducto: true})
-       } else {
-           servicioPedidos.pedidosARealizar(this.state.productoACalcular.value, this.state.tipoDeChocolate, this.actualizarCantidadARealizar)
-       }
+    nombresProductos = () => {
+        return this.state.productos.map(producto => {
+            return  {label: producto.nombre, value: producto.nombre}
+        })
     }
 
-    handleChange = productoACalcular => {
-        return this.setState({ productoACalcular: productoACalcular, mostrarErrorPoducto: false });
+    pedidosBlancosPara = (producto) => {
+        const pedidosDeProducto = this.state.pedidosBlancos.filter(pedido => pedido.producto_id === producto.id)
+        return pedidosDeProducto.map(pedido => pedido.cantidad).reduce((a, b) => a + b, 0)
     }
 
-    elegirTipoChocolate = tipoDeChocolate => {
-        this.setState({tipoDeChocolate: tipoDeChocolate.target.value})
+    pedidosSemiAmargosPara = (producto) => {
+        const pedidosDeProducto = this.state.pedidosSemi.filter(pedido => pedido.producto_id === producto.id)
+        return pedidosDeProducto.map(pedido => pedido.cantidad).reduce((a, b) => a + b, 0)
     }
 
-    limpiarCampos = () => {
-        this.setState({productoACalcular: null, cantidadARealizar: null, renderCantidad: false})
+    pedidosConLechePara = (producto) => {
+        const pedidosDeProducto = this.state.pedidosLeche.filter(pedido => pedido.producto_id === producto.id)
+        return pedidosDeProducto.map(pedido => pedido.cantidad).reduce((a, b) => a + b, 0)
     }
 
+    handleChange = (event) => {
+        this.setState({productoSeleccionado: event.value})
+    }
+
+    esFilaBuscada = (producto) => {
+        if (this.state.productoSeleccionado === producto.nombre ){
+            return 'fila-seleccionada'
+        }
+    }
     render() {
         return (
             <div className="productos-a-realizar-home">
                 <div className='selector-producto-y-tipo'>
                     <div>
                         <p>Elegí un producto</p>
-                        <Select value={this.state.productoACalcular}
-                                options={this.state.productos} placeholder={''}
+                        <Select value={this.state.productoSeleccionado.label}
+                                options={this.nombresProductos()} placeholder={''}
                                 onChange={event => this.handleChange(event)}
                         />
                     </div>
-                    <div className='tipo-chocolate'>
-                        <div className="control">
-                            <div className='radio-chocolates'>
-                                <input value={'blanco'} type="radio" name="tipochocolate" onChange={(event)=>this.elegirTipoChocolate(event)}/>
-                                <p>Blanco</p>
-                            </div>
-                            <div className='radio-chocolates'>
-                                <input value={'semiamargo'} type="radio" name="tipochocolate" onChange={(event)=>this.elegirTipoChocolate(event)}/>
-                                <p>Semi Amargo</p>
-                            </div>
-                            <div className='radio-chocolates'>
-                                <input value={'con leche'} type="radio" name="tipochocolate" onChange={(event)=>this.elegirTipoChocolate(event)}/>
-                                <p>Con Leche</p>
-                            </div>
-                        </div>
+                </div>
 
-                        <div className='botones-filtro'>
-                            <a className="button is-danger" onClick={() => this.limpiarCampos()}>Limpiar</a>
-                            <a className="button is-danger" onClick={() => this.calcularPedido()}>Calcular</a>
-                        </div>
-                    </div>
-                    <div className='error-producto'>
-                        {this.state.mostrarErrorPoducto && <p>Por favor, elegi un producto</p>}
-                    </div>
-                    <div>
-                        {this.state.renderCantidad && <h3>Cantidad a Realizar: {this.state.cantidadARealizar}</h3>}
-                    </div>
+                <div className='tabla-contenedor'>
+                    <table className='tabla'>
+                        <thead>
+                            <tr>
+                                <th className='columna-producto' rowspan="2">Producto</th>
+                                <th className='columna-hacer' colspan="3">Te faltan hacer</th>
+                            </tr>
+                        </thead>
+
+                        <tbody className='cuerpo-tabla'>
+                            <tr>
+                                <th></th>
+                                <th>Semi amargo</th>
+                                <th>Con leche</th>
+                                <th>Blanco</th>
+                            </tr>
+
+                            {this.state.productos.map(producto =>
+                                <tr className={this.esFilaBuscada(producto)}>
+                                <th>{producto.nombre}</th>
+                                <th className='info-numerica'>{this.pedidosSemiAmargosPara(producto)}</th>
+                                <th className='info-numerica'>{this.pedidosConLechePara(producto)}</th>
+                                <th className='info-numerica'>{this.pedidosBlancosPara(producto)}</th>
+                            </tr> )}
+
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
         )

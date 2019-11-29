@@ -30,6 +30,18 @@ Pedido.create(producto: producto_1,
               medio_de_pago: 'efectivo',
               pagado: false)
 
+Pedido.create(producto: producto_3,
+              cantidad: 3,
+              tipo_chocolate: 'semi amargo',
+              precio_total: 180.0,
+              nombre_cliente: 'Luciana Alonso',
+              email_cliente: 'lulialonso@gmail.com',
+              telefono_cliente: '1144553345',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::EN_ESPERA,
+              medio_de_pago: 'efectivo',
+              pagado: false)
+
 Pedido.create(producto: producto_5,
               cantidad: 2,
               tipo_chocolate: 'blanco',
@@ -38,7 +50,19 @@ Pedido.create(producto: producto_5,
               email_cliente: 'lulialonso@gmail.com',
               telefono_cliente: '1144553345',
               lugar_retiro: 'Calle 6 5047 - Berazategui',
-              estado: Pedido::ENTREGADO,
+              estado: Pedido::EN_ESPERA,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+Pedido.create(producto: producto_5,
+              cantidad: 2,
+              tipo_chocolate: 'semi amargo',
+              precio_total: 1200.0,
+              nombre_cliente: 'Lucas Traverso',
+              email_cliente: 'ludat@gmail.com',
+              telefono_cliente: '1144553345',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::EN_ESPERA,
               medio_de_pago: 'efectivo',
               pagado: true)
 

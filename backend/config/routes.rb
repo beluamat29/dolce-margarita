@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   #Productos
+  get '/productos', to: 'productos#index'
   post '/productos', to: 'productos#agregar_producto'
 
   put '/productos/editar_producto', to: 'productos#editar_producto'
