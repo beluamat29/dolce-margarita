@@ -127,8 +127,7 @@ class App extends React.Component {
           <Route
             exact
             path="/error"
-            render={props => <Error {...props}
-            />}
+            render={props => <Error {...props}/>}
           />
         </Switch>
       </BrowserRouter>
