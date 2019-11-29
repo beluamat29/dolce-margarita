@@ -14,12 +14,15 @@ export default class ProductosARealizar extends React.Component {
             mostrarErrorPoducto: false,
             productos: [],
             cantidadARealizar: null,
-            renderCantidad: false
-        }
-    }
+            renderCantidad: false,
+            productoSeleccionado: '',
+            pedidosBlancos: [],
+            pedidosSemi: [],
+            pedidosLeche: []
 
-    componentDidMount() {
-        this.reloadPageWith(this.actualizarNombres);
+        }
+
+        this.reloadPageWith()
     }
 
     reloadPageWith = () => {
@@ -36,7 +39,12 @@ export default class ProductosARealizar extends React.Component {
         this.setState({pedidosBlancos: productos.pedidos_blancos,
                              pedidosSemi: productos.pedidos_semi_amargo,
                              pedidosLeche: productos.pedidos_con_leche})
-        return 0;
+    }
+
+    nombresProductos = () => {
+        return this.state.productos.map(producto => {
+            return  {label: producto.nombre, value: producto.nombre}
+        })
     }
 
     pedidosBlancosPara = (producto) => {
@@ -53,18 +61,28 @@ export default class ProductosARealizar extends React.Component {
         const pedidosDeProducto = this.state.pedidosLeche.filter(pedido => pedido.producto_id === producto.id)
         return pedidosDeProducto.map(pedido => pedido.cantidad).reduce((a, b) => a + b, 0)
     }
+
+    handleChange = (event) => {
+        this.setState({productoSeleccionado: event.value})
+    }
+
+    esFilaBuscada = (producto) => {
+        if (this.state.productoSeleccionado === producto.nombre ){
+            return 'fila-seleccionada'
+        }
+    }
     render() {
         return (
             <div className="productos-a-realizar-home">
-               {/* <div className='selector-producto-y-tipo'>
+                <div className='selector-producto-y-tipo'>
                     <div>
                         <p>Elegí un producto</p>
-                        <Select value={this.state.productoACalcular}
-                                options={this.state.productos} placeholder={''}
+                        <Select value={this.state.productoSeleccionado.label}
+                                options={this.nombresProductos()} placeholder={''}
                                 onChange={event => this.handleChange(event)}
                         />
                     </div>
-                </div>*/}
+                </div>
 
                 <div className='tabla-contenedor'>
                     <table className='tabla'>
@@ -84,7 +102,7 @@ export default class ProductosARealizar extends React.Component {
                             </tr>
 
                             {this.state.productos.map(producto =>
-                                <tr>
+                                <tr className={this.esFilaBuscada(producto)}>
                                 <th>{producto.nombre}</th>
                                 <th className='info-numerica'>{this.pedidosSemiAmargosPara(producto)}</th>
                                 <th className='info-numerica'>{this.pedidosConLechePara(producto)}</th>

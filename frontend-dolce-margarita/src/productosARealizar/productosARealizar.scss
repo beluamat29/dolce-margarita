@@ -79,6 +79,9 @@
       .cuerpo-tabla {
         border: 1px solid #e48eb2;
         tr{
+          &.fila-seleccionada {
+            background-color: #ffd8dd;
+          }
           th {
             border: 1px solid #e48eb2;
           }
