@@ -69,7 +69,7 @@ export default class PedidoCreado extends React.Component {
                 <p className="subtitle">Punto de retiro</p>
                 <input
                   disabled={true}
-                  className="field nombre-cliente"
+                  className="input field nombre-cliente"
                   type="text"
                   value={this.state.puntoDeRetiro}
                   readOnly={true}
@@ -102,21 +102,15 @@ export default class PedidoCreado extends React.Component {
                   readOnly={true}
                   />
               </div>
-
-              <div className="field">
-                <p className="subtitle is-5 producto-y-cantidad-text">
-                  {`${pedido.producto.nombre} ${pedido.producto.peso_en_gramos}gr x ${pedido.cantidad} u.`}
-                </p>
-              </div>
             </div>
 
-            <div className="field-row nombre-cliente">
+            <div className="field-row">
               <div className="field">
                 <p className="subtitle">Estado del pago</p>
 
                 <input
                   disabled={true}
-                  className="input field"
+                  className="input field nombre-cliente"
                   type="text"
                   value={this.props.estadoDelPago}
                   readOnly={true}

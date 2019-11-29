@@ -14,7 +14,7 @@ export default class ConfirmacionDePedido extends React.Component {
       telefonoClientePedido: '',
       puntoDeRetiro: '',
       medioPago: '',
-      pedido: props.pedido || JSON.parse(localStorage.getItem('pedido')),
+      pedido: JSON.parse(localStorage.getItem('pedido')) || props.pedido,
 
     }
   }

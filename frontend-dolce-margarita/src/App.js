@@ -38,8 +38,8 @@ class App extends React.Component {
   }
 
   confirmarPedidoParcial = (pedido) => {
-    this.setState({pedidoActual: pedido})
     localStorage.setItem('pedido', JSON.stringify(pedido))
+    this.setState({pedidoActual: pedido})
   }
 
   render() {
