@@ -10,6 +10,11 @@ class ProductosController < ApplicationController
   rescue_from ActionController::ParameterMissing,
               :with => :render_bad_request
 
+  def index
+    @productos = Producto.all
+    render json: @productos, status: :ok , nothing: true
+  end
+
   def agregar_producto
     @producto = Producto.agregar_producto(params)
     render json: @producto, status: :created, nothing: true

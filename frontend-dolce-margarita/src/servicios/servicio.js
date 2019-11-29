@@ -3,6 +3,10 @@ const SERVICE_URL = 'http://localhost:3000/';
 
 export default class Servicio {
 
+    static productos(actualizarProductos) {
+        return axios.get(`${SERVICE_URL}/productos`)
+            .then(response => {actualizarProductos(response.data)})
+    }
     static productosConMolde(molde, actualizarProductos) {
         return (() => {
             switch (molde) {

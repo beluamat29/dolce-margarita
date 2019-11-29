@@ -75,9 +75,23 @@ class PedidosController < ApplicationController
   end
 
   def pedidos_a_realizar
-    @pedidos_a_realizar = Pedido.joins(:producto).where(productos: {nombre: params[:nombre]})
-                              .where(tipo_chocolate: params[:tipo_chocolate], estado: Pedido::EN_ESPERA)
-    render json: @pedidos_a_realizar, status: :ok, nothing: true
+    @nombres = Producto.all.pluck('nombre')
+
+    @pedidos_a_realizar_blancos =  Pedido.joins(:producto).where(productos: {nombre: @nombres})
+                                       .where(tipo_chocolate:'blanco' , estado: Pedido::EN_ESPERA)
+
+    @pedidos_a_realizar_semi = Pedido.joins(:producto).where(productos: {nombre: @nombres})
+                                   .where(tipo_chocolate:'semi amargo' , estado: Pedido::EN_ESPERA)
+
+    @pedidos_a_realizar_leche = Pedido.joins(:producto).where(productos: {nombre: @nombres})
+                                    .where(tipo_chocolate:'con leche' , estado: Pedido::EN_ESPERA)
+
+
+    @pedidos_por_tipo_chocolate = {"pedidos_blancos" => @pedidos_a_realizar_blancos,
+                                   "pedidos_semi_amargo" => @pedidos_a_realizar_semi,
+                                   "pedidos_con_leche" => @pedidos_a_realizar_leche}
+
+    render json: @pedidos_por_tipo_chocolate, status: :ok, nothing: true
   end
 
   private

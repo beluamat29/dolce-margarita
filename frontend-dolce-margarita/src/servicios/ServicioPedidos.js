@@ -20,13 +20,8 @@ export default class ServicioPedidos {
         })
     }
 
-    static pedidosARealizar(nombreProducto, tipoChocolate, actualizarCantidadARealizar) {
-        return axios.get(`${SERVICE_URL}/pedidosARealizar`, {
-            params: {
-                nombre: nombreProducto,
-                tipo_chocolate: tipoChocolate
-            }
-        })
+    static pedidosARealizar(actualizarCantidadARealizar) {
+        return axios.get(`${SERVICE_URL}/pedidosARealizar`)
             .then(response => {actualizarCantidadARealizar(response.data)})
     }
 }
