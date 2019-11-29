@@ -76,6 +76,7 @@ class App extends React.Component {
             exact
             path="/productos"
             render={props => <ListadoDeProductos
+              adminLogeado={this.state.adminLogeado}
               moldeSeleccionado={this.state.moldeSeleccionado}
               onConfirm={(pedido) => this.confirmarPedidoParcial(pedido)}
             />}
