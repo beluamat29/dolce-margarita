@@ -7,7 +7,13 @@ $button-color: #daddcb;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
+  .modal {
+    .modal-card {
+      height: 550px;
+    }
+  }
+
   .cartas {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
