@@ -12,7 +12,7 @@ export default class ServicioPedidos {
         return axios.get(`${SERVICE_URL}/pedidos/filtrar-estado?estado=${estado}`)
     }
 
-    static cancelarPedido(pedido, estado) {
+    static cambiarEstadoPedido(pedido, estado) {
         return axios.put(`${SERVICE_URL}/estadoPedidos`, {
             id: pedido.id,
             estado: estado
