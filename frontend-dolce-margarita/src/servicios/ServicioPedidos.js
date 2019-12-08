@@ -8,9 +8,8 @@ export default class ServicioPedidos {
             .then(response => {actualizarPedidos(response.data)})
     }
 
-    static pedidosPorEstado(estado, actualizarPedidos) {
+    static pedidosPorEstado(estado) {
         return axios.get(`${SERVICE_URL}/pedidos/filtrar-estado?estado=${estado}`)
-          .then(response => {actualizarPedidos(response.data)})
     }
 
     static cancelarPedido(pedido, estado) {

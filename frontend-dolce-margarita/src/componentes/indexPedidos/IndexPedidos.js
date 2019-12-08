@@ -26,7 +26,7 @@ export default class IndexPedidos extends React.Component {
     }
 
     componentDidMount() {
-        this.reloadPageWith(this.actualizarPedidos);
+        this.reloadPageWith();
     }
 
     reloadPageWith = () => {
@@ -50,8 +50,11 @@ export default class IndexPedidos extends React.Component {
     }
 
     filtrarPorEstado = (estado) => {
-        servicioPedidos.pedidosPorEstado(estado.value, this.actualizarPedidos)
-          .then(() => this.setState({estadoSeleccionado: estado}));
+        servicioPedidos.pedidosPorEstado(estado.value)
+          .then((response) => {
+              this.actualizarPedidos(response.data)
+              this.setState({estadoSeleccionado: estado})
+          });
     }
 
     setearFechaInicio = (date) => {
@@ -79,6 +82,12 @@ export default class IndexPedidos extends React.Component {
             const pedidosPreFecha = this.state.pedidosTodos.filter(pedido => !(this.esFechaPosterior(pedido.created_at, date)))
             this.setState({pedidosAMostrar: pedidosPreFecha})
         }
+    }
+
+    renderInfoPedido = informacionPedido => {
+        return(
+          <InformacionPedido reloadPageWith={this.reloadPageWith} actualizarPedidos={this.actualizarPedidos} pedido={informacionPedido}/>
+        )
     }
 
     render() {
@@ -135,7 +144,7 @@ export default class IndexPedidos extends React.Component {
                     </div>
                 </div>
                 <div className="rows">
-                    {this.state.pedidosAMostrar.map(informacionPedido => <InformacionPedido actualizarPedidos={this.actualizarPedidos} pedido={informacionPedido}/>)}
+                    {this.state.pedidosAMostrar.map(informacionPedido => this.renderInfoPedido(informacionPedido))}
                 </div>
             </div>
         )

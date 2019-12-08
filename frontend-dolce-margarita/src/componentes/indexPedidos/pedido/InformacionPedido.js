@@ -15,6 +15,14 @@ export default class InformacionPedido extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        const {pedido} = this.props;
+
+        if(pedido.estado !== prevState.estado) {
+            this.setState({estado: pedido.estado})
+        }
+    }
+
     mostrarUOcultarInformacion = () => {
         this.setState({mostrarInformacion: !this.state.mostrarInformacion})
     }
@@ -25,7 +33,9 @@ export default class InformacionPedido extends React.Component {
 
     cancelarPedido = () => {
         return servicioPedidos.cancelarPedido(this.props.pedido, 'CANCELADO')
-            .then(response => {this.setState({estado: response.data.estado})})
+            .then(response => {
+                this.setState({estado: response.data.estado}, this.props.reloadPageWith)
+            })
     }
 
     cambiarEstado = (estado) => {
