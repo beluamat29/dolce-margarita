@@ -69,13 +69,33 @@ mamushka.picture =  Pathname.new(Rails.root.join("db/images/mamushka.png")).open
 mamushka.save!
 
 #Creando Huevos
+geometrico = Producto.create(nombre: 'Huevo geometrico', peso_en_gramos: 360, precio: 240, descripcion: "Huevo del futuro", molde: 'huevo', tamanio: 14)
+geometrico.picture = Pathname.new(Rails.root.join("db/images/geometrico.png")).open
+geometrico.save!
+
+huevo_conejitos = Producto.create(nombre: 'Conejitos con gomitas', peso_en_gramos: 60, precio: 90, descripcion: "Bellos conejitos rellenos de gomitas", molde: 'huevo', tamanio: 10)
+huevo_conejitos.picture = Pathname.new(Rails.root.join("db/images/huevo-conejitos.png")).open
+huevo_conejitos.save!
+
+huevo_pasas = Producto.create(nombre: 'Huevo con pasas de uva', peso_en_gramos: 180, precio: 190, descripcion: "Huevo con pasas de uva al frente", molde: 'huevo', tamanio: 12)
+huevo_pasas.picture = Pathname.new(Rails.root.join("db/images/huevos-con-pasas.png")).open
+huevo_pasas.save!
+
+huevo_oreo = Producto.create(nombre: 'Huevo con Oreos', peso_en_gramos: 180, precio: 190, descripcion: "Huevo con oreos al frente", molde: 'huevo', tamanio: 12)
+huevo_oreo.picture = Pathname.new(Rails.root.join("db/images/huevos-con-oreos.png")).open
+huevo_oreo.save!
+
+huevo_ddl = Producto.create(nombre: 'Huevo relleno de dulce de leche', peso_en_gramos: 60, precio: 120, descripcion: "Huevo con oreos al frente", molde: 'huevo', tamanio: 12)
+huevo_ddl.picture = Pathname.new(Rails.root.join("db/images/huevos-ddl.png")).open
+huevo_ddl.save!
+
 gallina = Producto.create(nombre: 'Gallina rellena', peso_en_gramos: 350, precio: 500.0, descripcion: "Gallina rellena de golosinas", molde: 'huevo', tamanio: 8)
 gallina.picture = Pathname.new(Rails.root.join("db/images/gallinas.png")).open
 gallina.save!
 
-Producto.create(nombre: 'Gallina rellena', peso_en_gramos: 500, precio: 700.0, descripcion: "Gallina rellena de chocolates", molde: 'huevo', tamanio: 12)
-Producto.create(nombre: 'Huevo de Dinosaurio', peso_en_gramos: 300, precio: 600.0, descripcion: "Huevo ralladito", molde: 'huevo', tamanio: 6)
-Producto.create(nombre: 'Huevo Kinder', peso_en_gramos: 480, precio: 550.0, descripcion: "Huevo versión kinder", molde: 'huevo', tamanio: 10)
+huevo_primaveral = Producto.create(nombre: 'Huevo primaveral', peso_en_gramos: 250, precio: 70.0, descripcion: "Gallina rellena de golosinas", molde: 'huevo', tamanio: 15)
+huevo_primaveral.picture = Pathname.new(Rails.root.join("db/images/huevo-primaveral.png")).open
+huevo_primaveral.save!
 
 #Creando Pedidos
 # Pedido.create(producto: producto_1,
