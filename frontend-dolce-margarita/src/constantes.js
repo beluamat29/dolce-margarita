@@ -1,6 +1,6 @@
 export const tiposDeChocolate = [
-    { value: 'semiamargo', label: 'Chocolate semi amargo' },
-    { value: 'conLeche', label: 'Chocolate con leche' },
+    { value: 'semi amargo', label: 'Chocolate semi amargo' },
+    { value: 'con leche', label: 'Chocolate con leche' },
     { value: 'blanco', label: 'Chocolate blanco' },
 ];
 

@@ -45,6 +45,12 @@ export default class InformacionPedido extends React.Component {
           })
     }
 
+    fechaCreacionPedido = () => {
+        const creacion = new Date(this.props.pedido.created_at);
+
+        return `${creacion.getDate()}/${creacion.getMonth() + 1}/${creacion.getFullYear()}`
+    }
+
     render() {
         const {pedido} = this.props
 
@@ -96,6 +102,16 @@ export default class InformacionPedido extends React.Component {
                 <div className='tipo-chocolate'>
                     <p>{'Punto de retiro: ' + pedido.lugar_retiro}</p>
                 </div>
+                <div className='tipo-chocolate'>
+                    <p>{'Creado el: ' + this.fechaCreacionPedido()}</p>
+                </div>
+                {
+                    pedido.pagado && (
+                      <div className='tipo-chocolate'>
+                          <p>Pagado</p>
+                      </div>
+                    )
+                }
                 <div className="bottom-row">
                     <div className='tipo-chocolate' style={{padding: '15px'}}>
                         {this.sePuedeCancelarPedido() && <a className='button' onClick={this.cancelarPedido}>Cancelar</a>}
