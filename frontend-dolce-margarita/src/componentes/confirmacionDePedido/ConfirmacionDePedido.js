@@ -75,6 +75,10 @@ export default class ConfirmacionDePedido extends React.Component {
     this.setState({puntoDeRetiro: puntosDeRetiro})
   }
 
+  cancelar = () => {
+    this.props.history.push('/')
+  }
+
   render() {
     const {pedido} = this.state;
 
@@ -169,7 +173,7 @@ export default class ConfirmacionDePedido extends React.Component {
 
           <footer className="card-footer">
             <a className="button button-confirmar" disabled={this.deshabilitar()} onClick={this.confirmarPedido}>Aceptar</a>
-            <a className="button button-confirmar" onClick={this.props.onClose}>Cancelar</a>
+            <a className="button button-confirmar" onClick={this.cancelar}>Cancelar</a>
           </footer>
         </div>
       </div>
