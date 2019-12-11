@@ -103,7 +103,7 @@ export default class IndexPedidos extends React.Component {
                         <div className='filtros-fecha'>
                             <label className='etiqueta-filtro'>Desde:</label>
                             <div className='filtro'>
-                                <DatePicker
+                                <DatePicker className='filtro-de-fecha'
                                   locale={'es'}
                                   selected={this.state.fechaInicio}
                                   onSelect={this.setearFechaInicio}
