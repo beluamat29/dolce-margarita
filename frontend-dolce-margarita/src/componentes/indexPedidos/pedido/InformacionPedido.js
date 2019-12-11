@@ -34,7 +34,7 @@ export default class InformacionPedido extends React.Component {
     cancelarPedido = () => {
         return servicioPedidos.cambiarEstadoPedido(this.props.pedido, 'CANCELADO')
             .then(response => {
-                this.setState({estado: response.data.estado}, this.props.reloadPageWith)
+                this.props.reloadPageWith()
             })
     }
 
@@ -60,7 +60,10 @@ export default class InformacionPedido extends React.Component {
                     </div>
                 </div>
                 <div className='nombre-y-boton'>
-                    <p className="pedido">{pedido.nombre_producto + ' ' + pedido.peso_en_gramos + "grs x " + pedido.cantidad + 'u'}</p>
+                    <div className="pedido">
+                        <p>{pedido.nombre_producto}</p>
+                        <p>{pedido.peso_en_gramos + "grs x " + pedido.cantidad + 'u'}</p>
+                    </div>
                     <a className='button' onClick={()=>this.mostrarUOcultarInformacion()}>{this.state.mostrarInformacion ? 'Ocultar' : 'Ver'}</a>
                 </div>
             </div>

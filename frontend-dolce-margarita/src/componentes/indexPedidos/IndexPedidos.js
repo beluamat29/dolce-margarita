@@ -19,7 +19,7 @@ export default class IndexPedidos extends React.Component {
         this.state = {
             pedidosTodos: [],
             pedidosAMostrar: [],
-            estadoSeleccionado: null,
+            estadoSeleccionado: estados[0],
             fechaFin: null,
             fechaInicio: null
         }
