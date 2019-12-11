@@ -125,6 +125,10 @@ $info: black;
         display: flex;
         align-items: center;
 
+        .pedido {
+          text-align: right;
+        }
+
         a {
           margin-right: 15px;
           background-color: #ffa5cd;

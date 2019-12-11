@@ -98,120 +98,248 @@ huevo_primaveral.picture = Pathname.new(Rails.root.join("db/images/huevo-primave
 huevo_primaveral.save!
 
 #Creando Pedidos
-# Pedido.create(producto: producto_1,
-#               cantidad: 3,
-#               tipo_chocolate: 'blanco',
-#               precio_total: 180.0,
-#               nombre_cliente: 'Luciana Alonso',
-#               email_cliente: 'lulialonso@gmail.com',
-#               telefono_cliente: '1144553345',
-#               lugar_retiro: 'Calle 6 5047 - Berazategui',
-#               estado: Pedido::EN_ESPERA,
-#               medio_de_pago: 'efectivo',
-#               pagado: false)
-#
-# Pedido.create(producto: producto_3,
-#               cantidad: 3,
-#               tipo_chocolate: 'semi amargo',
-#               precio_total: 180.0,
-#               nombre_cliente: 'Luciana Alonso',
-#               email_cliente: 'lulialonso@gmail.com',
-#               telefono_cliente: '1144553345',
-#               lugar_retiro: 'Calle 6 5047 - Berazategui',
-#               estado: Pedido::EN_ESPERA,
-#               medio_de_pago: 'efectivo',
-#               pagado: false)
-#
-# Pedido.create(producto: producto_5,
-#               cantidad: 2,
-#               tipo_chocolate: 'blanco',
-#               precio_total: 1200.0,
-#               nombre_cliente: 'Luciana Alonso',
-#               email_cliente: 'lulialonso@gmail.com',
-#               telefono_cliente: '1144553345',
-#               lugar_retiro: 'Calle 6 5047 - Berazategui',
-#               estado: Pedido::EN_ESPERA,
-#               medio_de_pago: 'efectivo',
-#               pagado: true)
-#
-# Pedido.create(producto: producto_5,
-#               cantidad: 2,
-#               tipo_chocolate: 'semi amargo',
-#               precio_total: 1200.0,
-#               nombre_cliente: 'Lucas Traverso',
-#               email_cliente: 'ludat@gmail.com',
-#               telefono_cliente: '1144553345',
-#               lugar_retiro: 'Calle 6 5047 - Berazategui',
-#               estado: Pedido::EN_ESPERA,
-#               medio_de_pago: 'efectivo',
-#               pagado: true)
-#
-# pedido_3 = Pedido.create(producto: producto_2,
-#               cantidad: 2,
-#               tipo_chocolate: 'con leche',
-#               precio_total: 1000.0,
-#               nombre_cliente: 'Elisabet Tassiello',
-#               email_cliente: 'eli@gmail.com',
-#               telefono_cliente: '1147853345',
-#               lugar_retiro: 'Calle 6 5047 - Berazategui',
-#               estado: Pedido::CANCELADO,
-#               medio_de_pago: 'efectivo',
-#               pagado: false)
-#
-# pedido_3.created_at = Date.parse('3rd Nov 2019')
-# pedido_3.save
-#
-# pedido_4 = Pedido.create(producto: producto_3,
-#               cantidad: 1,
-#               tipo_chocolate: 'semi amargo',
-#               precio_total: 70.0,
-#               nombre_cliente: 'Lucas Avalos',
-#               email_cliente: 'eltumba@gmail.com',
-#               telefono_cliente: '1147853345',
-#               lugar_retiro: 'Calle 6 5047 - Berazategui',
-#               estado: Pedido::FINALIZADO,
-#               medio_de_pago: 'tarjeta',
-#               pagado: true)
-#
-# pedido_4.created_at = Date.parse('29th Nov 2019')
-# pedido_4.save
-#
-# Pedido.create(producto: producto_4,
-#               cantidad: 1,
-#               tipo_chocolate: 'semi amargo',
-#               precio_total: 175.0,
-#               nombre_cliente: 'Micaela Alonso',
-#               email_cliente: 'micaalonso@gmail.com',
-#               telefono_cliente: '1143963345',
-#               lugar_retiro: 'Calle 6 5047 - Berazategui',
-#               estado: Pedido::ENTREGADO,
-#               medio_de_pago: 'tarjeta',
-#               pagado: true)
-#
-#
-# Pedido.create(producto: producto_3,
-#               cantidad: 4,
-#               tipo_chocolate: 'semi amargo',
-#               precio_total: 175.0,
-#               nombre_cliente: 'Leonardo Conelly',
-#               email_cliente: 'leo@gmail.com',
-#               telefono_cliente: '1146763345',
-#               lugar_retiro: 'Calle 6 5047 - Berazategui',
-#               estado: Pedido::ENTREGADO,
-#               medio_de_pago: 'efectivo',
-#               pagado: true)
-#
-# Pedido.create(producto: producto_2,
-#               cantidad: 2,
-#               tipo_chocolate: 'semi amargo',
-#               precio_total: 1340.0,
-#               nombre_cliente: 'Leonardo Conelly',
-#               email_cliente: 'leo@gmail.com',
-#               telefono_cliente: '1146763345',
-#               lugar_retiro: 'Calle 6 5047 - Berazategui',
-#               estado: Pedido::FINALIZADO,
-#               medio_de_pago: 'efectivo',
-#               pagado: true)
+
+#Pedidos del 3 de noviembre
+pedido_1 = Pedido.create(producto: huevo_pasas,
+              cantidad: 3,
+              tipo_chocolate: 'blanco',
+              precio_total: huevo_pasas.precio * 3,
+              nombre_cliente: 'Luciana Alonso',
+              email_cliente: 'lulialonso@gmail.com',
+              telefono_cliente: '1144553345',
+              lugar_retiro: 'Perdriel 74 - CABA',
+              estado: Pedido::EN_ESPERA,
+              medio_de_pago: 'efectivo',
+              pagado: false)
+
+pedido_1.created_at = Date.parse('3rd Nov 2019')
+pedido_1.save
+
+pedido_2 = Pedido.create(producto: caja_herramientas,
+              cantidad: 2,
+              tipo_chocolate: 'blanco',
+              precio_total: caja_herramientas.precio * 2,
+              nombre_cliente: 'Luciana Alonso',
+              email_cliente: 'lulialonso@gmail.com',
+              telefono_cliente: '1144553345',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::EN_ESPERA,
+              medio_de_pago: 'efectivo',
+              pagado: false)
+
+pedido_2.created_at = Date.parse('3rd Nov 2019')
+pedido_2.save
+
+pedido_3 = Pedido.create(producto: mamushka,
+              cantidad: 1,
+              tipo_chocolate: 'blanco',
+              precio_total: mamushka.precio ,
+              nombre_cliente: 'Lucas Avalos',
+              email_cliente: 'lucas.avalos@gmail.com',
+              telefono_cliente: '1144567245',
+              lugar_retiro: 'Perdriel 74 - CABA',
+              estado: Pedido::ENTREGADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_3.created_at = Date.parse('3rd Nov 2019')
+pedido_3.save
+
+pedido_4 = Pedido.create(producto: arbol,
+              cantidad: 1,
+              tipo_chocolate: 'blanco',
+              precio_total: arbol.precio ,
+              nombre_cliente: 'Elisabet Tassiello',
+              email_cliente: 'elisabet.tassiello@gmail.com',
+              telefono_cliente: '1145767245',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::ENTREGADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_4.created_at = Date.parse('3rd Nov 2019')
+pedido_4.save
+
+pedido_5 = Pedido.create(producto: arbol,
+              cantidad: 4,
+              tipo_chocolate: 'con leche',
+              precio_total: arbol.precio * 4 ,
+              nombre_cliente: 'Cecilia Amat',
+              email_cliente: 'ceci_amat@gmail.com',
+              telefono_cliente: '1145294725',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::ENTREGADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_5.created_at = Date.parse('3rd Nov 2019')
+pedido_5.save
+
+pedido_6 = Pedido.create(producto: heart,
+              cantidad: 2,
+              tipo_chocolate: 'con leche',
+              precio_total: arbol.precio * 4 ,
+              nombre_cliente: 'Cecilia Amat',
+              email_cliente: 'ceci_amat@gmail.com',
+              telefono_cliente: '1145294725',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::CANCELADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_6.created_at = Date.parse('3rd Nov 2019')
+pedido_6.save
+
+pedido_7 = Pedido.create(producto: paleta_coronas,
+              cantidad: 5,
+              tipo_chocolate: 'blanco',
+              precio_total: paleta_coronas.precio * 5 ,
+              nombre_cliente: 'Fernando Dodino',
+              email_cliente: 'fer_dodino@gmail.com',
+              telefono_cliente: '1145900825',
+              lugar_retiro: 'Calle 13 4826 - Berazategui',
+              estado: Pedido::FINALIZADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_7.created_at = Date.parse('3rd Nov 2019')
+pedido_7.save
+
+pedido_8 = Pedido.create(producto: nueces,
+              cantidad: 2,
+              tipo_chocolate: 'blanco',
+              precio_total: nueces.precio * 2 ,
+              nombre_cliente: 'Fernando Dodino',
+              email_cliente: 'fer_dodino@gmail.com',
+              telefono_cliente: '1559973345',
+              lugar_retiro: 'Perdriel 74 - CABA',
+              estado: Pedido::CANCELADO,
+              medio_de_pago: 'efectivo',
+              pagado: false)
+
+pedido_8.created_at = Date.parse('3rd Nov 2019')
+pedido_8.save
+
+pedido_9 = Pedido.create(producto: paleta_herramientas,
+              cantidad: 1,
+              tipo_chocolate: 'semi amargo',
+              precio_total: paleta_herramientas.precio * 5 ,
+              nombre_cliente: 'Lucas Traverso',
+              email_cliente: 'ludat@gmail.com',
+              telefono_cliente: '1145967825',
+              lugar_retiro: 'Calle 13 4826 - Berazategui',
+              estado: Pedido::EN_PREPARACION,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_9.created_at = Date.parse('3rd Nov 2019')
+pedido_9.save
+
+pedido_10 = Pedido.create(producto: huevo_primaveral,
+              cantidad: 1,
+              tipo_chocolate: 'semi amargo',
+              precio_total: huevo_primaveral.precio ,
+              nombre_cliente: 'David Correa',
+              email_cliente: 'davejco@gmail.com',
+              telefono_cliente: '1557973345',
+              lugar_retiro: 'Perdriel 74 - CABA',
+              estado: Pedido::EN_PREPARACION,
+              medio_de_pago: 'efectivo',
+              pagado: false)
+
+pedido_10.created_at = Date.parse('3rd Nov 2019')
+pedido_10.save
+
+#Pedidos del 24 de noviembre
+pedido_11 = Pedido.create(producto: conejo_feliz,
+              cantidad: 3,
+              tipo_chocolate: 'blanco',
+              precio_total: conejo_feliz.precio * 3,
+              nombre_cliente: 'Luciana Alonso',
+              email_cliente: 'lulialonso@gmail.com',
+              telefono_cliente: '1144553345',
+              lugar_retiro: 'Perdriel 74 - CABA',
+              estado: Pedido::EN_ESPERA,
+              medio_de_pago: 'efectivo',
+              pagado: false)
+
+pedido_11.created_at = Date.parse('24th Nov 2019')
+pedido_11.save
+
+pedido_12 = Pedido.create(producto: caja_herramientas,
+              cantidad: 2,
+              tipo_chocolate: 'con leche',
+              precio_total: caja_herramientas.precio * 2,
+              nombre_cliente: 'Fernando Dodino',
+              email_cliente: 'fer_dodino@gmail.com',
+              telefono_cliente: '11446783345',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::EN_ESPERA,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_12.created_at = Date.parse('24th Nov 2019')
+pedido_12.save
+
+pedido_13 = Pedido.create(producto: heart,
+              cantidad: 4,
+              tipo_chocolate: 'blanco',
+              precio_total: heart.precio ,
+              nombre_cliente: 'Lucas Avalos',
+              email_cliente: 'lucas.avalos@gmail.com',
+              telefono_cliente: '1144567245',
+              lugar_retiro: 'Perdriel 74 - CABA',
+              estado: Pedido::CANCELADO,
+              medio_de_pago: 'efectivo',
+              pagado: false)
+
+pedido_13.created_at = Date.parse('24th Nov 2019')
+pedido_13.save
+
+pedido_14 = Pedido.create(producto: nueces,
+              cantidad: 3,
+              tipo_chocolate: 'blanco',
+              precio_total: nueces.precio ,
+              nombre_cliente: 'Miguel Lopez',
+              email_cliente: 'migue_t@gmail.com',
+              telefono_cliente: '1145729045',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::FINALIZADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_14.created_at = Date.parse('24th Nov 2019')
+pedido_14.save
+
+pedido_15 = Pedido.create(producto: huevo_conejitos,
+              cantidad: 4,
+              tipo_chocolate: 'con leche',
+              precio_total: huevo_conejitos.precio * 4 ,
+              nombre_cliente: 'Cecilia Amat',
+              email_cliente: 'ceci_amat@gmail.com',
+              telefono_cliente: '1145294725',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::ENTREGADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_15.created_at = Date.parse('24th Nov 2019')
+pedido_15.save
+
+pedido_16 = Pedido.create(producto: bota,
+              cantidad: 2,
+              tipo_chocolate: 'con leche',
+              precio_total: bota.precio * 2 ,
+              nombre_cliente: 'Juan Alvear',
+              email_cliente: 'jalvear@gmail.com',
+              telefono_cliente: '1145294565',
+              lugar_retiro: 'Calle 6 5047 - Berazategui',
+              estado: Pedido::CANCELADO,
+              medio_de_pago: 'efectivo',
+              pagado: true)
+
+pedido_16.created_at = Date.parse('3rd Nov 2019')
+pedido_16.save
 
 #Creando Usuarios Admin
 User.create(nombre: 'Elisabet', apellido: 'Tassiello', email: 'eliadmin@gmail.com', password: '123456', admin: true)
